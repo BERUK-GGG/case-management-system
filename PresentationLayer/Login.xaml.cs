@@ -30,7 +30,10 @@ namespace PresentationLayer
             if (username == "admin" && password == "password")
             {
                 // Successful login, navigate to the main window or perform other actions
-                MessageBox.Show("Login successful!");
+                
+                StartSida startSida = new StartSida();
+                startSida.Show();
+                this.Close();
             }
             else
             {

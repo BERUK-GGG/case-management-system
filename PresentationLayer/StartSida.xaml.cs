@@ -17,15 +17,17 @@ namespace PresentationLayer
     /// <summary>
     /// Interaction logic for Window1.xaml
     /// </summary>
-    public partial class Window1 : Window
+    public partial class StartSida : Window
     {
-        public Window1()
+        public StartSida()
         {
             InitializeComponent();
         }
 
         private void CustomerButton_Click(object sender, RoutedEventArgs e)
         {
+
+            KundContentControl.Visibility = Visibility.Visible;
 
             // Handle the click event for the "Kund" button
             // Add logic to navigate to the customer page or perform other actions
