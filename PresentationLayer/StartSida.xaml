@@ -57,12 +57,36 @@
         </StackPanel>
 
         <!-- Content Area for Kund Section -->
-        <ContentControl Grid.Row="1" Grid.Column="1" x:Name="KundContentControl" Visibility="Visible">
+        <ContentControl Grid.Row="1" Grid.Column="1" x:Name="KundContentControl" Visibility="Collapsed">
             <!-- Content for Kund Section Goes Here -->
-            
-            <TextBlock Text="Kund Content Goes Here" Margin="225,20,20,20"/>
+            <StackPanel>
+                <Button Content="Ny kund" Width="100" Height="30" Margin="10"/>
+                <Button Content="Uppdatera kund" Width="100" Height="30" Margin="10"/>
+
+
+            </StackPanel>
         </ContentControl>
 
+        <!-- Content Area for bokning Section -->
+        <ContentControl Grid.Row="1" Grid.Column="1" x:Name="BokingContentControl" Visibility="Collapsed">
+            <!-- Content for bokning Section Goes Here -->
+            <StackPanel>
+                <Button Content="Boka tid" Width="100" Height="30" Margin="10"/>
 
+                <Label Grid.Row="1" Content="Boka tid:" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="234,16,0,0" Grid.RowSpan="2"/>
+                <TextBox Grid.Row="1" Name="BokaTidBox" Width="200" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,20,0,0"/>
+            </StackPanel>
+        </ContentControl>
+
+        <ContentControl Grid.Row="1" Grid.Column="1" x:Name="ReservContentControl" Visibility="Collapsed">
+            <!-- Content for reserv Section Goes Here -->
+            <StackPanel>
+                <Button Content="Button 1" Width="100" Height="30" Margin="10"/>
+
+                <Button Content="Button 3" Width="100" Height="30" Margin="10"/>
+            </StackPanel>
+        </ContentControl>
+
+        <Button x:Name="BackButton" Content="Back" Width="100" Height="30" Click="BackButton_Click" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="62,339,0,0" Visibility="Collapsed"/>
     </Grid>
 </Window>
