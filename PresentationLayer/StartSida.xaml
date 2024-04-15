@@ -56,13 +56,20 @@
 
 
         <!-- StackPanel for Buttons -->
-        <StackPanel Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" Height="283">
-            <Button Content="Kund" Width="200" Height="50" Click="CustomerButton_Click" Background="Beige"/>
-            <Button Content="Bokning" Width="200" Height="50" Margin="0,30,0,30" Click="BookingButton_Click" Background="#F5F5DC" />
-            <Button Content="Resevdelar" Width="200" Height="50" Click="PartsButton_Click" Background="Beige" />
-        </StackPanel>
 
-        <!-- Content Area for Kund Section -->
+            <StackPanel Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" Height="283">
+                <Border Background="Beige" CornerRadius="15" Margin="0,0,0,20">
+                    <Button Content="Kund" Width="200" Height="50" Click="CustomerButton_Click" Background="Transparent"/>
+                </Border>
+                <Border Background="#F5F5DC" CornerRadius="15" Margin="0,0,0,20">
+                    <Button Content="Bokning" Width="200" Height="50" Click="BookingButton_Click" Background="Transparent"/>
+                </Border>
+                <Border Background="Beige" CornerRadius="15">
+                    <Button Content="Resevdelar" Width="200" Height="50" Click="PartsButton_Click" Background="Transparent"/>
+                </Border>
+            </StackPanel>
+
+            <!-- Content Area for Kund Section -->
         <ContentControl Grid.Row="1" Grid.Column="1" x:Name="KundContentControl" Visibility="Collapsed">
             <!-- Content for Kund Section Goes Here -->
             <StackPanel>
