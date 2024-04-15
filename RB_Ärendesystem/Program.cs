@@ -14,6 +14,7 @@ namespace RB_Ärendesystem
             testDB.Database.EnsureDeleted();
             testDB.Database.EnsureCreated();
 
+
             Console.ReadLine(); 
         }
     }

@@ -88,5 +88,10 @@ namespace PresentationLayer
             // Perform search operations based on the searchText
             // Update the UI accordingly
         }
+
+        private void customerDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

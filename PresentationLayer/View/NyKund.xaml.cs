@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace PresentationLayer.View
 {
     /// <summary>
-    /// Interaction logic for Reception.xaml
+    /// Interaction logic for NyKund.xaml
     /// </summary>
-    public partial class Reception : Window
+    public partial class NyKund : Window
     {
-        public Reception()
+        public NyKund()
         {
             InitializeComponent();
         }
