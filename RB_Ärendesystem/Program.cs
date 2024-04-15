@@ -3,6 +3,7 @@ using RB_Ärendesystem.Datalayer;
 
 namespace RB_Ärendesystem
 {
+
     public class Program
     {
         static void Main(string[] args)
