@@ -11,7 +11,7 @@ namespace RB_Ärendesystem.Entities
     public class Mekaniker : Anställd
     {
         public Anställd AnställningsNr { get; set; }
-        [Key]public Anställd mekanikernID { get; set; }
+        public int MekanikerID { get; set; }
         public string Namn { get; set; }
         public string Roll { get; set; }
         public string specialisering { get; set; }
@@ -25,7 +25,7 @@ namespace RB_Ärendesystem.Entities
         public string HämtaSträng()
         {
            
-            return $"ID = {mekanikernID}, Namn = {Namn}, Roll = {Roll}, Specialisering = {specialisering} ";
+            return $"ID = {MekanikerID}, Namn = {Namn}, Roll = {Roll}, Specialisering = {specialisering} ";
 
         }
     }

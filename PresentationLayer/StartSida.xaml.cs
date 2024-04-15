@@ -82,5 +82,11 @@ namespace PresentationLayer
             // Handle the click event for the "Log out" button
             // Add logic to log out the user and navigate back to the login page
         }
+        private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string searchText = SearchTextBox.Text;
+            // Perform search operations based on the searchText
+            // Update the UI accordingly
+        }
     }
 }
