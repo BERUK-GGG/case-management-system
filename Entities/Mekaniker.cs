@@ -10,14 +10,15 @@ namespace RB_Ärendesystem.Entities
 {
     public class Mekaniker : Anställd
     {
-        public Anställd AnställningsNr { get; set; }
+        // public Anställd AnställdID { get; set; }
         public int MekanikerID { get; set; }
         public string Namn { get; set; }
         public string Roll { get; set; }
         public string specialisering { get; set; }
 
+       
         // Method to override abstract method from base class
-        public override string GetUsername()
+        /*public override string GetUsername()
         {
             return AnvändarNamn;
         }
@@ -27,6 +28,6 @@ namespace RB_Ärendesystem.Entities
            
             return $"ID = {MekanikerID}, Namn = {Namn}, Roll = {Roll}, Specialisering = {specialisering} ";
 
-        }
+        }*/
     }
 }

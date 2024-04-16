@@ -12,8 +12,8 @@ namespace RB_Ärendesystem.Entities
         public Kund KundID { get; set; }
         public DateTime DateAndTime { get; set; }
         public string syfte { get; set; }
-        public Mekaniker MechanikernId { get; set; }
-        public List<Reservdel> ReservdelID { get; set; }
+        public Mekaniker MekanikerID { get; set; }
+        public ICollection<Reservdel> ReservdelID { get; set; }
         
 
     }
