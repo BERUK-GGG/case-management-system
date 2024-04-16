@@ -21,7 +21,16 @@ namespace PresentationLayer.View
     {
         public UppdateraKund()
         {
-            InitializeComponent();
+             InitializeComponent();
+           
+        }
+        private void LogoutButton_Click(object sender, RoutedEventArgs e)
+        {
+            Login login = new Login();
+            login.Show();
+            this.Close();
+            // Handle the click event for the "Log out" button
+            // Add logic to log out the user and navigate back to the login page
         }
     }
 }
