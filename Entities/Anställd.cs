@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace RB_Ärendesystem.Entities
 {
-    public abstract class Anställd
+    public class Anställd
     {
-        [Key] public int AnställningsNr {  get; set; }
+        [Key]public int AnställdID {  get; set; }
         public string AnvändarNamn {  get; set; }
         public string lösenord { get; set;}
 
-        public abstract string GetUsername();
+        //public abstract string GetUsername();
     }
 }
