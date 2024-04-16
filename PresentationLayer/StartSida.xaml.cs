@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PresentationLayer.View;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -93,6 +94,16 @@ namespace PresentationLayer
         {
 
         }
+
+        private void UppdateraKundButton_Click(object sender, RoutedEventArgs e)
+        {
+            UppdateraKund uppdateraKundWindow = new UppdateraKund();
+            uppdateraKundWindow.Show();
+            this.Close();
+        }
+
+
+
 
         // a method for the search button
 
