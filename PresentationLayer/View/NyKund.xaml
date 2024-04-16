@@ -66,7 +66,7 @@
             <TextBox HorizontalAlignment="Left" Margin="366,228,0,0" Grid.Row="1" TextWrapping="Wrap" Text="TeleNr" VerticalAlignment="Top" Width="120"/>
             <TextBox HorizontalAlignment="Left" Margin="366,137,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Epost" VerticalAlignment="Top" Width="120"/>
             <Button Content="Spara" HorizontalAlignment="Left" Margin="366,280,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120"/>
-            <Button Content="Back" HorizontalAlignment="Left" Margin="27,336,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Height="27"/>
+            <Button Content="Back" HorizontalAlignment="Left" Margin="27,336,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Height="27" Click="BackButton_Click"/>
             <Label Content="Registrera kund" HorizontalAlignment="Left" Margin="362,0,0,0" Grid.Row="1" VerticalAlignment="Top" Width="98"/>
 
 

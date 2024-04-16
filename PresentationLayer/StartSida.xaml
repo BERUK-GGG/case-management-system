@@ -85,7 +85,7 @@
             <ContentControl Grid.Row="1" Grid.Column="1" x:Name="KundContentControl" Visibility="visible">
                 <!-- Content for Kund Section Goes Here -->
                 <Grid>
-                    <Button Content="Ny kund" Width="100" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top"  Margin="0,63,20,0" RenderTransformOrigin="0.46,-0.779" />
+                    <Button Content="Ny kund" Width="100" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top"  Margin="0,63,20,0" RenderTransformOrigin="0.46,-0.779" Click="NyKundButton_Click" />
                     <Button Content="Uppdatera kund" Width="100" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,118,20,0" Click="UppdateraKundButton_Click" />
 
                     <!-- TextBox for storing customer information -->

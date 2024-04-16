@@ -31,6 +31,15 @@ namespace PresentationLayer.View
             // Handle the click event for the "Log out" button
             // Add logic to log out the user and navigate back to the login page
         }
+
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            StartSida startSida = new StartSida();
+            startSida.Show();
+            this.Close();
+            // Handle the click event for the "Back" button
+            // Add logic to navigate back to the previous page
+        }
     }
 
 }

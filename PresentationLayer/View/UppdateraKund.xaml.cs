@@ -45,6 +45,13 @@ namespace PresentationLayer.View
   
         }
 
+        // a method for the search button that will search for the customerin the database and display the information in the textboxes 
+        private void SearchButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Handle the click event for the "Search" button
+            // Add logic to search for the customer in the database and display the information in the textboxes
+        }
+
 
     }
 }

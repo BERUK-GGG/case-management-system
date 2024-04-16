@@ -102,10 +102,19 @@ namespace PresentationLayer
             this.Close();
         }
 
+        private void NyKundButton_Click(object sender, RoutedEventArgs e)
+        {
+            NyKund nyKundWindow = new NyKund();
+            nyKundWindow.Show();
+            this.Close();
+        }
 
 
 
-        // a method for the search button
+
+
+
+        // a method for the search button that will search for the customer
 
 
     }
