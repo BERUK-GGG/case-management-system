@@ -1,4 +1,6 @@
-﻿using System;
+﻿using RB_Ärendesystem.Datalayer;
+using RB_Ärendesystem.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -39,6 +41,34 @@ namespace PresentationLayer.View
             this.Close();
             // Handle the click event for the "Back" button
             // Add logic to navigate back to the previous page
+        }
+
+        private void SparaButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Create a new Kund object with the information from the input fields
+            Kund newKund = new Kund
+            {
+                Namn = Namn.Text,
+                PersonNr = int.Parse(PersonNr.Text),
+                Address = Address.Text,
+                TeleNr = int.Parse(TeleNr.Text),
+                Epost = Epost.Text
+            };
+
+            // Add the new Kund object to the database
+            using (var context = new RB_context())
+            {
+                context.kunder.Add(newKund);
+                context.SaveChanges();
+            }
+
+            // Show a message indicating successful saving
+            MessageBox.Show("New customer saved successfully.");
+
+            // Navigate back to the previous window
+            StartSida startSida = new StartSida();
+            startSida.Show();
+            this.Close();
         }
     }
 
