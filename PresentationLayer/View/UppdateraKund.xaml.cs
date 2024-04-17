@@ -1,4 +1,8 @@
-﻿using System;
+﻿using DataLayer;
+using Microsoft.EntityFrameworkCore;
+using RB_Ärendesystem.Datalayer;
+using RB_Ärendesystem.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,7 +26,14 @@ namespace PresentationLayer.View
         public UppdateraKund()
         {
              InitializeComponent();
-           
+
+            RB_context testDB = new RB_context();
+
+
+
+
+            CustomerDataGrid.ItemsSource = testDB.kunder.ToList();
+
         }
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
         {
@@ -51,6 +62,67 @@ namespace PresentationLayer.View
             // Handle the click event for the "Search" button
             // Add logic to search for the customer in the database and display the information in the textboxes
         }
+
+        private void CustomerDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // Get the selected row
+            if (CustomerDataGrid.SelectedItem != null)
+            {
+                // Cast the selected item to the type of your data object (assuming it's Kund)
+                Kund selectedKund = (Kund)CustomerDataGrid.SelectedItem;
+
+                // Populate TextBoxes with values from the selected row
+
+                Namn.Text = selectedKund.Namn;
+                PersonNr.Text = selectedKund.PersonNr.ToString();
+                Address.Text = selectedKund.Address;
+                Epost.Text = selectedKund.Epost;
+                TeleNr.Text = selectedKund.TeleNr.ToString();
+                // Populate other TextBoxes with relevant properties from the selected row
+            }
+
+
+        }
+
+        private void SaveButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Check if a row is selected in the DataGrid
+            if (CustomerDataGrid.SelectedItem != null)
+            {
+                // Cast the selected item to the type of your data object (assuming it's Kund)
+                Kund selectedKund = (Kund)CustomerDataGrid.SelectedItem;
+
+                // Update the selectedKund object with the values from TextBoxes
+                selectedKund.Namn = Namn.Text;
+                selectedKund.PersonNr = int.Parse(PersonNr.Text);
+                selectedKund.Address = Address.Text;
+
+                selectedKund.Epost = Epost.Text;
+                selectedKund.TeleNr = int.Parse(TeleNr.Text);
+                // Update other properties as needed
+
+                // Save changes to the database
+                using (var context = new RB_context())
+                {
+                    context.Entry(selectedKund).State = EntityState.Modified;
+                    context.SaveChanges();
+                }
+
+                // Refresh the DataGrid to reflect changes
+                RefreshDataGrid();
+            }
+        }
+
+        private void RefreshDataGrid()
+        {
+            // Re-bind the DataGrid to update its content
+            using (var context = new RB_context())
+            {
+                CustomerDataGrid.ItemsSource = context.kunder.ToList();
+            }
+        }
+
+
 
 
     }
