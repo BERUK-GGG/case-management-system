@@ -13,7 +13,7 @@ namespace RB_Ärendesystem.Entities
         public DateTime DateAndTime { get; set; }
         public string syfte { get; set; }
         public Mekaniker MekanikerID { get; set; }
-        public ICollection<Reservdel> ReservdelID { get; set; }
+        //public ICollection<Reservdel> ReservdelID { get; set; } //
         
 
     }

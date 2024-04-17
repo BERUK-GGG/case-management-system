@@ -85,13 +85,18 @@
             <ContentControl Grid.Row="1" Grid.Column="1" x:Name="KundContentControl" Visibility="visible">
                 <!-- Content for Kund Section Goes Here -->
                 <Grid>
-                    <Button Content="Ny kund" Width="100" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top"  Margin="0,63,20,0" RenderTransformOrigin="0.46,-0.779" Click="NyKundButton_Click" />
-                    <Button Content="Uppdatera kund" Width="100" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,118,20,0" Click="UppdateraKundButton_Click" />
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="229*"/>
+                        <ColumnDefinition Width="231*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button Content="Ny kund" Width="100" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top"  Margin="0,63,20,0" RenderTransformOrigin="0.46,-0.779" Click="NyKundButton_Click" Grid.Column="1" />
+                    <Button Content="Uppdatera kund" Width="100" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,118,20,0" Click="UppdateraKundButton_Click" Grid.Column="1" />
 
                     <!-- TextBox for storing customer information -->
 
 
-                    <DataGrid x:Name="customerDataGrid" AutoGenerateColumns="True" CanUserAddRows="True" Width="532" Margin="249,63,139,67" />
+                    <DataGrid x:Name="customerDataGrid" Grid.ColumnSpan="2" Margin="250,63,144,101" IsReadOnly="True" />
+
                 </Grid>
 
 
