@@ -1,4 +1,5 @@
-﻿using Entities;
+﻿using DataLayer;
+using Entities;
 using RB_Ärendesystem.Datalayer;
 using System.Text;
 using System.Windows;
@@ -25,6 +26,7 @@ namespace PresentationLayer
 
         private void Login_Click(object sender, RoutedEventArgs e)
         {
+            TestData.SeedData();
             RB_context testDB = new RB_context();
             string username = UsernameTextBox.Text;
             string password = PasswordBox.Password;

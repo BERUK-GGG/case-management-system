@@ -33,6 +33,7 @@ namespace PresentationLayer
             InitializeComponent();
 
             RB_context testDB = new RB_context();
+            TestData.SeedData();
 
 
             
@@ -138,6 +139,21 @@ namespace PresentationLayer
             nyKundWindow.Show();
             this.Close();
         }
+
+        private void SearchTextBoxStartSida_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string searchText = SearchTextBox.Text.ToLower(); // Assuming SearchTextBox is the name of your search TextBox
+            using (var context = new RB_context())
+            {
+                var searchResult = context.kunder.Where(k => k.Namn.ToLower().Contains(searchText)
+                                                          || k.PersonNr.ToString().Contains(searchText)
+                                                          || k.Address.ToLower().Contains(searchText)
+                                                          || k.Epost.ToLower().Contains(searchText)
+                                                          || k.TeleNr.ToString().Contains(searchText)).ToList();
+                customerDataGrid.ItemsSource = searchResult;
+            }
+        }
+
 
 
 

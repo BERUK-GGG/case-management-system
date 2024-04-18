@@ -56,12 +56,7 @@ namespace PresentationLayer.View
   
         }
 
-        // a method for the search button that will search for the customerin the database and display the information in the textboxes 
-        private void SearchButton_Click(object sender, RoutedEventArgs e)
-        {
-            // Handle the click event for the "Search" button
-            // Add logic to search for the customer in the database and display the information in the textboxes
-        }
+
 
         private void CustomerDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -121,6 +116,22 @@ namespace PresentationLayer.View
                 CustomerDataGrid.ItemsSource = context.kunder.ToList();
             }
         }
+
+        private void SökTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string searchText = SökTextBox.Text.ToLower(); // Assuming SökTextBox is the name of your search TextBox
+            using (var context = new RB_context())
+            {
+                var searchResult = context.kunder.Where(k => k.Namn.ToLower().Contains(searchText)
+                                                          || k.PersonNr.ToString().Contains(searchText)
+                                                          || k.Address.ToLower().Contains(searchText)
+                                                          || k.Epost.ToLower().Contains(searchText)
+                                                          || k.TeleNr.ToString().Contains(searchText)).ToList();
+                CustomerDataGrid.ItemsSource = searchResult;
+            }
+        }
+
+
 
 
 

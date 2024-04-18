@@ -54,7 +54,7 @@
                     </LinearGradientBrush>
 
                 </StackPanel.Background>
-                <TextBox x:Name="SearchTextBox" Grid.Row="0" Grid.Column="1" Width="250" Height="30" Margin="40" HorizontalAlignment="Left" VerticalAlignment="Bottom" TextChanged="SearchTextBox_TextChanged" >
+                <TextBox x:Name="SearchTextBox" Grid.Row="0" Grid.Column="1" Width="250" Height="30" Margin="40" HorizontalAlignment="Left" VerticalAlignment="Bottom" TextChanged="SearchTextBoxStartSida_TextChanged">
                     <TextBox.Template>
                         <ControlTemplate TargetType="TextBox">
                             <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="5">
@@ -65,6 +65,8 @@
                 </TextBox>
 
             </StackPanel>
+            
+
 
 
             <!-- StackPanel for Buttons -->
