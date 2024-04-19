@@ -1,5 +1,5 @@
 ﻿using DataLayer;
-using Entities;
+
 using RB_Ärendesystem.Datalayer;
 using System.Text;
 using System.Windows;
@@ -26,12 +26,12 @@ namespace PresentationLayer
 
         private void Login_Click(object sender, RoutedEventArgs e)
         {
-            TestData.SeedData();
+            //TestData.SeedData();
             RB_context testDB = new RB_context();
             string username = UsernameTextBox.Text;
             string password = PasswordBox.Password;
             // Query the database to check if the username and password match
-            var employee = testDB.anställda.FirstOrDefault(a => a.AnvändarNamn == username && a.lösenord == password);
+            var employee = testDB.mekaniker.FirstOrDefault(a => a.AnvändarNamn == username && a.lösenord == password);
             // Perform authentication logic here
             if (username == "admin" && password == "password")
             {

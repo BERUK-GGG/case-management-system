@@ -13,10 +13,12 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using RB_Ärendesystem.Datalayer;
-using Entities;
+
 using RB_Ärendesystem.Entities;
 using RB_Ärendesystem;
 using DataLayer;
+using Microsoft.EntityFrameworkCore;
+
 
 
 
@@ -32,24 +34,35 @@ namespace PresentationLayer
         {
             InitializeComponent();
 
-            RB_context testDB = new RB_context();
-            TestData.SeedData();
+            //LoadBookings();
+
+            //RB_context testDB = new RB_context();
+            ////TestData.SeedData();
 
 
             
 
-            customerDataGrid.ItemsSource = testDB.kunder.ToList();
+            //customerDataGrid.ItemsSource = testDB.kunder.ToList();
+            //bookingDataGrid.ItemsSource = testDB.besök.ToList();
 
             RefreshDataGrid();
 
         }
 
+        private void LoadBookings()
+        {
+            using (var context = new RB_context())
+            {
+                bookingDataGrid.ItemsSource = context.besök.ToList();
+            }
+        }
         private void RefreshDataGrid()
         {
             // Re-bind the DataGrid to update its content
             using (var context = new RB_context())
             {
                 customerDataGrid.ItemsSource = context.kunder.ToList();
+                bookingDataGrid.ItemsSource = context.besök.ToList();
             }
         }
 
@@ -153,6 +166,46 @@ namespace PresentationLayer
                 customerDataGrid.ItemsSource = searchResult;
             }
         }
+
+        private void SearchTextBoxBokaTid_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string searchText = SökTidBox.Text.ToLower();
+            using (var context = new RB_context())
+            {
+                if (string.IsNullOrWhiteSpace(searchText))
+                {
+                    bookingDataGrid.ItemsSource = context.besök.ToList();
+
+                }
+                else
+                {
+                
+
+                        int searchInt;
+                        bool isInt = int.TryParse(searchText, out searchInt);
+
+                        var searchResult = context.besök
+                            .Where(b => b.KundID == searchInt)
+
+                            .ToList();
+
+                        bookingDataGrid.ItemsSource = searchResult;
+                    
+
+                }
+            }
+        }
+
+
+
+
+        private void BokaTidButton_Click(object sender, RoutedEventArgs e)
+        {
+            BokaTid bokaTidWindow = new BokaTid();
+            bokaTidWindow.Show();
+            this.Close();
+        }
+
 
 
 

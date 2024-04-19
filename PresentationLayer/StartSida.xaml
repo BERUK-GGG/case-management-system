@@ -65,7 +65,7 @@
                 </TextBox>
 
             </StackPanel>
-            
+
 
 
 
@@ -84,7 +84,7 @@
             </StackPanel>
 
             <!-- Content Area for Kund Section -->
-            <ContentControl Grid.Row="1" Grid.Column="1" x:Name="KundContentControl" Visibility="visible">
+            <ContentControl Grid.Row="1" Grid.Column="1" x:Name="KundContentControl" Visibility="Collapsed">
                 <!-- Content for Kund Section Goes Here -->
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -107,13 +107,12 @@
             </ContentControl>
 
             <!-- Content Area for bokning Section -->
-            <ContentControl Grid.Row="1" Grid.Column="1" x:Name="BokingContentControl" Visibility="Collapsed">
+            <ContentControl Grid.Row="1" Grid.Column="1" x:Name="BokingContentControl" Visibility="Visible">
                 <!-- Content for bokning Section Goes Here -->
                 <StackPanel>
-                    <Button Content="Boka tid" Width="100" Height="30" Margin="10"/>
-
-                    <Label Grid.Row="1" Content="Boka tid:" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="234,16,0,0" Grid.RowSpan="2"/>
-                    <TextBox Grid.Row="1" Name="BokaTidBox" Width="200" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,20,0,0"/>
+                    <Button Content="Boka tid" Width="100" Height="30" Margin="10" Click="BokaTidButton_Click"/>
+                    <TextBox Grid.Row="1" x:Name="SökTidBox" Width="200" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,20,0,0" TextChanged="SearchTextBoxBokaTid_TextChanged"/>
+                    <DataGrid x:Name="bookingDataGrid" Grid.ColumnSpan="2" Margin="250,63,144,101" IsReadOnly="True" />
                 </StackPanel>
             </ContentControl>
 
@@ -127,6 +126,7 @@
             </ContentControl>
 
             <Button x:Name="BackButton" Content="Back" Width="100" Height="30" Click="BackButton_Click" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="62,339,0,0" Visibility="Collapsed"/>
+            <Label Content="Sök bokning:" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="285,64,0,0" Grid.Row="1" />
         </Grid>
     </Border>
 </Window>
