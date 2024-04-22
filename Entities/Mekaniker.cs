@@ -18,7 +18,7 @@ namespace RB_Ärendesystem.Entities
         public string lösenord { get; set; }
         public string specialisering { get; set; }
 
-
+        public virtual List<Besök> Besöks { get; set; }
 
         
 

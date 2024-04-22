@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Proxies;
+﻿using Entities;
+using Microsoft.EntityFrameworkCore.Proxies;
 using RB_Ärendesystem.Datalayer;
 using RB_Ärendesystem.Entities;
 using System;
@@ -40,18 +41,21 @@ namespace DataLayer
             Reservdel reservdel1 = new Reservdel { Namn = "Motor", Pris = 1000, };
             Reservdel reservdel2 = new Reservdel { Namn = "Däck", Pris = 500, };
 
-            Besök besök1 = new Besök { KundId = kund1.ID, DateAndTime = new System.DateTime(2021, 12, 24, 12, 00, 00), syfte = "Service", Anställningsnummer = mekaniker1.Anställningsnummer };
-            Besök besök2 = new Besök { KundId = kund2.ID, DateAndTime= new System.DateTime(2021, 11, 29, 12, 00, 00), syfte= "Däck", Anställningsnummer = mekaniker2.Anställningsnummer };
-           
-
-            
-
-
             testDB.reservdelar.Add(reservdel1);
             testDB.reservdelar.Add(reservdel2);
+
+            testDB.SaveChanges();
+            Besök besök1 = new Besök { KundId = kund1.ID, DateAndTime = new System.DateTime(2021, 12, 24, 12, 00, 00), syfte = "Service", AnställningsNr = mekaniker1.Anställningsnummer };
+            Besök besök2 = new Besök { KundId = kund2.ID, DateAndTime= new System.DateTime(2021, 11, 29, 12, 00, 00), syfte= "Däck", AnställningsNr = mekaniker2.Anställningsnummer };
+           
+           
             testDB.besök.Add(besök1);
             testDB.besök.Add(besök2);
 
+            testDB.SaveChanges();
+
+            Jornal jornal1 = new Jornal() { Åtgärder = "Fixat bilrutan", ReservdelID = reservdel1.ReservID, BesökId= besök1.BesökID  };
+            testDB.jornals.Add(jornal1);
             testDB.SaveChanges();
 
             Console.WriteLine("klart");

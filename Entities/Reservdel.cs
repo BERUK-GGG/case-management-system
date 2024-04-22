@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Entities;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -13,6 +14,6 @@ namespace RB_Ärendesystem.Entities
         public string Namn { get; set; }
         public decimal Pris { get; set; }
 
-     
+        
     }
 }

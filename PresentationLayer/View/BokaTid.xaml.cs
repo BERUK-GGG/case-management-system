@@ -146,7 +146,7 @@ namespace PresentationLayer.View
                 {
 
                     KundId = selectedKund.ID,
-                    Anställningsnummer = selectedMekaniker.Anställningsnummer,
+                    AnställningsNr = selectedMekaniker.Anställningsnummer,
                     syfte = Syfte.Text,
                     DateAndTime = SelectedDate, 
 

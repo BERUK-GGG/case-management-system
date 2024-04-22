@@ -111,8 +111,12 @@
                 <!-- Content for bokning Section Goes Here -->
                 <StackPanel>
                     <Button Content="Boka tid" Width="100" Height="30" Margin="10" Click="BokaTidButton_Click"/>
-                    <TextBox Grid.Row="1" x:Name="SökTidBox" Width="200" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,20,0,0" TextChanged="SearchTextBoxBokaTid_TextChanged"/>
+                    <Label Content="Sök bokning:" VerticalAlignment="Top" HorizontalAlignment="Left"  Margin="260,10,0,0" RenderTransformOrigin="0.659,1.526"  />
+                    <TextBox Grid.Row="1" x:Name="SökTidBox" Width="200" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0" TextChanged="SearchTextBoxBokaTid_TextChanged"/>
                     <DataGrid x:Name="bookingDataGrid" Grid.ColumnSpan="2" Margin="250,63,144,101" IsReadOnly="True" />
+                    
+                    
+
                 </StackPanel>
             </ContentControl>
 
@@ -126,7 +130,6 @@
             </ContentControl>
 
             <Button x:Name="BackButton" Content="Back" Width="100" Height="30" Click="BackButton_Click" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="62,339,0,0" Visibility="Collapsed"/>
-            <Label Content="Sök bokning:" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="285,64,0,0" Grid.Row="1" />
         </Grid>
     </Border>
 </Window>

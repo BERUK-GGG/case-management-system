@@ -13,7 +13,7 @@ namespace RB_Ärendesystem.Entities
         [Key]
         public int BesökID { get; set; }
 
-        public int KundId { get; set; } // Renamed from Kund_ID
+        public int KundId { get; set; } 
 
         [ForeignKey("KundId")] // Updated ForeignKey attribute
         public virtual Kund Kund { get; set; }
@@ -21,9 +21,9 @@ namespace RB_Ärendesystem.Entities
         public DateTime DateAndTime { get; set; }
         public string syfte { get; set; }
 
-        public int Anställningsnummer { get; set; }
+        public int AnställningsNr { get; set; }
 
-        [ForeignKey("Anställningsnummer")]
+        [ForeignKey("AnställningsNr")]
         public virtual Mekaniker Mekaniker { get; set; }
     }
 }
