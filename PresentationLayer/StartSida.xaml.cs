@@ -76,6 +76,7 @@ namespace PresentationLayer
             ReservContentControl.Visibility = Visibility.Collapsed;
             KundContentControl.Visibility = Visibility.Visible;
             BokingContentControl.Visibility = Visibility.Collapsed;
+            JournalContentControl.Visibility = Visibility.Collapsed;
             // Handle the click event for the "Kund" button
             // Add logic to navigate to the customer page or perform other actions
             navigationStack.Push(KundContentControl);
@@ -104,6 +105,7 @@ namespace PresentationLayer
             ReservContentControl.Visibility = Visibility.Collapsed;
             BokingContentControl.Visibility = Visibility.Visible;
             KundContentControl.Visibility = Visibility.Collapsed;
+            JournalContentControl.Visibility = Visibility.Collapsed;
             // Handle the click event for the "Bokning" button
             // Add logic to navigate to the booking page or perform other actions
             navigationStack.Push(BokingContentControl);
@@ -117,9 +119,22 @@ namespace PresentationLayer
             ReservContentControl.Visibility = Visibility.Visible;
             BokingContentControl.Visibility = Visibility.Collapsed;
             KundContentControl.Visibility = Visibility.Collapsed;
+            JournalContentControl.Visibility = Visibility.Collapsed;
             // Handle the click event for the "Resevdelar" button
             // Add logic to navigate to the parts page or perform other actions
             navigationStack.Push(ReservContentControl);
+            BackButton.Visibility = Visibility.Visible;
+        }
+
+        private void Journal_Click(object sender, RoutedEventArgs e)
+        {
+            ReservContentControl.Visibility = Visibility.Collapsed;
+            BokingContentControl.Visibility = Visibility.Collapsed;
+            KundContentControl.Visibility = Visibility.Collapsed;
+            JournalContentControl.Visibility = Visibility.Visible;
+            // Handle the click event for the "Journal" button
+            // Add logic to navigate to the booking page or perform other actions
+            navigationStack.Push(JournalContentControl);
             BackButton.Visibility = Visibility.Visible;
         }
 
@@ -207,6 +222,13 @@ namespace PresentationLayer
         {
             BokaTid bokaTidWindow = new BokaTid();
             bokaTidWindow.Show();
+            this.Close();
+        }
+
+        private void RegistreraJournal_Click(object sender, RoutedEventArgs e)
+        {
+            RegistreraJournal RegistreraJournalWindow = new RegistreraJournal();
+            RegistreraJournalWindow.Show();
             this.Close();
         }
 

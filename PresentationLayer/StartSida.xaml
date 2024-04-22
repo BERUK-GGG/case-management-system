@@ -81,6 +81,9 @@
                 <Border Background="Beige" CornerRadius="15">
                     <Button Content="Resevdelar" Width="200" Height="50" Click="PartsButton_Click" Background="Transparent"/>
                 </Border>
+                <Border Background="#F5F5DC" CornerRadius="15" Margin="0,20,0,20">
+                    <Button Content="Journal" Width="200" Height="50" Click="Journal_Click"  Background="Transparent"/>
+                </Border>
             </StackPanel>
 
             <!-- Content Area for Kund Section -->
@@ -107,7 +110,7 @@
             </ContentControl>
 
             <!-- Content Area for bokning Section -->
-            <ContentControl Grid.Row="1" Grid.Column="1" x:Name="BokingContentControl" Visibility="Visible">
+            <ContentControl Grid.Row="1" x:Name="BokingContentControl" Visibility="Collapsed">
                 <!-- Content for bokning Section Goes Here -->
                 <StackPanel>
                     <Button Content="Boka tid" Width="100" Height="30" Margin="10" Click="BokaTidButton_Click"/>
@@ -116,6 +119,21 @@
                     <DataGrid x:Name="bookingDataGrid" Grid.ColumnSpan="2" Margin="250,63,144,101" IsReadOnly="True" />
                     
                     
+
+                </StackPanel>
+            </ContentControl>
+
+
+            <!-- Content Area for journal Section -->
+            <ContentControl Grid.Row="1" x:Name="JournalContentControl" Visibility="Collapsed">
+                <!-- Content for bokning Section Goes Here -->
+                <StackPanel>
+                    <Button Content="Registrera journal" Width="100" Height="30" Margin="10" Click="RegistreraJournal_Click" />
+                    <Label Content="Sök journal:" VerticalAlignment="Top" HorizontalAlignment="Left"  Margin="260,10,0,0" RenderTransformOrigin="0.659,1.526"  />
+                    <TextBox Grid.Row="1" x:Name="SökJournal" Width="200" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0" />
+                    <DataGrid x:Name="JournalDataGrid" Grid.ColumnSpan="2" Margin="250,63,144,101" IsReadOnly="True" />
+
+
 
                 </StackPanel>
             </ContentControl>
@@ -129,7 +147,7 @@
                 </StackPanel>
             </ContentControl>
 
-            <Button x:Name="BackButton" Content="Back" Width="100" Height="30" Click="BackButton_Click" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="62,339,0,0" Visibility="Collapsed"/>
+            <Button x:Name="BackButton" Content="Back" Width="100" Height="30" Click="BackButton_Click" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="26,432,0,0" Visibility="Visible"/>
         </Grid>
     </Border>
 </Window>
