@@ -7,11 +7,11 @@
       <FileName>Besök.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Entities.Jornal">
+  <Class Name="Entities.Journal">
     <Position X="9" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ACIAAAAAAEAAABABAAQAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Jornal.cs</FileName>
+      <HashCode>AAAAAAAAAEAAABEBAAQEAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Journal.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="RB_Ärendesystem.Entities.Kund">
@@ -31,7 +31,7 @@
   <Class Name="RB_Ärendesystem.Entities.Reservdel">
     <Position X="9.25" Y="4.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAgACAAAAAAACAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAgAAAAAAAAACAAAAAAAAAAA=</HashCode>
       <FileName>Reservdel.cs</FileName>
     </TypeIdentifier>
   </Class>

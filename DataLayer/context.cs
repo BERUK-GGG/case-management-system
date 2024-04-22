@@ -23,15 +23,15 @@ namespace RB_Ärendesystem.Datalayer
         public DbSet<Reservdel> reservdelar { get; set; }
         public DbSet<Besök> besök { get; set; }
 
-        public DbSet<Jornal> jornals { get; set; }
+        public DbSet<Journal> jornals { get; set; }
 
    protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         
-            modelBuilder.Entity<Kund>().Property(k => k.ID).UseIdentityColumn();
-            modelBuilder.Entity<Besök>().Property(k => k.BesökID).UseIdentityColumn();
-            modelBuilder.Entity<Mekaniker>().Property(k => k.Anställningsnummer).UseIdentityColumn();
-            modelBuilder.Entity<Jornal>().Property(k => k.JornalID).UseIdentityColumn();
+            //modelBuilder.Entity<Kund>().Property(k => k.ID).UseIdentityColumn();
+            //modelBuilder.Entity<Besök>().Property(k => k.BesökID).UseIdentityColumn();
+            //modelBuilder.Entity<Mekaniker>().Property(k => k.Id).UseIdentityColumn();
+            //modelBuilder.Entity<Journal>().Property(k => k.JournalID).UseIdentityColumn();
 
         }
 

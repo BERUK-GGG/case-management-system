@@ -9,20 +9,15 @@ using System.Threading.Tasks;
 
 namespace Entities
 {
-    public class Jornal
+    public class Journal
     {
-        [Key]public int JornalID { get; set; }   
+        [Key]
+        public int JournalID { get; set; }   
         public string Åtgärder {  get; set; }
 
-        public int BesökId { get; set; }
-
-        [ForeignKey("BesökId")]
         public virtual Besök Besök { get; set; }
 
-        public int ReservdelID { get; set; }
-
-        [ForeignKey("ReservdelID")]
-        public virtual Reservdel reservdel {  get; set; }
+        public virtual List<Reservdel> reservdelar {  get; set; }
 
 
     }
