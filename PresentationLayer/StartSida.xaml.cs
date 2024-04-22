@@ -204,7 +204,7 @@ namespace PresentationLayer
                         bool isInt = int.TryParse(searchText, out searchInt);
 
                         var searchResult = context.besök
-                            .Where(b => b.KundId == searchInt)
+                            .Where(b => b.Kund.ID == searchInt)
 
                             .ToList();
 
