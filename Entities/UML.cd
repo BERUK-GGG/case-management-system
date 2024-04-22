@@ -1,37 +1,37 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="RB_Ärendesystem.Entities.Besök">
-    <Position X="4.75" Y="1.25" Width="1.5" />
+    <Position X="11.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAkAAAAAAgACAAAAQAAAAAAAAAAAAAAAAAgAAAAA=</HashCode>
+      <HashCode>AAAAAkEAAAAAgACAAAAQAAAAAAAAAAAAAAAAAgAAAAA=</HashCode>
       <FileName>Besök.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Entities.Jornal">
-    <Position X="8.25" Y="1" Width="1.5" />
+    <Position X="9" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ACAAAAAAAEAAAAEAAAQAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>ACIAAAAAAEAAABABAAQAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Jornal.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="RB_Ärendesystem.Entities.Kund">
-    <Position X="0.5" Y="1.5" Width="1.75" />
+    <Position X="2.75" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAEAAAAAAAAAgAAAAAAAAkAAEAAAAAACAAAAAAAAAAA=</HashCode>
       <FileName>Kund.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="RB_Ärendesystem.Entities.Mekaniker">
-    <Position X="4.5" Y="4.5" Width="1.5" />
+    <Position X="12.25" Y="4" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAADIACAAAgAAAAAAAAQAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAADJACAAAgAAAAAAAAQAAAAAAAAAAAA=</HashCode>
       <FileName>Mekaniker.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="RB_Ärendesystem.Entities.Reservdel">
-    <Position X="10.5" Y="4" Width="1.5" />
+    <Position X="9.25" Y="4.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAABAAAAAAAAAAAAAgACAAAAAAACAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAgACAAAAAAACAAAAAAAAAAA=</HashCode>
       <FileName>Reservdel.cs</FileName>
     </TypeIdentifier>
   </Class>

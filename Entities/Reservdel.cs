@@ -10,7 +10,7 @@ namespace RB_Ärendesystem.Entities
 {
     public class Reservdel
     {   
-        [Key]public int ReservID { get; set; }
+        [Key]public int ID { get; set; }
         public string Namn { get; set; }
         public decimal Pris { get; set; }
 

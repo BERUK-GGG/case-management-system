@@ -12,8 +12,7 @@ namespace RB_Ärendesystem.Entities
     {
         [Key]
         public int BesökID { get; set; }
-
-        public int KundId { get; set; } 
+        public int KundId { get; set; }
 
         [ForeignKey("KundId")] // Updated ForeignKey attribute
         public virtual Kund Kund { get; set; }

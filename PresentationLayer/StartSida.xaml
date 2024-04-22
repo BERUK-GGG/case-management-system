@@ -107,7 +107,7 @@
             </ContentControl>
 
             <!-- Content Area for bokning Section -->
-            <ContentControl Grid.Row="1" Grid.Column="1" x:Name="BokingContentControl" Visibility="Collapsed">
+            <ContentControl Grid.Row="1" Grid.Column="1" x:Name="BokingContentControl" Visibility="Visible">
                 <!-- Content for bokning Section Goes Here -->
                 <StackPanel>
                     <Button Content="Boka tid" Width="100" Height="30" Margin="10" Click="BokaTidButton_Click"/>

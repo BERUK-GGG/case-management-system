@@ -54,8 +54,12 @@ namespace DataLayer
 
             testDB.SaveChanges();
 
-            Jornal jornal1 = new Jornal() { Åtgärder = "Fixat bilrutan", ReservdelID = reservdel1.ReservID, BesökId= besök1.BesökID  };
+            Jornal jornal1 = new Jornal() { Åtgärder = "Fixat bilrutan",  BesökId= besök1.BesökID, ReservdelID= reservdel2.ID  };
+            Jornal jornal2 = new Jornal() { Åtgärder = "Byt Dörren", ReservdelID = reservdel1.ID, BesökId = besök2.BesökID  };
+
             testDB.jornals.Add(jornal1);
+            testDB.jornals.Add(jornal2);
+
             testDB.SaveChanges();
 
             Console.WriteLine("klart");
