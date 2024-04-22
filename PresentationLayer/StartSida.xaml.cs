@@ -53,6 +53,10 @@ namespace PresentationLayer
         {
             using (var context = new RB_context())
             {
+                var besök = context.besök.ToList();
+
+               
+                
                 bookingDataGrid.ItemsSource = context.besök.ToList();
             }
         }
@@ -185,7 +189,7 @@ namespace PresentationLayer
                         bool isInt = int.TryParse(searchText, out searchInt);
 
                         var searchResult = context.besök
-                            .Where(b => b.KundID == searchInt)
+                            .Where(b => b.KundId == searchInt)
 
                             .ToList();
 

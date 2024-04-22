@@ -10,12 +10,20 @@ namespace RB_Ärendesystem.Entities
 {
     public class Besök
     {
-        [Key]public int BesökID { get; set; }
-        public int KundID { get; set; }
+        [Key]
+        public int BesökID { get; set; }
+
+        public int KundId { get; set; } // Renamed from Kund_ID
+
+        [ForeignKey("KundId")] // Updated ForeignKey attribute
+        public virtual Kund Kund { get; set; }
+
         public DateTime DateAndTime { get; set; }
         public string syfte { get; set; }
-        public int Anställningsnummer { get; set; }
-        
 
+        public int Anställningsnummer { get; set; }
+
+        [ForeignKey("Anställningsnummer")]
+        public virtual Mekaniker Mekaniker { get; set; }
     }
 }

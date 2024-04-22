@@ -9,16 +9,17 @@ namespace RB_Ärendesystem.Entities
 {
     public class Kund
     {
-        [Key]public int KundID { get; set; }
+        [Key]public int ID { get; set; }
         public string Namn { get; set; }
         public int PersonNr { get; set; }
         public string Address { get; set; }
         public int TeleNr { get; set; }
         public string Epost { get; set; }
+
         public string HämtaSträng()
         {
 
-            return $"KundID = {KundID}, Namn = {Namn}, PersonNr = {PersonNr}, Address = {TeleNr},TeleNr = {TeleNr} ,Epost = {Epost} ";
+            return $"KundID = {ID}, Namn = {Namn}, PersonNr = {PersonNr}, Address = {TeleNr},TeleNr = {TeleNr} ,Epost = {Epost} ";
 
         }
     }

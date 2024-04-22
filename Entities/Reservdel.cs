@@ -12,5 +12,7 @@ namespace RB_Ärendesystem.Entities
         [Key]public int ReservID { get; set; }
         public string Namn { get; set; }
         public decimal Pris { get; set; }
+
+     
     }
 }

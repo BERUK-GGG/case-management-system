@@ -19,5 +19,8 @@ namespace RB_Ärendesystem.Entities
         public string specialisering { get; set; }
 
 
+
+        
+
     }
 }

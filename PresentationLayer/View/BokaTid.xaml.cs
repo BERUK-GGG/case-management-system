@@ -144,8 +144,8 @@ namespace PresentationLayer.View
                 Besök ny_besök = new Besök
 
                 {
-                    
-                    KundID = selectedKund.KundID,
+
+                    KundId = selectedKund.ID,
                     Anställningsnummer = selectedMekaniker.Anställningsnummer,
                     syfte = Syfte.Text,
                     DateAndTime = SelectedDate, 

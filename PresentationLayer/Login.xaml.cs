@@ -26,7 +26,7 @@ namespace PresentationLayer
 
         private void Login_Click(object sender, RoutedEventArgs e)
         {
-            //TestData.SeedData();
+            TestData.SeedData();
             RB_context testDB = new RB_context();
             string username = UsernameTextBox.Text;
             string password = PasswordBox.Password;
