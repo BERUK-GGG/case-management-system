@@ -1,4 +1,5 @@
-﻿using RB_Ärendesystem.Datalayer;
+﻿using Affärslager;
+using RB_Ärendesystem.Datalayer;
 using RB_Ärendesystem.Entities;
 using System;
 using System.Collections.Generic;
@@ -55,12 +56,9 @@ namespace PresentationLayer.View
                 Epost = Epost.Text
             };
 
-            // Add the new Kund object to the database
-            using (var context = new RB_context())
-            {
-                context.kunder.Add(newKund);
-                context.SaveChanges();
-            }
+            NyKundController nyKundController = new NyKundController();
+
+            nyKundController.LäggTillNyKund(newKund);
 
             // Show a message indicating successful saving
             MessageBox.Show("New customer saved successfully.");

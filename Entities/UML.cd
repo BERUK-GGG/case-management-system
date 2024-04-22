@@ -3,15 +3,8 @@
   <Class Name="RB_Ärendesystem.Entities.Besök">
     <Position X="11.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAkEAAAAAgACAAAAQAAAAAAAAAAAAAAAAAgAAAAA=</HashCode>
+      <HashCode>AAAAAkAAAAAAgACAAAAQAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Besök.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Entities.Journal">
-    <Position X="9" Y="0.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAEAAABEBAAQEAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Journal.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="RB_Ärendesystem.Entities.Kund">
@@ -24,7 +17,7 @@
   <Class Name="RB_Ärendesystem.Entities.Mekaniker">
     <Position X="12.25" Y="4" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAADJACAAAgAAAAAAAAQAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAACAAAAAAAAAABIACAAAgAAAAAAAAQAAAAAAAAAAAA=</HashCode>
       <FileName>Mekaniker.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -33,6 +26,13 @@
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAgAAAAAAAAgAAAAAAAAACAAAAAAAAAAA=</HashCode>
       <FileName>Reservdel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Entities.Journal">
+    <Position X="9" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAEBAAQEAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Journal.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />
