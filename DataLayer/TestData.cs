@@ -40,13 +40,20 @@ namespace DataLayer
             testDB.SaveChanges();
             Reservdel reservdel1 = new Reservdel { Namn = "Motor", Pris = 1000, };
             Reservdel reservdel2 = new Reservdel { Namn = "Däck", Pris = 500, };
+            Reservdel reservdel3 = new Reservdel { Namn = "dsgcv", Pris = 600, };
+            Reservdel reservdel4 = new Reservdel { Namn = "avgasrör", Pris = 1500, };
+            Reservdel reservdel5 = new Reservdel { Namn = "asdfhgj", Pris = 5500, };
+            Reservdel reservdel6 = new Reservdel { Namn = "dsgcv", Pris = 6050, };
 
             testDB.reservdelar.Add(reservdel1);
             testDB.reservdelar.Add(reservdel2);
-
+            testDB.reservdelar.Add(reservdel3);
+            testDB.reservdelar.Add(reservdel4);
+            testDB.reservdelar.Add(reservdel5);
+            testDB.reservdelar.Add(reservdel6);
             testDB.SaveChanges();
-            Besök besök1 = new Besök { KundId = kund1.ID, DateAndTime = new System.DateTime(2021, 12, 24, 12, 00, 00), syfte = "Service", AnställningsNr = mekaniker1.Anställningsnummer };
-            Besök besök2 = new Besök { KundId = kund2.ID, DateAndTime= new System.DateTime(2021, 11, 29, 12, 00, 00), syfte= "Däck", AnställningsNr = mekaniker2.Anställningsnummer };
+            Besök besök1 = new Besök { Kund = kund1, DateAndTime = new System.DateTime(2021, 12, 24, 12, 00, 00), syfte = "Service", Mekaniker = mekaniker1};
+            Besök besök2 = new Besök { Kund = kund2, DateAndTime= new System.DateTime(2021, 11, 29, 12, 00, 00), syfte= "Däck", Mekaniker = mekaniker1 };
            
            
             testDB.besök.Add(besök1);
@@ -54,11 +61,15 @@ namespace DataLayer
 
             testDB.SaveChanges();
 
-            Jornal jornal1 = new Jornal() { Åtgärder = "Fixat bilrutan",  BesökId= besök1.BesökID, ReservdelID= reservdel2.ID  };
-            Jornal jornal2 = new Jornal() { Åtgärder = "Byt Dörren", ReservdelID = reservdel1.ID, BesökId = besök2.BesökID  };
+            List<Reservdel> delar =  new List<Reservdel>() { reservdel2, reservdel1 };
+            List<Reservdel> delar2 = new List<Reservdel>() { reservdel2, reservdel3 };
 
-            testDB.jornals.Add(jornal1);
-            testDB.jornals.Add(jornal2);
+            Journal journal1 = new Journal() { Åtgärder = "Fixat bilrutan", reservdelar = delar , Besök = besök1};
+            //Journal journal2 = new Journal() { Åtgärder = "Byt Dörren", reservdelar = delar , Besök = besök2 };
+            Journal journal3 = new Journal() { Åtgärder = "Byt asfvjh", reservdelar = delar2, Besök = besök2 };
+
+            testDB.jornals.Add(journal1);
+            testDB.jornals.Add(journal3);
 
             testDB.SaveChanges();
 
