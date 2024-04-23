@@ -1,5 +1,4 @@
-﻿using DataLayer;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using RB_Ärendesystem.Datalayer;
 using RB_Ärendesystem.Entities;
 using System;

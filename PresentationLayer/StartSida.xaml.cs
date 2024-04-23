@@ -14,10 +14,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using RB_Ärendesystem.Datalayer;
 
-using RB_Ärendesystem.Entities;
-using RB_Ärendesystem;
-using DataLayer;
-using Microsoft.EntityFrameworkCore;
 
 
 

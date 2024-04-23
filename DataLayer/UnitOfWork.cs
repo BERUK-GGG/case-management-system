@@ -34,8 +34,15 @@ namespace RB_Ärendesystem.Datalayer
         public IMekanikerRepository mekaniker { get; }
         public IReservdelRepository reservdels { get; }
 
+        public IBesökRepository Besöks => throw new NotImplementedException();
 
+        public IJournalRepository Journals => throw new NotImplementedException();
 
+        public IKundRepository Kunds => throw new NotImplementedException();
+
+        public IMekanikerRepository Mekanikers => throw new NotImplementedException();
+
+        public IReservdelRepository Reservdels => throw new NotImplementedException();
 
         public int SaveChanges()
         {

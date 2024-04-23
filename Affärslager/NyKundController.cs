@@ -17,7 +17,7 @@ namespace Affärslager
             {
 
                 UoW.kunds.Add(NyKund);
-                
+                UoW.SaveChanges();
             }
         }
     }
