@@ -1,4 +1,5 @@
-﻿using RB_Ärendesystem.Entities;
+﻿using RB_Ärendesystem.Datalayer;
+using RB_Ärendesystem.Entities;
 
 namespace Affärslager
 {
@@ -12,10 +13,11 @@ namespace Affärslager
         public void LäggTillNyKund(Kund NyKund)
         {
             // Add the new Kund object to the database
-            using (var context = new RB_Ärendesystem.Datalayer.RB_context())
+            using (var UoW = new UnitOfWork(new RB_context()))
             {
-                context.kunder.Add(NyKund);
-                context.SaveChanges();
+
+                UoW.kunds.Add(NyKund);
+                
             }
         }
     }
