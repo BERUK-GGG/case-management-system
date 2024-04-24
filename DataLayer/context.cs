@@ -27,11 +27,11 @@ namespace RB_Ärendesystem.Datalayer
 
    protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        
-            //modelBuilder.Entity<Kund>().Property(k => k.ID).UseIdentityColumn();
-            //modelBuilder.Entity<Besök>().Property(k => k.BesökID).UseIdentityColumn();
-            //modelBuilder.Entity<Mekaniker>().Property(k => k.Id).UseIdentityColumn();
-            //modelBuilder.Entity<Journal>().Property(k => k.JournalID).UseIdentityColumn();
+
+            modelBuilder.Entity<Kund>().Property(k => k.ID).UseIdentityColumn();
+            modelBuilder.Entity<Besök>().Property(k => k.ID).UseIdentityColumn();
+            modelBuilder.Entity<Mekaniker>().Property(k => k.Id).UseIdentityColumn();
+            modelBuilder.Entity<Journal>().Property(k => k.ID).UseIdentityColumn();
 
         }
 

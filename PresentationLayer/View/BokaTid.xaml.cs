@@ -1,4 +1,5 @@
 ﻿
+using Affärslager;
 using Microsoft.EntityFrameworkCore;
 using RB_Ärendesystem.Datalayer;
 using RB_Ärendesystem.Entities;
@@ -153,14 +154,9 @@ namespace PresentationLayer.View
                 };
 
                 // Save changes to the database
-                using (var context = new RB_context())
-                {
-                   
-                    context.besök.Add(ny_besök);
-                    context.SaveChanges();
+                BokaTidController boka = new BokaTidController();
 
-             
-                }
+                boka.LäggTillBesök(ny_besök);
 
                 MessageBox.Show("New booking saved successfully.");
 

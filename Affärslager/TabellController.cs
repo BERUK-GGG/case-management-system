@@ -24,7 +24,7 @@ namespace Affärslager
             using (var UoW = new UnitOfWork(new RB_context()))
             {
                 // Load data from the database into local memory
-                var journals = UoW.Journals.GetAll().ToList();
+                var journals = UoW.Journals.GetAll();
 
                 // Return the data as an ObservableCollection
                 return new ObservableCollection<Journal>(journals);

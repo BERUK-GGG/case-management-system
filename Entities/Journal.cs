@@ -12,7 +12,7 @@ namespace Entities
     public class Journal
     {
         [Key]
-        public int JournalID { get; set; }   
+        public int ID { get; set; }   
         public string Åtgärder {  get; set; }
 
         public virtual Besök Besök { get; set; }

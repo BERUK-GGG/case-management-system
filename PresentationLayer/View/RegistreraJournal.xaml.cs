@@ -65,7 +65,7 @@ namespace PresentationLayer.View
 
                 // Populate TextBoxes with values from the selected row
 
-                BesökID.Text = selectedBesök.BesökID.ToString();
+                BesökID.Text = selectedBesök.ID.ToString();
 
                 
 
