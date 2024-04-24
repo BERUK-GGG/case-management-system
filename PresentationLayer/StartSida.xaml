@@ -125,7 +125,7 @@
 
 
             <!-- Content Area for journal Section -->
-            <ContentControl Grid.Row="1" x:Name="JournalContentControl" Visibility="Collapsed">
+            <ContentControl Grid.Row="1" x:Name="JournalContentControl" Visibility="Visible">
                 <!-- Content for bokning Section Goes Here -->
                 <StackPanel>
                     <Button Content="Registrera journal" Width="100" Height="30" Margin="10" Click="RegistreraJournal_Click" />

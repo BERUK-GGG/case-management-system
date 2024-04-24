@@ -61,6 +61,7 @@ namespace PresentationLayer
             // Re-bind the DataGrid to update its content
             using (var context = new RB_context())
             {
+                JournalDataGrid.ItemsSource = context.jornals.ToList();
                 customerDataGrid.ItemsSource = context.kunder.ToList();
                 bookingDataGrid.ItemsSource = context.besök.ToList();
             }

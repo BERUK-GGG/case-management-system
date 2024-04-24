@@ -1,10 +1,12 @@
 ﻿
 using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualBasic;
 using RB_Ärendesystem.Datalayer;
 using RB_Ärendesystem.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -27,7 +29,11 @@ namespace PresentationLayer.View
         {
             InitializeComponent();
 
+            PopulateReservPartComboBox();
+
             RB_context testDB = new RB_context();
+
+            BesökDataGrid.ItemsSource = testDB.besök.ToList();
         }
 
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
@@ -47,6 +53,42 @@ namespace PresentationLayer.View
             // Handle the click event for the "Back" button
             // Add logic to navigate back to the previous page
         }
+
+        private void BesökDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // Get the selected row
+            if (BesökDataGrid.SelectedItem != null)
+            {
+
+                Besök selectedBesök = (Besök)BesökDataGrid.SelectedItem;
+
+                // Populate TextBoxes with values from the selected row
+
+                BesökID.Text = selectedBesök.BesökID.ToString();
+
+                
+
+            }
+
+
+        }
+
+        private void PopulateReservPartComboBox()
+        {
+            using (var context = new RB_context())
+            {
+                // Fetch the list of mechanics from the database
+                var reservdel = context.reservdelar.ToList();
+
+                // Bind the list to the ComboBox
+                Reservdel.ItemsSource = reservdel;
+
+                // Set the display member path to a property of Mekaniker class that represents the name
+                Reservdel.DisplayMemberPath = "Namn"; // Replace "Name" with the actual property name in your Mekaniker class
+            }
+        }
+
+
     }
 
 
