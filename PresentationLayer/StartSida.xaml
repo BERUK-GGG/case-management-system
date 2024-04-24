@@ -125,7 +125,7 @@
 
 
             <!-- Content Area for journal Section -->
-            <ContentControl Grid.Row="1" x:Name="JournalContentControl" Visibility="Visible">
+            <ContentControl Grid.Row="1" x:Name="JournalContentControl" Visibility="Collapsed">
                 <!-- Content for bokning Section Goes Here -->
                 <StackPanel>
                     <Button Content="Registrera journal" Width="100" Height="30" Margin="10" Click="RegistreraJournal_Click" />
@@ -138,12 +138,12 @@
                 </StackPanel>
             </ContentControl>
 
-            <ContentControl Grid.Row="1" Grid.Column="1" x:Name="ReservContentControl" Visibility="Collapsed">
+            <ContentControl Grid.Row="1" Grid.Column="1" x:Name="ReservContentControl" Visibility="Visible">
                 <!-- Content for reserv Section Goes Here -->
                 <StackPanel>
-                    <Button Content="Button 1" Width="100" Height="30" Margin="10"/>
+                    <Button Content="Beställ reservdel" Width="100" Height="30" Margin="10"/>
 
-                    <Button Content="Button 3" Width="100" Height="30" Margin="10"/>
+                    
                 </StackPanel>
             </ContentControl>
 

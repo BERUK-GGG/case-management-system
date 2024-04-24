@@ -162,7 +162,7 @@ namespace PresentationLayer.View
              
                 }
 
-                MessageBox.Show("New customer saved successfully.");
+                MessageBox.Show("New booking saved successfully.");
 
                 // Navigate back to the previous window
                 StartSida startSida = new StartSida();

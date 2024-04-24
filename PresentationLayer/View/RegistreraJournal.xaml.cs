@@ -1,4 +1,5 @@
 ﻿
+using Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualBasic;
 using RB_Ärendesystem.Datalayer;
@@ -29,7 +30,7 @@ namespace PresentationLayer.View
         {
             InitializeComponent();
 
-            PopulateReservPartComboBox();
+            PopulateReservPartListBox();
 
             RB_context testDB = new RB_context();
 
@@ -73,7 +74,7 @@ namespace PresentationLayer.View
 
         }
 
-        private void PopulateReservPartComboBox()
+        private void PopulateReservPartListBox()
         {
             using (var context = new RB_context())
             {
@@ -87,6 +88,48 @@ namespace PresentationLayer.View
                 Reservdel.DisplayMemberPath = "Namn"; // Replace "Name" with the actual property name in your Mekaniker class
             }
         }
+
+        private void SaveButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (BesökDataGrid.SelectedItem != null )
+            {
+
+                List<Reservdel> selectedReserv = new List<Reservdel>();
+                foreach (var selectedItem in Reservdel.SelectedItems)
+                {
+                    selectedReserv.Add((Reservdel)selectedItem);
+                }
+                Besök selectedBesök = (Besök)BesökDataGrid.SelectedItem;
+                Journal newJournal = new Journal
+                {
+
+                    Åtgärder = åtgärder.Text,
+                    Besök = selectedBesök,
+                    reservdelar = selectedReserv,
+                    
+                   
+                 
+
+
+                };
+                using (var context = new RB_context())
+
+
+                {
+                  
+
+
+
+                    // Save the Journal object to the database
+                    context.jornals.Add(newJournal);
+                    context.SaveChanges();
+                }
+
+                MessageBox.Show("Data saved successfully.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+        }
+
+
 
 
     }

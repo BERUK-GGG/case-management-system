@@ -59,12 +59,15 @@
             <Button Content="Spara" HorizontalAlignment="Left" Margin="366,280,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120" Click="SaveButton_Click"/>
             <Button Content="Back" HorizontalAlignment="Left" Margin="27,336,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Height="27" Click="BackButton_Click"/>
             <DataGrid x:Name="CustomerDataGrid" Grid.Row="1" Margin="253,83,306,266" IsReadOnly="True" SelectionChanged="customerDataGrid_SelectionChanged"/>
-            <TextBox x:Name="Namn" HorizontalAlignment="Left" Margin="777,46,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Namn" VerticalAlignment="Top" Width="120" TextChanged="Name_TextChanged"/>
+            <TextBox x:Name="Namn" HorizontalAlignment="Left" Margin="777,46,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Klicka på Kund rad" VerticalAlignment="Top" Width="120" TextChanged="Name_TextChanged"/>
             <DatePicker HorizontalAlignment="Left" Margin="777,188,0,0" Grid.Row="1" VerticalAlignment="Top" SelectedDate="{Binding SelectedDate}"/>
 
 
             <TextBox x:Name="Syfte" HorizontalAlignment="Left" Margin="777,146,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Syfte" VerticalAlignment="Top" Width="120" RenderTransformOrigin="-0.059,1.638"/>
-            <ComboBox x:Name="Mekaniker" HorizontalAlignment="Left" Margin="777,83,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120"/>
+            <ComboBox x:Name="Mekaniker" HorizontalAlignment="Left" Margin="777,107,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120"/>
+            <Label Content="Mekaniker:" HorizontalAlignment="Left" Margin="772,81,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+            <Label Content="Kund Namn:" HorizontalAlignment="Left" Margin="777,15,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+            <Label Content="Kunder" HorizontalAlignment="Left" Margin="422,46,0,0" Grid.Row="1" VerticalAlignment="Top"/>
 
 
         </Grid>
