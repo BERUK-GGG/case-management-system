@@ -16,7 +16,7 @@ namespace Affärslager
             using (var UoW = new UnitOfWork(new RB_context()))
             {
 
-                UoW.kunds.Add(NyKund);
+                UoW.Kunds.Add(NyKund);
                 UoW.SaveChanges();
             }
         }

@@ -20,29 +20,29 @@ namespace RB_Ärendesystem.Datalayer
         public UnitOfWork(RB_context context)
         {
             Context = context;
-            besöks = new BesökRepository(Context);
-            journals = new JournalRepository(Context);
-            kunds = new KundRepository(Context);
-            mekaniker = new MekanikerRepository(Context);
-            reservdels = new ReservdelRepository(Context);
+            Besöks = new BesökRepository(Context);
+            Journals = new JournalRepository(Context);
+            Kunds = new KundRepository(Context);
+            Mekanikers = new MekanikerRepository(Context);
+            Reservdels = new ReservdelRepository(Context);
         }
 
 
-        public IBesökRepository besöks { get; }
-        public IJournalRepository journals { get; }
-        public IKundRepository kunds { get; }
-        public IMekanikerRepository mekaniker { get; }
-        public IReservdelRepository reservdels { get; }
+        public IBesökRepository Besöks { get; }
+        public IJournalRepository Journals { get; }
+        public IKundRepository Kunds { get; }
+        public IMekanikerRepository Mekanikers { get; }
+        public IReservdelRepository Reservdels { get; }
 
-        public IBesökRepository Besöks => throw new NotImplementedException();
+        //public IBesökRepository Besöks => throw new NotImplementedException();
 
-        public IJournalRepository Journals => throw new NotImplementedException();
+        //public IJournalRepository Journals => throw new NotImplementedException();
 
-        public IKundRepository Kunds => throw new NotImplementedException();
+        //public IKundRepository Kunds => throw new NotImplementedException();
 
-        public IMekanikerRepository Mekanikers => throw new NotImplementedException();
+        //public IMekanikerRepository Mekanikers => throw new NotImplementedException();
 
-        public IReservdelRepository Reservdels => throw new NotImplementedException();
+        //public IReservdelRepository Reservdels => throw new NotImplementedException();
 
         public int SaveChanges()
         {
@@ -71,9 +71,32 @@ namespace RB_Ärendesystem.Datalayer
                 throw;
             }
         }
+
+        public UnitOfWork(): this (new RB_context())
+        {
+            disposeContext = true;
+
+        }
+
         public void Dispose()
         {
-            Context.Dispose();
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+        protected virtual void Dispose(bool disposing)
+        {
+            if (isDisposed)
+            {
+                return;
+            }
+            if (disposing)
+            {
+                if (disposeContext)
+                {
+                    Context.Dispose();
+                }
+            }
+            isDisposed = true;
         }
     }
 
