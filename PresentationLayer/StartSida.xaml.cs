@@ -44,6 +44,7 @@ namespace PresentationLayer
             JournalDataGrid.ItemsSource = tabeller.JournalTabell();
             customerDataGrid.ItemsSource = tabeller.KundTabell();
             bookingDataGrid.ItemsSource = tabeller.BesökTabell();
+            ReservDataGrid.ItemsSource = tabeller.ReservdellTabell();
             
 
 
@@ -213,11 +214,16 @@ namespace PresentationLayer
             this.Close();
         }
 
+        private void BeställReservdel_Click(object sender, RoutedEventArgs e)
+        {
+            BeställReservdel BeställReservdelWindow = new BeställReservdel();
+            BeställReservdelWindow.Show();
+            this.Close();
+        }
 
 
 
-
-
+        
 
 
         // a method for the search button that will search for the customer

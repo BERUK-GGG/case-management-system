@@ -79,16 +79,21 @@ namespace PresentationLayer.View
 
         private void PopulateReservPartListBox()
         {
+            
            
             
                 // Fetch the list of mechanics from the database
                 var reservdel = tabeller.ReservdellTabell().ToList();
 
-                // Bind the list to the ComboBox
-                Reservdel.ItemsSource = reservdel;
 
-                // Set the display member path to a property of Mekaniker class that represents the name
-                Reservdel.DisplayMemberPath = "Namn"; // Replace "Name" with the actual property name in your Mekaniker class
+
+            // Bind the list to the ComboBox
+            Reservdel.ItemsSource = reservdel;
+
+            
+
+            // Set the display member path to a property of Mekaniker class that represents the name
+            Reservdel.DisplayMemberPath = "Namn"; // Replace "Name" with the actual property name in your Mekaniker class
             
         }
 

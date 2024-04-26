@@ -117,20 +117,20 @@
                     <Label Content="Sök bokning:" VerticalAlignment="Top" HorizontalAlignment="Left"  Margin="260,10,0,0" RenderTransformOrigin="0.659,1.526"  />
                     <TextBox Grid.Row="1" x:Name="SökTidBox" Width="200" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0" TextChanged="SearchTextBoxBokaTid_TextChanged"/>
                     <DataGrid x:Name="bookingDataGrid" Grid.ColumnSpan="2" Margin="250,63,144,101" IsReadOnly="True" />
-                    
-                    
+
+
 
                 </StackPanel>
             </ContentControl>
 
 
             <!-- Content Area for journal Section -->
-            <ContentControl Grid.Row="1" x:Name="JournalContentControl" Visibility="Collapsed">
+            <ContentControl Grid.Row="1" x:Name="JournalContentControl" Visibility="Visible">
                 <!-- Content for bokning Section Goes Here -->
                 <StackPanel>
                     <Button Content="Registrera journal" Width="100" Height="30" Margin="10" Click="RegistreraJournal_Click" />
                     <Label Content="Sök journal:" VerticalAlignment="Top" HorizontalAlignment="Left"  Margin="260,10,0,0" RenderTransformOrigin="0.659,1.526"  />
-                    <TextBox Grid.Row="1" x:Name="SökJournal" Width="200" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0" />
+                    <TextBox x:Name="SökJournal" Width="200" />
                     <DataGrid x:Name="JournalDataGrid" Grid.ColumnSpan="2" Margin="250,63,144,101" IsReadOnly="True" />
 
 
@@ -138,16 +138,17 @@
                 </StackPanel>
             </ContentControl>
 
-            <ContentControl Grid.Row="1" Grid.Column="1" x:Name="ReservContentControl" Visibility="Visible">
+            <ContentControl Grid.Row="1" Grid.Column="1" x:Name="ReservContentControl" Visibility="Collapsed">
                 <!-- Content for reserv Section Goes Here -->
                 <StackPanel>
-                    <Button Content="Beställ reservdel" Width="100" Height="30" Margin="10"/>
+                    <Button Content="Beställ reservdel" Width="100" Height="30" Click="BeställReservdel_Click"/>
 
-                    
+
                 </StackPanel>
             </ContentControl>
 
-            <Button x:Name="BackButton" Content="Back" Width="100" Height="30" Click="BackButton_Click" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="26,432,0,0" Visibility="Visible"/>
+            <Button x:Name="BackButton" Content="Back" Width="100" Height="30" Click="BackButton_Click" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="26,432,0,0" />
+            <DataGrid x:Name="ReservDataGrid" Margin="253,82,141,256" IsReadOnly="True" Grid.Row="1" Visibility="Collapsed" />
         </Grid>
     </Border>
 </Window>

@@ -15,4 +15,6 @@ namespace RB_Ärendesystem.Datalayer.Repositories
     {
         public JournalRepository(RB_context context) : base(context) { }
     }
+
+
 }

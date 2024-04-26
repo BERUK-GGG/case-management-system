@@ -5,8 +5,68 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PresentationLayer.View"
         mc:Ignorable="d"
-        Title="BeställReservdel" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="Startsida" Height="500" Width="800"
+        MinHeight="600" MinWidth="920" WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        Background="Transparent"
+        AllowsTransparency="True">
+
+    <Border Background="Beige" CornerRadius="40">
+        <Grid>
+            <Grid.OpacityMask>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFC7C807" Offset="0.406"/>
+                    <GradientStop Color="White" Offset="0.621"/>
+                </LinearGradientBrush>
+            </Grid.OpacityMask>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0" Text="RB Verkstad" FontSize="36"  HorizontalAlignment="Center" Margin="0,20,0,20" Foreground="#FF481C1C">
+                <TextBlock.OpacityMask>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Black" Offset="0.406"/>
+                        <GradientStop Color="#FFC7C807" Offset="0.741"/>
+                    </LinearGradientBrush>
+                </TextBlock.OpacityMask>
+                <TextBlock.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Black"/>
+                        <GradientStop Color="White" Offset="1"/>
+                        <GradientStop Color="Beige" Offset="0"/>
+                        <GradientStop Color="#FFFDFDF9" Offset="1"/>
+                    </LinearGradientBrush>
+                </TextBlock.Background>
+            </TextBlock>
+
+            <!-- Logout Button -->
+            <Button x:Name="Btn_logout" Content="Log out" Width="100" Height="30" Click="LogoutButton_Click" HorizontalAlignment="Right" Margin="0,10,10,32"/>
+
+            <StackPanel Margin="0,0,667,0" Grid.RowSpan="2" >
+                <StackPanel.Background>
+                    <LinearGradientBrush EndPoint="0.10,1" StartPoint="0.99,1">
+                        <GradientStop Color="Beige"/>
+                        <GradientStop Color="Black" Offset="1"/>
+                    </LinearGradientBrush>
+
+                </StackPanel.Background>
+
+
+            </StackPanel>
+            <Button Content="Spara" HorizontalAlignment="Left" Margin="366,280,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120" Click="SparaButton_Click" />
+            <Button Content="Back" HorizontalAlignment="Left" Margin="27,336,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Height="27" Click="BackButton_Click"/>
+
+
+            <TextBox x:Name="Pris" HorizontalAlignment="Left" Margin="388,168,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Pris" VerticalAlignment="Top" Width="120" RenderTransformOrigin="-0.059,1.638"/>
+            <Label Content="Registrera Reservdel:" HorizontalAlignment="Left" Margin="264,71,0,0" Grid.Row="1" VerticalAlignment="Top" RenderTransformOrigin="0.379,0.397"/>
+            <Label Content="Ange pris:" HorizontalAlignment="Left" Margin="324,164,0,0" Grid.Row="1" VerticalAlignment="Top" Width="64"/>
+            <TextBlock HorizontalAlignment="Center" Grid.Row="1" TextWrapping="Wrap" Text="Registrera Reservdel" VerticalAlignment="Top" FontSize="20"/>
+            <TextBox x:Name="Reservdel" HorizontalAlignment="Left" Margin="388,75,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Namn" VerticalAlignment="Top" Width="120"/>
+
+
+        </Grid>
+    </Border>
 </Window>
