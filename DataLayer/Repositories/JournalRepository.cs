@@ -20,4 +20,6 @@ namespace RB_Ärendesystem.Datalayer.Repositories
             return Context.jornals.Include(x => x.Besök).Include(x => x.reservdelar);
         }
     }
+
+
 }
