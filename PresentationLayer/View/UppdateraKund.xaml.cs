@@ -24,6 +24,7 @@ namespace PresentationLayer.View
     public partial class UppdateraKund : Window
     {
         TabellController tabeller = new TabellController();
+        UpdateraKundController UpdateraKundController = new UpdateraKundController();
 
         public UppdateraKund()
         {
@@ -99,13 +100,7 @@ namespace PresentationLayer.View
                 // Update other properties as needed
 
                 // Save changes to the database
-                using (var uow = new UnitOfWork())
-                {
-                    //context.Entry(selectedKund).State = EntityState.Modified;
-                    //context.SaveChanges();
-                    uow.Kunds.Update(selectedKund);
-                    uow.SaveChanges();
-                }
+                UpdateraKundController.UpdateraKund(selectedKund);
 
                 // Refresh the DataGrid to reflect changes
                 RefreshDataGrid();
