@@ -88,39 +88,6 @@ namespace Affärslager
             }
         }
 
-        public void AddBooking(Kund selectedKund, Mekaniker selectedMekaniker, string syfte, DateTime selectedDate)
-        {
-            UnitOfWork.Besöks.Add(new Besök()
-            {
-                Kund = UnitOfWork.Kunds.Find(selectedKund.ID),
-                Mekaniker = UnitOfWork.Mekanikers.Find(selectedMekaniker.Id),
-                DateAndTime = selectedDate,
-                Syfte = syfte
-            });
-
-            UnitOfWork.SaveChanges();
-        }
-
-        public void AddJournal(string åtgärder, Besök besök, List<Reservdel> Reservdelar)
-        {
-            var u = new List<Reservdel>();
-            foreach (Reservdel reservdel in Reservdelar)
-            {
-                u.Add(UnitOfWork.Reservdels.Find(reservdel.ID));
-
-            }
-
-
-            UnitOfWork.Journals.Add(new Journal()
-            {
-                Åtgärder = åtgärder,
-                Besök = UnitOfWork.Besöks.Find(besök.ID),
-                reservdelar = u
-                
-
-            });
-
-            UnitOfWork.SaveChanges();
-        }
+        
     }
 }

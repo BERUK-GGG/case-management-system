@@ -28,6 +28,7 @@ namespace PresentationLayer.View
     public partial class RegistreraJournal : Window
     {
         TabellController tabeller = new TabellController();
+        NyJournalController nyJournalController = new NyJournalController();
         public RegistreraJournal()
         {
             InitializeComponent();
@@ -104,7 +105,7 @@ namespace PresentationLayer.View
                 Besök selectedBesök = (Besök)BesökDataGrid.SelectedItem;
            
                 TabellController controller = new TabellController();
-                controller.AddJournal(åtgärder: åtgärder.Text, besök: selectedBesök, Reservdelar: selectedReserv);
+                nyJournalController.AddJournal(åtgärder: åtgärder.Text, besök: selectedBesök, Reservdelar: selectedReserv);
 
                 MessageBox.Show("Data saved successfully.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
             }

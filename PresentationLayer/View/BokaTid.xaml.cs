@@ -31,6 +31,7 @@ namespace PresentationLayer.View
     {
         public event PropertyChangedEventHandler PropertyChanged;
         TabellController tabeller = new TabellController();
+        NyBokningController BokningsController = new NyBokningController();
         public BokaTid()
         {
             InitializeComponent();
@@ -143,10 +144,10 @@ namespace PresentationLayer.View
                 selectedKund.Namn = Namn.Text;
 
                 TabellController controller = new TabellController();
-                controller.AddBooking(selectedKund, selectedMekaniker, Syfte.Text, SelectedDate);
+                BokningsController.AddBooking(selectedKund, selectedMekaniker, Syfte.Text, SelectedDate);
 
                 // Save changes to the database
-                BokaTidController boka = new BokaTidController();
+                
 
                 //boka.LäggTillBesök(ny_besök);
 
