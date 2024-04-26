@@ -1,4 +1,5 @@
 ﻿
+using Affärslager;
 using Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualBasic;
@@ -26,15 +27,16 @@ namespace PresentationLayer.View
     /// </summary>
     public partial class RegistreraJournal : Window
     {
+        TabellController tabeller = new TabellController();
         public RegistreraJournal()
         {
             InitializeComponent();
 
             PopulateReservPartListBox();
 
-            RB_context testDB = new RB_context();
+            
 
-            BesökDataGrid.ItemsSource = testDB.besök.ToList();
+            BesökDataGrid.ItemsSource = tabeller.BesökTabell().ToList();
         }
 
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
@@ -76,17 +78,17 @@ namespace PresentationLayer.View
 
         private void PopulateReservPartListBox()
         {
-            using (var context = new RB_context())
-            {
+           
+            
                 // Fetch the list of mechanics from the database
-                var reservdel = context.reservdelar.ToList();
+                var reservdel = tabeller.ReservdellTabell().ToList();
 
                 // Bind the list to the ComboBox
                 Reservdel.ItemsSource = reservdel;
 
                 // Set the display member path to a property of Mekaniker class that represents the name
                 Reservdel.DisplayMemberPath = "Namn"; // Replace "Name" with the actual property name in your Mekaniker class
-            }
+            
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
@@ -100,30 +102,9 @@ namespace PresentationLayer.View
                     selectedReserv.Add((Reservdel)selectedItem);
                 }
                 Besök selectedBesök = (Besök)BesökDataGrid.SelectedItem;
-                Journal newJournal = new Journal
-                {
-
-                    Åtgärder = åtgärder.Text,
-                    Besök = selectedBesök,
-                    reservdelar = selectedReserv,
-                    
-                   
-                 
-
-
-                };
-                using (var context = new RB_context())
-
-
-                {
-                  
-
-
-
-                    // Save the Journal object to the database
-                    context.jornals.Add(newJournal);
-                    context.SaveChanges();
-                }
+           
+                TabellController controller = new TabellController();
+                controller.AddJournal(åtgärder: åtgärder.Text, besök: selectedBesök, Reservdelar: selectedReserv);
 
                 MessageBox.Show("Data saved successfully.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
             }

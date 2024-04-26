@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Affärslager;
+using Microsoft.EntityFrameworkCore;
 using RB_Ärendesystem.Datalayer;
 using RB_Ärendesystem.Entities;
 using System;
@@ -22,16 +23,18 @@ namespace PresentationLayer.View
     /// </summary>
     public partial class UppdateraKund : Window
     {
+        TabellController tabeller = new TabellController();
+
         public UppdateraKund()
         {
              InitializeComponent();
 
-            RB_context testDB = new RB_context();
+           
 
 
 
 
-            CustomerDataGrid.ItemsSource = testDB.kunder.ToList();
+            CustomerDataGrid.ItemsSource = tabeller.KundTabell().ToList();
 
         }
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
@@ -96,10 +99,12 @@ namespace PresentationLayer.View
                 // Update other properties as needed
 
                 // Save changes to the database
-                using (var context = new RB_context())
+                using (var uow = new UnitOfWork())
                 {
-                    context.Entry(selectedKund).State = EntityState.Modified;
-                    context.SaveChanges();
+                    //context.Entry(selectedKund).State = EntityState.Modified;
+                    //context.SaveChanges();
+                    uow.Kunds.Update(selectedKund);
+                    uow.SaveChanges();
                 }
 
                 // Refresh the DataGrid to reflect changes
@@ -110,22 +115,20 @@ namespace PresentationLayer.View
         private void RefreshDataGrid()
         {
             // Re-bind the DataGrid to update its content
-            using (var context = new RB_context())
-            {
-                CustomerDataGrid.ItemsSource = context.kunder.ToList();
-            }
+            CustomerDataGrid.ItemsSource = tabeller.KundTabell().ToList();
         }
 
         private void SökTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             string searchText = SökTextBox.Text.ToLower(); // Assuming SökTextBox is the name of your search TextBox
-            using (var context = new RB_context())
+            using (var Uow = new UnitOfWork())
             {
-                var searchResult = context.kunder.Where(k => k.Namn.ToLower().Contains(searchText)
+                var searchResult = Uow.Kunds.GetAll().Where(k => k.Namn.ToLower().Contains(searchText)
                                                           || k.PersonNr.ToString().Contains(searchText)
                                                           || k.Address.ToLower().Contains(searchText)
                                                           || k.Epost.ToLower().Contains(searchText)
                                                           || k.TeleNr.ToString().Contains(searchText)).ToList();
+                
                 CustomerDataGrid.ItemsSource = searchResult;
             }
         }

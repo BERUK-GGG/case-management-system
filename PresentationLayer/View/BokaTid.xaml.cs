@@ -30,18 +30,18 @@ namespace PresentationLayer.View
     public partial class BokaTid : Window, INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-
+        TabellController tabeller = new TabellController();
         public BokaTid()
         {
             InitializeComponent();
 
-            RB_context testDB = new RB_context();
+            
 
             PopulateMechanicsComboBox();
 
             InitializeDatePicker();
 
-            CustomerDataGrid.ItemsSource = testDB.kunder.ToList();
+            CustomerDataGrid.ItemsSource = tabeller.KundTabell();
         }
 
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
@@ -102,17 +102,17 @@ namespace PresentationLayer.View
 
         private void PopulateMechanicsComboBox()
         {
-            using (var context = new RB_context())
-            {
+           
+            
                 // Fetch the list of mechanics from the database
-                var mechanics = context.mekaniker.ToList();
+                var mechanics = tabeller.MekanikerTabell().ToList();
 
                 // Bind the list to the ComboBox
                 Mekaniker.ItemsSource = mechanics;
 
                 // Set the display member path to a property of Mekaniker class that represents the name
                 Mekaniker.DisplayMemberPath = "Namn"; // Replace "Name" with the actual property name in your Mekaniker class
-            }
+            
         }
 
         private void Mekaniker_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -141,17 +141,6 @@ namespace PresentationLayer.View
 
                 // Update the selectedKund object with the values from TextBoxes
                 selectedKund.Namn = Namn.Text;
-
-                //Besök ny_besök = new Besök
-
-                //{
-
-                //    Kund = new TabellController().UnitOfWork.Kunds.Find(selectedKund.ID),
-                //    Mekaniker = new TabellController().UnitOfWork.Mekanikers.Find(selectedMekaniker.Id),
-                //    syfte = Syfte.Text,
-                //    DateAndTime = SelectedDate, 
-
-                //};
 
                 TabellController controller = new TabellController();
                 controller.AddBooking(selectedKund, selectedMekaniker, Syfte.Text, SelectedDate);

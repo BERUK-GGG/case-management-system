@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using RB_Ärendesystem.Datalayer;
+using Affärslager;
 
 
 
@@ -30,17 +31,6 @@ namespace PresentationLayer
         {
             InitializeComponent();
 
-            //LoadBookings();
-
-            //RB_context testDB = new RB_context();
-            ////TestData.SeedData();
-
-
-            
-
-            //customerDataGrid.ItemsSource = testDB.kunder.ToList();
-            //bookingDataGrid.ItemsSource = testDB.besök.ToList();
-
             RefreshDataGrid();
 
         }
@@ -49,12 +39,12 @@ namespace PresentationLayer
         private void RefreshDataGrid()
         {
             // Re-bind the DataGrid to update its content
-            using (var context = new RB_context())
-            {
-                JournalDataGrid.ItemsSource = context.jornals.ToList();
-                customerDataGrid.ItemsSource = context.kunder.ToList();
-                bookingDataGrid.ItemsSource = new UnitOfWork().Besöks.GetAll();
-            }
+            TabellController tabeller = new TabellController();
+
+            JournalDataGrid.ItemsSource = tabeller.JournalTabell();
+            customerDataGrid.ItemsSource = tabeller.KundTabell();
+            bookingDataGrid.ItemsSource = tabeller.BesökTabell();
+            
 
 
         }
@@ -163,10 +153,12 @@ namespace PresentationLayer
 
         private void SearchTextBoxStartSida_TextChanged(object sender, TextChangedEventArgs e)
         {
+
+            TabellController tabell = new TabellController();
             string searchText = SearchTextBox.Text.ToLower(); // Assuming SearchTextBox is the name of your search TextBox
-            using (var context = new RB_context())
+            using (var Uow = new UnitOfWork())
             {
-                var searchResult = context.kunder.Where(k => k.Namn.ToLower().Contains(searchText)
+                var searchResult = Uow.Kunds.GetAll().Where(k => k.Namn.ToLower().Contains(searchText)
                                                           || k.PersonNr.ToString().Contains(searchText)
                                                           || k.Address.ToLower().Contains(searchText)
                                                           || k.Epost.ToLower().Contains(searchText)
@@ -178,11 +170,11 @@ namespace PresentationLayer
         private void SearchTextBoxBokaTid_TextChanged(object sender, TextChangedEventArgs e)
         {
             string searchText = SökTidBox.Text.ToLower();
-            using (var context = new RB_context())
+            using (var Uow = new UnitOfWork())
             {
                 if (string.IsNullOrWhiteSpace(searchText))
                 {
-                    bookingDataGrid.ItemsSource = context.besök.ToList();
+                    bookingDataGrid.ItemsSource = Uow.Besöks.GetAll().ToList();
 
                 }
                 else
@@ -192,7 +184,7 @@ namespace PresentationLayer
                         int searchInt;
                         bool isInt = int.TryParse(searchText, out searchInt);
 
-                        var searchResult = context.besök
+                        var searchResult = Uow.Besöks.GetAll()
                             .Where(b => b.Kund.ID == searchInt)
 
                             .ToList();

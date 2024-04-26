@@ -26,13 +26,17 @@ namespace PresentationLayer
 
         private void Login_Click(object sender, RoutedEventArgs e)
         {
-            TestData.SeedData();
-            RB_context testDB = new RB_context();
+            //TestData.SeedData();
             string username = UsernameTextBox.Text;
             string password = PasswordBox.Password;
+            var uow = new UnitOfWork();
+            
             // Query the database to check if the username and password match
-            var employee = testDB.mekaniker.FirstOrDefault(a => a.AnvändarNamn == username && a.lösenord == password);
+
+            var employee = uow.Mekanikers.GetAll().FirstOrDefault(a => a.AnvändarNamn == username && a.lösenord == password);
             // Perform authentication logic here
+            
+            
             if (username == "admin" && password == "password")
             {
                 // Successful login, navigate to the main window or perform other actions
