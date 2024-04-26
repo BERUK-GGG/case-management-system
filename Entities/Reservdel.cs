@@ -14,6 +14,9 @@ namespace RB_Ärendesystem.Entities
         public string Namn { get; set; }
         public decimal Pris { get; set; }
 
-        
+        public override string ToString()
+        {
+            return $"{Namn}";
+        }
     }
 }

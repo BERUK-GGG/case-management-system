@@ -10,5 +10,6 @@ namespace RB_Ärendesystem.Datalayer.Repositories.interfaces
 {
     public interface IJournalRepository: IRepository<Journal>
     {
+
     }
 }

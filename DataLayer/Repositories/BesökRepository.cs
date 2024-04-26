@@ -17,7 +17,7 @@ namespace RB_Ärendesystem.Datalayer.Repositories
 
         public override IEnumerable<Besök> GetAll()
         {
-            return Context.besök.Include(x => x.Mekaniker);
+            return Context.besök.Include(x => x.Mekaniker).Include(x => x.Kund);
         }
     }
 }

@@ -19,5 +19,9 @@ namespace RB_Ärendesystem.Entities
         public string Syfte { get; set; }
         
         public Mekaniker Mekaniker { get; set; }
+        public override string ToString()
+        {
+            return $"{ID}";
+        }
     }
 }
