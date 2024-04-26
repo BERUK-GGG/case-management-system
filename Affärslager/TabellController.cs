@@ -1,5 +1,6 @@
 ﻿using Entities;
 using RB_Ärendesystem.Datalayer;
+using RB_Ärendesystem.Entities;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -11,6 +12,13 @@ namespace Affärslager
 {
     public class TabellController
     {
+        public UnitOfWork UnitOfWork { get; set; }
+
+        public TabellController()
+        {
+            UnitOfWork = new UnitOfWork();
+        }
+
         //public IEnumerable<Journal> JournalTabell()
         //{
         //    using (var UoW = new UnitOfWork(new RB_context()))
@@ -31,6 +39,9 @@ namespace Affärslager
             }
         }
     
+
+
+
     public void BesökTabell()
         {
             using (var UoW = new UnitOfWork(new RB_context()))
@@ -54,6 +65,19 @@ namespace Affärslager
 
                 UoW.Reservdels.GetAll();
             }
+        }
+
+        public void AddBooking(Kund selectedKund, Mekaniker selectedMekaniker, string syfte, DateTime selectedDate)
+        {
+            UnitOfWork.Besöks.Add(new Besök()
+            {
+                Kund = UnitOfWork.Kunds.Find(selectedKund.ID),
+                Mekaniker = UnitOfWork.Mekanikers.Find(selectedMekaniker.Id),
+                DateAndTime = selectedDate,
+                Syfte = syfte
+            });
+
+            UnitOfWork.SaveChanges();
         }
     }
 }

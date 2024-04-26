@@ -32,7 +32,6 @@ namespace RB_Ärendesystem.Datalayer
             modelBuilder.Entity<Besök>().Property(k => k.ID).UseIdentityColumn();
             modelBuilder.Entity<Mekaniker>().Property(k => k.Id).UseIdentityColumn();
             modelBuilder.Entity<Journal>().Property(k => k.ID).UseIdentityColumn();
-
         }
 
     }

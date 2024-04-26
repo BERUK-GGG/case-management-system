@@ -20,7 +20,10 @@ namespace RB_Ärendesystem.Entities
 
         //public virtual List<Besök> Besöks { get; set; }
 
-        
+        public override string ToString()
+        {
+            return $"{Namn}";
+        }
 
     }
 }

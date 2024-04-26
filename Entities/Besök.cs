@@ -16,7 +16,7 @@ namespace RB_Ärendesystem.Entities
         public Kund Kund { get; set; }
 
         public DateTime DateAndTime { get; set; }
-        public string syfte { get; set; }
+        public string Syfte { get; set; }
         
         public Mekaniker Mekaniker { get; set; }
     }

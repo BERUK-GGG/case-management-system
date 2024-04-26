@@ -16,11 +16,17 @@ namespace RB_Ärendesystem.Entities
         public int TeleNr { get; set; }
         public string Epost { get; set; }
 
+
         public string HämtaSträng()
         {
 
             return $"KundID = {ID}, Namn = {Namn}, PersonNr = {PersonNr}, Address = {TeleNr},TeleNr = {TeleNr} ,Epost = {Epost} ";
 
+        }
+
+        public override string ToString()
+        {
+            return $"{Namn}";
         }
     }
 }

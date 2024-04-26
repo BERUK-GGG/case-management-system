@@ -142,21 +142,24 @@ namespace PresentationLayer.View
                 // Update the selectedKund object with the values from TextBoxes
                 selectedKund.Namn = Namn.Text;
 
-                Besök ny_besök = new Besök
+                //Besök ny_besök = new Besök
 
-                {
+                //{
 
-                    Kund = selectedKund,
-                    Mekaniker = selectedMekaniker,
-                    syfte = Syfte.Text,
-                    DateAndTime = SelectedDate, 
+                //    Kund = new TabellController().UnitOfWork.Kunds.Find(selectedKund.ID),
+                //    Mekaniker = new TabellController().UnitOfWork.Mekanikers.Find(selectedMekaniker.Id),
+                //    syfte = Syfte.Text,
+                //    DateAndTime = SelectedDate, 
 
-                };
+                //};
+
+                TabellController controller = new TabellController();
+                controller.AddBooking(selectedKund, selectedMekaniker, Syfte.Text, SelectedDate);
 
                 // Save changes to the database
                 BokaTidController boka = new BokaTidController();
 
-                boka.LäggTillBesök(ny_besök);
+                //boka.LäggTillBesök(ny_besök);
 
                 MessageBox.Show("New booking saved successfully.");
 

@@ -9,11 +9,11 @@ namespace RB_Ärendesystem.Datalayer.Repositories.Base
 {
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
     {
-        protected DbContext Context { get;  }
+        protected RB_context Context { get;  }
 
         protected DbSet<TEntity> Table { get; }
 
-        protected Repository(DbContext context)
+        protected Repository(RB_context context)
         {
             Context = context;
             Table = context.Set<TEntity>();

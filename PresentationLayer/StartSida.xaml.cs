@@ -45,17 +45,7 @@ namespace PresentationLayer
 
         }
 
-        private void LoadBookings()
-        {
-            using (var context = new RB_context())
-            {
-                var besök = context.besök.ToList();
 
-               
-                
-                bookingDataGrid.ItemsSource = context.besök.ToList();
-            }
-        }
         private void RefreshDataGrid()
         {
             // Re-bind the DataGrid to update its content
@@ -63,8 +53,10 @@ namespace PresentationLayer
             {
                 JournalDataGrid.ItemsSource = context.jornals.ToList();
                 customerDataGrid.ItemsSource = context.kunder.ToList();
-                bookingDataGrid.ItemsSource = context.besök.ToList();
+                bookingDataGrid.ItemsSource = new UnitOfWork().Besöks.GetAll();
             }
+
+
         }
 
         private void CustomerButton_Click(object sender, RoutedEventArgs e)
