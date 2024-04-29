@@ -45,6 +45,7 @@ namespace PresentationLayer
             customerDataGrid.ItemsSource = tabeller.KundTabell();
             bookingDataGrid.ItemsSource = tabeller.BesökTabell();
             ReservDataGrid.ItemsSource = tabeller.ReservdellTabell();
+
             
 
 
@@ -195,6 +196,29 @@ namespace PresentationLayer
                         bookingDataGrid.ItemsSource = searchResult;
                     
 
+                }
+            }
+        }
+
+        private void SearchTextBoxReserv_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string searchText = SökReservBox.Text.ToLower();
+            using (var Uow = new UnitOfWork())
+            {
+                if (string.IsNullOrWhiteSpace(searchText))
+                {
+                    ReservDataGrid.ItemsSource = Uow.Reservdels.GetAll().ToList();
+                }
+                else
+                {
+                    int searchInt;
+                    bool isInt = int.TryParse(searchText, out searchInt);
+
+                    var searchResult = Uow.Reservdels.GetAll()
+                        .Where(r => r.ID == searchInt) // Search by ID
+                        .ToList();
+
+                    ReservDataGrid.ItemsSource = searchResult;
                 }
             }
         }

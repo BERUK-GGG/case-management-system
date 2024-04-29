@@ -84,7 +84,7 @@
             <Label Content="Mekaniker:" HorizontalAlignment="Left" Margin="772,81,0,0" Grid.Row="1" VerticalAlignment="Top"/>
             <Label Content="Kund Namn:" HorizontalAlignment="Left" Margin="777,15,0,0" Grid.Row="1" VerticalAlignment="Top"/>
             <Label Content="Bokningar" HorizontalAlignment="Left" Margin="422,46,0,0" Grid.Row="1" VerticalAlignment="Top"/>
-            <Button Content="Radera vald bokning" HorizontalAlignment="Left" Margin="354,336,0,0" Grid.Row="1" VerticalAlignment="Top" RenderTransformOrigin="0.459,0.584" Width="144" Height="33"/>
+            <Button Content="Radera vald bokning" HorizontalAlignment="Left" Margin="354,336,0,0" Grid.Row="1" VerticalAlignment="Top" RenderTransformOrigin="0.459,0.584" Width="144" Height="33" Click="RaderaBokning_Click"/>
 
 
         </Grid>

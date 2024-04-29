@@ -1,5 +1,8 @@
 ﻿using Affärslager;
+using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualBasic;
+using RB_Ärendesystem.Datalayer;
 using RB_Ärendesystem.Entities;
 using System;
 using System.Collections.Generic;
@@ -148,11 +151,32 @@ namespace PresentationLayer.View
         {
             Besök selectedBesök = (Besök)BesökDataGrid.SelectedItem;
 
-            UppdateraBokningController.TaBortBokning(selectedBesök);
+            System.Windows.MessageBoxResult result = System.Windows.MessageBox.Show("Do you want to continue?", "Confirmation", System.Windows.MessageBoxButton.YesNo);
+
+            if (result == System.Windows.MessageBoxResult.Yes)
+            {
+                using (var Uow = new UnitOfWork())
+                {
+                    // Find all Besök entries with the same KundID as the one we tried to delete
+                    var relatedJournal = Uow.Journals.GetAll().Where(b => b.Besök.ID == selectedBesök.ID).ToList();
+                    if (!relatedJournal.Any())
+                    {
+                        UppdateraBokningController.TaBortBokning(selectedBesök);
+                        RefreshDataGrid();
+                    }
+                    else
+                    {
+                        System.Windows.MessageBox.Show("This booking cannot be deleted due to associated records in other tables.", "Error");
+                    }
+                }
+
+
+            }
+
 
         }
 
-            private void Name_TextChanged(object sender, TextChangedEventArgs e)
+        private void Name_TextChanged(object sender, TextChangedEventArgs e)
             {
 
             }

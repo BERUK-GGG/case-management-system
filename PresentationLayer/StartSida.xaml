@@ -110,7 +110,7 @@
             </ContentControl>
 
             <!-- Content Area for bokning Section -->
-            <ContentControl Grid.Row="1" x:Name="BokingContentControl" Visibility="Visible">
+            <ContentControl Grid.Row="1" x:Name="BokingContentControl" Visibility="Collapsed">
                 <!-- Content for bokning Section Goes Here -->
                 <Grid>
                     <Button Content="Boka tid" Width="100" Height="30" Margin="299,72,521,410" Click="BokaTidButton_Click"/>
@@ -161,17 +161,24 @@
                 </StackPanel>
             </ContentControl>
 
-            <ContentControl Grid.Row="1" Grid.Column="1" x:Name="ReservContentControl" Visibility="Collapsed">
+            <ContentControl Grid.Row="1" Grid.Column="1" x:Name="ReservContentControl" Visibility="Visible">
                 <!-- Content for reserv Section Goes Here -->
-                <StackPanel>
-                    <Button Content="Beställ reservdel" Width="100" Height="30" Click="BeställReservdel_Click"/>
+                <Grid>
+                    <Button Content="Beställ reservdel" Click="BeställReservdel_Click" Margin="460,367,353,100" RenderTransformOrigin="0.516,0.386"/>
+
+                    <DataGrid x:Name="ReservDataGrid" Margin="260,149,134,179" IsReadOnly="True" />
+                    <TextBox x:Name="SökReservBox" HorizontalAlignment="Left" Margin="447,77,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" TextChanged="SearchTextBoxReserv_TextChanged"/>
+                    <Label Content="Sök reservdel:" HorizontalAlignment="Left" Margin="361,73,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.582,0.003"/>
 
 
-                </StackPanel>
+
+
+
+                </Grid>
             </ContentControl>
 
             <Button x:Name="BackButton" Content="Back" Width="100" Height="30" Click="BackButton_Click" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="26,432,0,0" />
-            <DataGrid x:Name="ReservDataGrid" Margin="253,82,141,256" IsReadOnly="True" Grid.Row="1" Visibility="Collapsed" />
+
         </Grid>
     </Border>
 </Window>
