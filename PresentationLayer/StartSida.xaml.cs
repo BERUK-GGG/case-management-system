@@ -160,16 +160,32 @@ namespace PresentationLayer
 
             TabellController tabell = new TabellController();
             string searchText = SearchTextBox.Text.ToLower(); // Assuming SearchTextBox is the name of your search TextBox
-            using (var Uow = new UnitOfWork())
-            {
-                var searchResult = Uow.Kunds.GetAll().Where(k => k.Namn.ToLower().Contains(searchText)
-                                                          || k.PersonNr.ToString().Contains(searchText)
-                                                          || k.Address.ToLower().Contains(searchText)
-                                                          || k.Epost.ToLower().Contains(searchText)
-                                                          || k.TeleNr.ToString().Contains(searchText)).ToList();
-                customerDataGrid.ItemsSource = searchResult;
-            }
+
+
+            SearchAndUpdateGrid(tabell.KundTabell(), k => k.Namn.ToLower().Contains(searchText)
+                                               || k.PersonNr.ToString().Contains(searchText)
+                                               || k.Address.ToLower().Contains(searchText)
+                                               || k.Epost.ToLower().Contains(searchText)
+                                               || k.TeleNr.ToString().Contains(searchText), customerDataGrid);
+
+
+            SearchAndUpdateGrid(tabell.JournalTabell(), k => k.Besök.ToString().Contains(searchText), JournalDataGrid);
+
+            // Search in bookingDataGrid
+            SearchAndUpdateGrid(tabell.BesökTabell(), item => item.Kund.ToString().Contains(searchText), bookingDataGrid);
+
+            // Search in ReservDataGrid
+            SearchAndUpdateGrid(tabell.ReservdellTabell(), item => item.Namn.ToString().Contains(searchText), ReservDataGrid);
+
+
+
         }
+        private void SearchAndUpdateGrid<T>(IEnumerable<T> source, Func<T, bool> searchCriteria, DataGrid grid)
+        {
+            var searchResult = source.Where(searchCriteria).ToList();
+            grid.ItemsSource = searchResult;
+        }
+
 
         private void SearchTextBoxBokaTid_TextChanged(object sender, TextChangedEventArgs e)
         {

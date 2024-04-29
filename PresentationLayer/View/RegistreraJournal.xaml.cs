@@ -79,16 +79,21 @@ namespace PresentationLayer.View
 
         private void PopulateReservPartListBox()
         {
-            
-           
-            
+
+            var journalItems = tabeller.JournalTabell().ToList();
+
                 // Fetch the list of mechanics from the database
-                var reservdel = tabeller.ReservdellTabell().ToList();
+           var reservdel = tabeller.ReservdellTabell().ToList();
+
+            var reservdelIdsInJournal = journalItems.Select(j => j.ID).ToList();
+
+            // Filter reservdel based on ReservdelIds not present in the journalItems
+            var reservdelFiltered = reservdel.Where(r => !reservdelIdsInJournal.Contains(r.ID)).ToList();
 
 
 
             // Bind the list to the ComboBox
-            Reservdel.ItemsSource = reservdel;
+            Reservdel.ItemsSource = reservdelFiltered;
 
             
 

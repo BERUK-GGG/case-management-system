@@ -114,7 +114,7 @@
                 <!-- Content for bokning Section Goes Here -->
                 <Grid>
                     <Button Content="Boka tid" Width="100" Height="30" Margin="299,72,521,410" Click="BokaTidButton_Click"/>
-                    <Button Content="Uppdatera Bokning" Width="100" Height="30" Click="UppdateraBokningButton_Click" Visibility="Visible" Margin="523,72,297,410" RenderTransformOrigin="-0.194,0.41" />
+                    <Button Content="Uppdatera Bokning" Height="30" Click="UppdateraBokningButton_Click" Visibility="Visible" Margin="523,72,281,410" RenderTransformOrigin="-0.194,0.41" />
 
                     <Label Content="Sök bokning:" VerticalAlignment="Top" HorizontalAlignment="Left"  Margin="299,10,0,0" RenderTransformOrigin="0.659,1.526"  />
                     <TextBox x:Name="SökTidBox" Width="200" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="383,18,0,0" TextChanged="SearchTextBoxBokaTid_TextChanged"/>
@@ -161,7 +161,7 @@
                 </StackPanel>
             </ContentControl>
 
-            <ContentControl Grid.Row="1" Grid.Column="1" x:Name="ReservContentControl" Visibility="Visible">
+            <ContentControl Grid.Row="1" Grid.Column="1" x:Name="ReservContentControl" Visibility="Collapsed">
                 <!-- Content for reserv Section Goes Here -->
                 <Grid>
                     <Button Content="Beställ reservdel" Click="BeställReservdel_Click" Margin="460,367,353,100" RenderTransformOrigin="0.516,0.386"/>
