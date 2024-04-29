@@ -11,10 +11,12 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+
 
 namespace PresentationLayer.View
 {
@@ -28,9 +30,9 @@ namespace PresentationLayer.View
 
         public UppdateraKund()
         {
-             InitializeComponent();
+            InitializeComponent();
 
-           
+
 
 
 
@@ -56,7 +58,7 @@ namespace PresentationLayer.View
             this.Close();
             // Handle the click event for the "Back" button
             // Add logic to navigate back to the previous page
-  
+
         }
 
 
@@ -123,15 +125,72 @@ namespace PresentationLayer.View
                                                           || k.Address.ToLower().Contains(searchText)
                                                           || k.Epost.ToLower().Contains(searchText)
                                                           || k.TeleNr.ToString().Contains(searchText)).ToList();
-                
+
                 CustomerDataGrid.ItemsSource = searchResult;
             }
         }
 
+        private void RaderaKund_Click(object sender, EventArgs e)
+        {
+            Kund selectedKund = (Kund)CustomerDataGrid.SelectedItem;
+            //UpdateraKundController.TaBortKund(selectedKund);
+            bool success = false;
+
+            if (!success)
+            {
+                // Delete related Besök entries if the deletion of Kund failed
+                using (var Uow = new UnitOfWork())
+                {
+                    // Find all Besök entries with the same KundID as the one we tried to delete
+                    var relatedBesök = Uow.Besöks.GetAll().Where(b => b.Kund.ID == selectedKund.ID).ToList();
+
+                    // Delete the related Besök entries
+                    Uow.Besöks.DeleteRange(relatedBesök);
+                    Uow.SaveChanges();
+                }
 
 
+                System.Windows.MessageBoxResult result = System.Windows.MessageBox.Show("Do you want to continue?", "Confirmation", System.Windows.MessageBoxButton.YesNo);
+
+                if (result == System.Windows.MessageBoxResult.Yes)
+                {
+                    // If user clicked Yes, delete the selected Kund
+                    UpdateraKundController.TaBortKund(selectedKund);
+                    RefreshDataGrid();
+                }
 
 
+                //bool success = false;
 
+                //while (!success)
+                //{
+                //    try
+                //    {
+                //        // Attempt to delete the selected Kund
+                //        UpdateraKundController.TaBortKund(selectedKund);
+                //        success = true; // Mark operation as successful if no exception is thrown
+                //    }
+                //    catch (DbUpdateConcurrencyException ex)
+                //    {
+                //        // Handle concurrency exception (e.g., log, retry, etc.)
+                //        Console.WriteLine($"Concurrency exception occurred: {ex.Message}");
+                //    }
+                //}
+
+                //if (!success)
+                //{
+                //    // Delete related Besök entries if the deletion of Kund failed
+                //    using (var Uow = new UnitOfWork())
+                //    {
+                //        // Find all Besök entries with the same KundID as the one we tried to delete
+                //        var relatedBesök = Uow.Besöks.GetAll().Where(b => b.Kund.ID == selectedKund.ID).ToList();
+
+                //        // Delete the related Besök entries
+                //        Uow.Besöks.DeleteRange(relatedBesök);
+                //        Uow.SaveChanges();
+                //    }
+                //}
+            }
+        }
     }
 }

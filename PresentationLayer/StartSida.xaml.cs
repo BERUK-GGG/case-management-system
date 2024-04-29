@@ -152,6 +152,8 @@ namespace PresentationLayer
             this.Close();
         }
 
+
+
         private void SearchTextBoxStartSida_TextChanged(object sender, TextChangedEventArgs e)
         {
 
@@ -204,6 +206,13 @@ namespace PresentationLayer
         {
             BokaTid bokaTidWindow = new BokaTid();
             bokaTidWindow.Show();
+            this.Close();
+        }
+
+        private void UppdateraBokningButton_Click(object sender, RoutedEventArgs e)
+        {
+            UppdateraBokning uppdaterabokningWindow = new UppdateraBokning();
+            uppdaterabokningWindow.Show();
             this.Close();
         }
 

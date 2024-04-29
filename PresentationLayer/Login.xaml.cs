@@ -26,7 +26,7 @@ namespace PresentationLayer
 
         private void Login_Click(object sender, RoutedEventArgs e)
         {
-            //TestData.SeedData();
+            TestData.SeedData();
             string username = UsernameTextBox.Text;
             string password = PasswordBox.Password;
             var uow = new UnitOfWork();
