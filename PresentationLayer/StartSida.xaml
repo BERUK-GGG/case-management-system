@@ -131,7 +131,28 @@
                     <Button Content="Registrera journal" Width="100" Height="30" Margin="10" Click="RegistreraJournal_Click" />
                     <Label Content="Sök journal:" VerticalAlignment="Top" HorizontalAlignment="Left"  Margin="260,10,0,0" RenderTransformOrigin="0.659,1.526"  />
                     <TextBox x:Name="SökJournal" Width="200" />
-                    <DataGrid x:Name="JournalDataGrid" Grid.ColumnSpan="2" Margin="250,63,144,101" IsReadOnly="True" />
+                    <DataGrid x:Name="JournalDataGrid" Grid.ColumnSpan="2" Margin="250,63,144,101" IsReadOnly="True" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <!-- Other columns of Journal entity -->
+                            <DataGridTextColumn Header="ID" Binding="{Binding ID}" />
+                            <DataGridTextColumn Header="Åtgärder" Binding="{Binding Åtgärder}" />
+                            <DataGridTextColumn Header="Besök" Binding="{Binding Besök}" />
+                            <DataGridTemplateColumn Header="Reservdelar">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <ItemsControl ItemsSource="{Binding reservdelar}">
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding Namn}" Margin="2"/>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                        </DataGrid.Columns>
+                    </DataGrid>
 
 
 

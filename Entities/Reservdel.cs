@@ -16,7 +16,7 @@ namespace RB_Ärendesystem.Entities
 
         public override string ToString()
         {
-            return $"{Namn}";
+            return Namn;
         }
     }
 }
