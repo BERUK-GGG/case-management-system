@@ -22,5 +22,15 @@ namespace Affärslager
                 uow.SaveChanges();
             }
         }
+
+        public void TaBortKund(Kund selectedKund)
+        {
+            using (var uow = new UnitOfWork())
+            {
+                uow.Kunds.Delete(selectedKund);
+                uow.SaveChanges();
+            }
+
+        }
     }
 }
