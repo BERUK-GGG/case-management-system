@@ -75,6 +75,16 @@ namespace PresentationLayer.View
 
             }
         }
+        private string _selectedTime;
+        public string SelectedTime
+        {
+            get { return _selectedTime; }
+            set
+            {
+                _selectedTime = value;
+                OnPropertyChanged(nameof(SelectedTime));
+            }
+        }
 
         private DateTime _selectedDate;
 
@@ -92,6 +102,7 @@ namespace PresentationLayer.View
         {
             // Set the DatePicker's SelectedDate property to today's date
             SelectedDate = DateTime.Today;
+            SelectedTime = "00.00";
         }
 
         // Implement INotifyPropertyChanged interface
@@ -143,8 +154,16 @@ namespace PresentationLayer.View
                 // Update the selectedKund object with the values from TextBoxes
                 selectedKund.Namn = Namn.Text;
 
+
+                DateTime Datum = (DateTime)Date.SelectedDate;
+                string timeString = ((ComboBoxItem)Time.SelectedItem).Content.ToString();
+                TimeOnly tid = TimeOnly.Parse(timeString.ToString());
+
+                DateTime selectedDateTime = Datum.Date + tid.ToTimeSpan();
+
+
                 TabellController controller = new TabellController();
-                BokningsController.AddBooking(selectedKund, selectedMekaniker, Syfte.Text, SelectedDate);
+                BokningsController.AddBooking(selectedKund, selectedMekaniker, Syfte.Text, selectedDateTime);
 
                 // Save changes to the database
                 
