@@ -27,6 +27,7 @@ namespace PresentationLayer.View
     {
         TabellController tabeller = new TabellController();
         UpdateraKundController UpdateraKundController = new UpdateraKundController();
+        UppdateraBokningController uppdateraBokningController = new UppdateraBokningController();
 
         public UppdateraKund()
         {
@@ -144,9 +145,23 @@ namespace PresentationLayer.View
                     // Find all Besök entries with the same KundID as the one we tried to delete
                     var relatedBesök = Uow.Besöks.GetAll().Where(b => b.Kund.ID == selectedKund.ID).ToList();
 
+                    foreach (var besök in relatedBesök)
+                    {
+                        var relatedJournal = Uow.Journals.GetAll().Where(j => j.Besök.ID == besök.ID).ToList();
+                        if (!relatedJournal.Any())
+                        {
+                            uppdateraBokningController.TaBortBokning(besök);
+                            RefreshDataGrid();
+                        }
+                        else
+                        {
+                            System.Windows.MessageBox.Show("This customer cannot be deleted due to associated with a booking that is already completed.", "Error");
+                            return; // Exit the method since deletion is not possible
+                        }
+                    }
                     // Delete the related Besök entries
-                    Uow.Besöks.DeleteRange(relatedBesök);
-                    Uow.SaveChanges();
+                    //Uow.Besöks.DeleteRange(relatedBesök);
+                    //Uow.SaveChanges();
                 }
 
 

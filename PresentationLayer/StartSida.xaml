@@ -73,16 +73,16 @@
 
             <StackPanel Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" Height="283">
                 <Border Background="Beige" CornerRadius="15" Margin="0,0,0,20">
-                    <Button Content="Kund" Width="200" Height="50" Click="CustomerButton_Click" Background="Transparent"/>
+                    <Button Content="Kund" Width="200" Height="50" Click="CustomerButton_Click" Background="Transparent" BorderThickness="0"/>
                 </Border>
                 <Border Background="#F5F5DC" CornerRadius="15" Margin="0,0,0,20">
-                    <Button Content="Bokning" Width="200" Height="50" Click="BookingButton_Click" Background="Transparent"/>
+                    <Button Content="Bokning" Width="200" Height="50" Click="BookingButton_Click" Background="Transparent" BorderThickness="0"/>
                 </Border>
                 <Border Background="Beige" CornerRadius="15">
-                    <Button Content="Resevdelar" Width="200" Height="50" Click="PartsButton_Click" Background="Transparent"/>
+                    <Button Content="Resevdelar" Width="200" Height="50" Click="PartsButton_Click" Background="Transparent" BorderThickness="0"/>
                 </Border>
                 <Border Background="#F5F5DC" CornerRadius="15" Margin="0,20,0,20">
-                    <Button Content="Journal" Width="200" Height="50" Click="Journal_Click"  Background="Transparent"/>
+                    <Button Content="Journal" Width="200" Height="50" Click="Journal_Click"  Background="Transparent" BorderThickness="0"/>
                 </Border>
             </StackPanel>
 
