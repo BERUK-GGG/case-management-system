@@ -164,7 +164,7 @@
             <ContentControl Grid.Row="1" Grid.Column="1" x:Name="ReservContentControl" Visibility="Collapsed">
                 <!-- Content for reserv Section Goes Here -->
                 <Grid>
-                    <Button Content="Beställ reservdel" Click="BeställReservdel_Click" Margin="460,367,353,100" RenderTransformOrigin="0.516,0.386"/>
+                    <Button Content="Registrera reservdel" Click="BeställReservdel_Click" Margin="460,367,353,100" RenderTransformOrigin="0.516,0.386"/>
 
                     <DataGrid x:Name="ReservDataGrid" Margin="260,149,134,179" IsReadOnly="True" />
                     <TextBox x:Name="SökReservBox" HorizontalAlignment="Left" Margin="447,77,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" TextChanged="SearchTextBoxReserv_TextChanged"/>
