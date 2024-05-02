@@ -17,7 +17,7 @@ namespace RB_Ärendesystem.Datalayer
         {
             RB_context testDB = new RB_context();
 
-            testDB.Database.EnsureDeleted();
+            
             testDB.Database.EnsureCreated();
 
 
@@ -51,7 +51,9 @@ namespace RB_Ärendesystem.Datalayer
             testDB.reservdelar.Add(reservdel4);
             testDB.reservdelar.Add(reservdel5);
             testDB.reservdelar.Add(reservdel6);
+
             testDB.SaveChanges();
+
             Besök besök1 = new Besök { Kund = kund1, DateAndTime = new System.DateTime(2021, 12, 24, 12, 00, 00), Syfte = "Service", Mekaniker = mekaniker1};
             Besök besök2 = new Besök { Kund = kund2, DateAndTime= new System.DateTime(2021, 11, 29, 12, 00, 00), Syfte= "Däck", Mekaniker = mekaniker1 };
            

@@ -24,8 +24,10 @@ namespace PresentationLayer
     /// <summary>
     /// Interaction logic for Window1.xaml
     /// </summary>
+    
     public partial class StartSida : Window
     {
+        TabellController tabell = new TabellController();
         private Stack<UIElement> navigationStack = new Stack<UIElement>();
         public StartSida()
         {
@@ -190,11 +192,11 @@ namespace PresentationLayer
         private void SearchTextBoxBokaTid_TextChanged(object sender, TextChangedEventArgs e)
         {
             string searchText = SökTidBox.Text.ToLower();
-            using (var Uow = new UnitOfWork())
-            {
+            
+            
                 if (string.IsNullOrWhiteSpace(searchText))
                 {
-                    bookingDataGrid.ItemsSource = Uow.Besöks.GetAll().ToList();
+                    bookingDataGrid.ItemsSource = tabell.BesökTabell();
 
                 }
                 else
@@ -204,7 +206,7 @@ namespace PresentationLayer
                         int searchInt;
                         bool isInt = int.TryParse(searchText, out searchInt);
 
-                        var searchResult = Uow.Besöks.GetAll()
+                        var searchResult = tabell.BesökTabell()
                             .Where(b => b.Kund.ID == searchInt)
 
                             .ToList();
@@ -213,30 +215,30 @@ namespace PresentationLayer
                     
 
                 }
-            }
+            
         }
 
         private void SearchTextBoxReserv_TextChanged(object sender, TextChangedEventArgs e)
         {
             string searchText = SökReservBox.Text.ToLower();
-            using (var Uow = new UnitOfWork())
-            {
+           
+            
                 if (string.IsNullOrWhiteSpace(searchText))
                 {
-                    ReservDataGrid.ItemsSource = Uow.Reservdels.GetAll().ToList();
+                    ReservDataGrid.ItemsSource = tabell.ReservdellTabell();
                 }
                 else
                 {
                     int searchInt;
                     bool isInt = int.TryParse(searchText, out searchInt);
 
-                    var searchResult = Uow.Reservdels.GetAll()
+                    var searchResult = tabell.ReservdellTabell()
                         .Where(r => r.ID == searchInt) // Search by ID
                         .ToList();
 
                     ReservDataGrid.ItemsSource = searchResult;
                 }
-            }
+           
         }
 
 

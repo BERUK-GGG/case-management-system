@@ -14,7 +14,8 @@ namespace RB_Ärendesystem.Datalayer
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb; Database=RB_DataBase; Integrated Security=True; TrustServerCertificate=True");
+            optionsBuilder.UseSqlServer(@"Data Source=sqlutb2-db.hb.se,56077; DataBase = oopc2408 ;User ID= oopc2408 ;Password = ZXA631; TrustServerCertificate = True") ;
+
             base.OnConfiguring(optionsBuilder);
         }   
 
