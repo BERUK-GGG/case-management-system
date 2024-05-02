@@ -46,28 +46,79 @@ namespace PresentationLayer.View
 
         private void SparaButton_Click(object sender, RoutedEventArgs e)
         {
-            // Create a new Kund object with the information from the input fields
-            Kund newKund = new Kund
+
+
+            List<string> errorMessages = new List<string>();
+
+            try
             {
-                Namn = Namn.Text,
-                PersonNr = int.Parse(PersonNr.Text),
-                Address = Address.Text,
-                TeleNr = int.Parse(TeleNr.Text),
-                Epost = Epost.Text
-            };
+                // Check if Namn textbox contains only letters
+                if (!IsNamnValid(Namn.Text))
+                {
+                    // Collect error message for Namn
+                    errorMessages.Add("Invalid input format for 'Namn'. Please enter only letters.");
+                }
 
-            NyKundController nyKundController = new NyKundController();
+                // Check if PersonNr textbox contains numeric value
+                if (!int.TryParse(PersonNr.Text, out _))
+                {
+                    // Collect error message for PersonNr
+                    errorMessages.Add("Invalid input format for 'PersonNr'. Please enter numeric value.");
+                }
 
-            nyKundController.LäggTillNyKund(newKund);
+                // Check if TeleNr textbox contains numeric value
+                if (!int.TryParse(TeleNr.Text, out _))
+                {
+                    // Collect error message for TeleNr
+                    errorMessages.Add("Invalid input format for 'TeleNr'. Please enter numeric value.");
+                }
 
-            // Show a message indicating successful saving
-            MessageBox.Show("New customer saved successfully.");
+                if (errorMessages.Count > 0)
+                {
+                    // Display all collected error messages
+                    MessageBox.Show(string.Join("\n", errorMessages), "Error");
+                    return;
+                }
 
-            // Navigate back to the previous window
-            StartSida startSida = new StartSida();
-            startSida.Show();
-            this.Close();
+                // Create a new Kund object with the information from the input fields
+                Kund newKund = new Kund
+                {
+                    Namn = Namn.Text,
+                    PersonNr = int.Parse(PersonNr.Text),
+                    Address = Address.Text,
+                    TeleNr = int.Parse(TeleNr.Text),
+                    Epost = Epost.Text
+                };
+
+                NyKundController nyKundController = new NyKundController();
+
+                nyKundController.LäggTillNyKund(newKund);
+
+                // Show a message indicating successful saving
+                MessageBox.Show("New customer saved successfully.");
+
+                // Navigate back to the previous window
+                StartSida startSida = new StartSida();
+                startSida.Show();
+                this.Close();
+            }
+            catch (FormatException)
+            {
+                // Display an error message indicating invalid input format
+                MessageBox.Show("Invalid input format. Please enter numeric values for 'PersonNr' and 'TeleNr'.", "Error");
+            }
         }
+
+        private bool IsNamnValid(string namn)
+        {
+            // Check if the string contains only letters
+            return !string.IsNullOrWhiteSpace(namn) && namn.All(char.IsLetter);
+        }
+
+
+
+
+
     }
 
 }

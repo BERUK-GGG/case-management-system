@@ -57,8 +57,9 @@
                     </LinearGradientBrush>
 
                 </Grid.Background>
-                <TextBox x:Name="SökTextBox" HorizontalAlignment="Left" Margin="105,36,0,0" Grid.Row="0" VerticalAlignment="Top" Width="120" Height="32" TextChanged="SökTextBox_TextChanged"/>
-                <Label Content="Sök" HorizontalAlignment="Left" Margin="105,10,0,0" VerticalAlignment="Top" Width="79"/>
+            
+                <TextBox x:Name="SökTextBox" HorizontalAlignment="Left" Margin="24,41,0,0" Grid.Row="0" VerticalAlignment="Top" Width="120" Height="32" TextChanged="SökTextBox_TextChanged"  />
+                <Label Content="Sök" HorizontalAlignment="Left" Margin="24,15,0,0" VerticalAlignment="Top" Width="79" Background="{x:Null}" Foreground="White"/>
 
 
 
