@@ -119,16 +119,16 @@ namespace PresentationLayer.View
         private void SökTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             string searchText = SökTextBox.Text.ToLower(); // Assuming SökTextBox is the name of your search TextBox
-            using (var Uow = new UnitOfWork())
-            {
-                var searchResult = Uow.Kunds.GetAll().Where(k => k.Namn.ToLower().Contains(searchText)
+            
+            
+                var searchResult = tabeller.KundTabell().Where(k => k.Namn.ToLower().Contains(searchText)
                                                           || k.PersonNr.ToString().Contains(searchText)
                                                           || k.Address.ToLower().Contains(searchText)
                                                           || k.Epost.ToLower().Contains(searchText)
                                                           || k.TeleNr.ToString().Contains(searchText)).ToList();
 
                 CustomerDataGrid.ItemsSource = searchResult;
-            }
+            
         }
 
         private void RaderaKund_Click(object sender, EventArgs e)
@@ -139,15 +139,14 @@ namespace PresentationLayer.View
 
             if (!success)
             {
-                // Delete related Besök entries if the deletion of Kund failed
-                using (var Uow = new UnitOfWork())
-                {
+                
+                
                     // Find all Besök entries with the same KundID as the one we tried to delete
-                    var relatedBesök = Uow.Besöks.GetAll().Where(b => b.Kund.ID == selectedKund.ID).ToList();
+                    var relatedBesök = tabeller.BesökTabell().Where(b => b.Kund.ID == selectedKund.ID).ToList();
 
                     foreach (var besök in relatedBesök)
                     {
-                        var relatedJournal = Uow.Journals.GetAll().Where(j => j.Besök.ID == besök.ID).ToList();
+                        var relatedJournal = tabeller.JournalTabell().Where(j => j.Besök.ID == besök.ID).ToList();
                         if (!relatedJournal.Any())
                         {
                             uppdateraBokningController.TaBortBokning(besök);
@@ -159,10 +158,8 @@ namespace PresentationLayer.View
                             return; // Exit the method since deletion is not possible
                         }
                     }
-                    // Delete the related Besök entries
-                    //Uow.Besöks.DeleteRange(relatedBesök);
-                    //Uow.SaveChanges();
-                }
+                    
+                
 
 
                 System.Windows.MessageBoxResult result = System.Windows.MessageBox.Show("Do you want to continue?", "Confirmation", System.Windows.MessageBoxButton.YesNo);
@@ -175,36 +172,9 @@ namespace PresentationLayer.View
                 }
 
 
-                //bool success = false;
+               
 
-                //while (!success)
-                //{
-                //    try
-                //    {
-                //        // Attempt to delete the selected Kund
-                //        UpdateraKundController.TaBortKund(selectedKund);
-                //        success = true; // Mark operation as successful if no exception is thrown
-                //    }
-                //    catch (DbUpdateConcurrencyException ex)
-                //    {
-                //        // Handle concurrency exception (e.g., log, retry, etc.)
-                //        Console.WriteLine($"Concurrency exception occurred: {ex.Message}");
-                //    }
-                //}
-
-                //if (!success)
-                //{
-                //    // Delete related Besök entries if the deletion of Kund failed
-                //    using (var Uow = new UnitOfWork())
-                //    {
-                //        // Find all Besök entries with the same KundID as the one we tried to delete
-                //        var relatedBesök = Uow.Besöks.GetAll().Where(b => b.Kund.ID == selectedKund.ID).ToList();
-
-                //        // Delete the related Besök entries
-                //        Uow.Besöks.DeleteRange(relatedBesök);
-                //        Uow.SaveChanges();
-                //    }
-                //}
+               
             }
         }
     }

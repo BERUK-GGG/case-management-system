@@ -155,10 +155,10 @@ namespace PresentationLayer.View
 
             if (result == System.Windows.MessageBoxResult.Yes)
             {
-                using (var Uow = new UnitOfWork())
-                {
+                
+                
                     // Find all Besök entries with the same KundID as the one we tried to delete
-                    var relatedJournal = Uow.Journals.GetAll().Where(b => b.Besök.ID == selectedBesök.ID).ToList();
+                    var relatedJournal = tabeller.JournalTabell().Where(b => b.Besök.ID == selectedBesök.ID).ToList();
                     if (!relatedJournal.Any())
                     {
                         UppdateraBokningController.TaBortBokning(selectedBesök);
@@ -168,7 +168,7 @@ namespace PresentationLayer.View
                     {
                         System.Windows.MessageBox.Show("This booking cannot be deleted due to associated records in other tables.", "Error");
                     }
-                }
+                
 
 
             }

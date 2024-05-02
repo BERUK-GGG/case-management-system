@@ -13,7 +13,7 @@ namespace Affärslager
         public void LäggTillNyKund(Kund NyKund)
         {
             // Add the new Kund object to the database
-            using (var UoW = new UnitOfWork(new RB_context()))
+            using (var UoW = new UnitOfWork())
             {
 
                 UoW.Kunds.Add(NyKund);

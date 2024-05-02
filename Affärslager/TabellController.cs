@@ -19,17 +19,10 @@ namespace Affärslager
             UnitOfWork = new UnitOfWork();
         }
 
-        //public IEnumerable<Journal> JournalTabell()
-        //{
-        //    using (var UoW = new UnitOfWork(new RB_context()))
-        //    {
-
-        //        return UoW.Journals.GetAll().ToList();
-        //    }
-        //}
+        
         public ObservableCollection<Journal> JournalTabell()
         {
-            using (var UoW = new UnitOfWork(new RB_context()))
+            using (var UoW = new UnitOfWork())
             {
                 // Load data from the database into local memory
                 var journals = UoW.Journals.GetAll();
@@ -44,7 +37,7 @@ namespace Affärslager
 
         public ObservableCollection<Besök> BesökTabell()
         {
-            using (var UoW = new UnitOfWork(new RB_context()))
+            using (var UoW = new UnitOfWork())
             {
                 // Load data from the database into local memory
                 var besöks = UoW.Besöks.GetAll();
@@ -55,7 +48,7 @@ namespace Affärslager
         }
         public ObservableCollection<Kund> KundTabell()
         {
-            using (var UoW = new UnitOfWork(new RB_context()))
+            using (var UoW = new UnitOfWork())
             {
                 // Load data from the database into local memory
                 var kunds = UoW.Kunds.GetAll();
@@ -66,7 +59,7 @@ namespace Affärslager
         }
         public ObservableCollection<Reservdel> ReservdellTabell()
         {
-            using (var UoW = new UnitOfWork(new RB_context()))
+            using (var UoW = new UnitOfWork())
             {
                 // Load data from the database into local memory
                 var Reservdels = UoW.Reservdels.GetAll();
@@ -78,7 +71,7 @@ namespace Affärslager
 
         public ObservableCollection<Mekaniker> MekanikerTabell()
         {
-            using (var UoW = new UnitOfWork(new RB_context()))
+            using (var UoW = new UnitOfWork())
             {
                 // Load data from the database into local memory
                 var mekanikers = UoW.Mekanikers.GetAll();

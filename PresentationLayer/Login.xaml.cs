@@ -1,5 +1,6 @@
 ﻿
 
+using Affärslager;
 using RB_Ärendesystem.Datalayer;
 using System.Text;
 using System.Windows;
@@ -17,8 +18,10 @@ namespace PresentationLayer
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+    
     public partial class Login : Window
     {
+        TabellController tabell = new TabellController();
         public Login()
         {
             InitializeComponent();
@@ -26,14 +29,14 @@ namespace PresentationLayer
 
         private void Login_Click(object sender, RoutedEventArgs e)
         {
-            TestData.SeedData();
+            
             string username = UsernameTextBox.Text;
             string password = PasswordBox.Password;
-            var uow = new UnitOfWork();
+            
             
             // Query the database to check if the username and password match
 
-            var employee = uow.Mekanikers.GetAll().FirstOrDefault(a => a.AnvändarNamn == username && a.lösenord == password);
+            var employee = tabell.MekanikerTabell().FirstOrDefault(a => a.AnvändarNamn == username && a.lösenord == password);
             // Perform authentication logic here
             
             
