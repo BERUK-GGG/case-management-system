@@ -160,27 +160,74 @@ namespace PresentationLayer
         private void SearchTextBoxStartSida_TextChanged(object sender, TextChangedEventArgs e)
         {
 
-            TabellController tabell = new TabellController();
-            string searchText = SearchTextBox.Text.ToLower(); // Assuming SearchTextBox is the name of your search TextBox
+            //TabellController tabell = new TabellController();
+            //string searchText = SearchTextBox.Text.ToLower(); // Assuming SearchTextBox is the name of your search TextBox
 
 
-            SearchAndUpdateGrid(tabell.KundTabell(), k => k.Namn.ToLower().Contains(searchText)
-                                               || k.PersonNr.ToString().Contains(searchText)
-                                               || k.Address.ToLower().Contains(searchText)
-                                               || k.Epost.ToLower().Contains(searchText)
-                                               || k.TeleNr.ToString().Contains(searchText), customerDataGrid);
+            //SearchAndUpdateGrid(tabell.KundTabell(), k => k.Namn.ToLower().Contains(searchText)
+            //                                   || k.PersonNr.ToString().Contains(searchText)
+            //                                   || k.Address.ToLower().Contains(searchText)
+            //                                   || k.Epost.ToLower().Contains(searchText)
+            //                                   || k.TeleNr.ToString().Contains(searchText), customerDataGrid);
 
 
-            SearchAndUpdateGrid(tabell.JournalTabell(), k => k.Besök.ToString().Contains(searchText), JournalDataGrid);
+            //SearchAndUpdateGrid(tabell.JournalTabell(), k => k.Besök.ToString().Contains(searchText), JournalDataGrid);
 
-            // Search in bookingDataGrid
-            SearchAndUpdateGrid(tabell.BesökTabell(), item => item.Kund.ToString().Contains(searchText), bookingDataGrid);
+            //// Search in bookingDataGrid
+            //SearchAndUpdateGrid(tabell.BesökTabell(), item => item.Kund.ToString().Contains(searchText), bookingDataGrid);
 
-            // Search in ReservDataGrid
-            SearchAndUpdateGrid(tabell.ReservdellTabell(), item => item.Namn.ToString().Contains(searchText), ReservDataGrid);
+            //// Search in ReservDataGrid
+            //SearchAndUpdateGrid(tabell.ReservdellTabell(), item => item.Namn.ToString().Contains(searchText), ReservDataGrid);
+
+            string searchText = SearchTextBox.Text.ToLower(); // Convert search text to lowercase for case-insensitive search
+            List<Button> foundButtons = FindButtons(this, searchText);
+           
+            
+            lstResults.Items.Clear();
+
+            if (string.IsNullOrEmpty(searchText))
+            {
+                lstResults.Visibility = Visibility.Collapsed;
+            }
+            else if (foundButtons.Count > 0)
+            {
+                lstResults.Visibility = Visibility.Visible;
+
+                // Display found buttons in the ListBox
+                foreach (Button button in foundButtons)
+                {
+                    lstResults.Items.Add(button.Name);
+                }
+            }
 
 
+        }
+        private void lstResults_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (lstResults.SelectedIndex != -1)
+            {
+                string buttonName = lstResults.SelectedItem.ToString();
+                Button selectedButton = FindButtonByName(buttonName);
 
+                //// Perform the same function as the selected button
+                if (selectedButton != null)
+                {
+                    selectedButton.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
+                }
+
+            }
+        }
+
+        private Button FindButtonByName(string buttonName)
+        {
+            foreach (Button button in FindButtons(this, ""))
+            {
+                if (button.Name == buttonName)
+                {
+                    return button;
+                }
+            }
+            return null;
         }
         private void SearchAndUpdateGrid<T>(IEnumerable<T> source, Func<T, bool> searchCriteria, DataGrid grid)
         {
@@ -271,10 +318,38 @@ namespace PresentationLayer
             BeställReservdelWindow.Show();
             this.Close();
         }
+        private List<Button> FindButtons(DependencyObject container, string searchText)
+        {
+            List<Button> foundButtons = new List<Button>();
+
+            // Iterate through all children of the container
+            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(container); i++)
+            {
+                DependencyObject child = VisualTreeHelper.GetChild(container, i);
+
+                // Check if the child is a Button
+                if (child is Button button)
+                {
+                    // Check if the button's content (text) contains the search text
+                    if (button.Content != null && button.Content.ToString().ToLower().Contains(searchText))
+                    {
+                        foundButtons.Add(button);
+                    }
+                }
+
+                // If the child has children, recursively search its children
+                if (child != null && VisualTreeHelper.GetChildrenCount(child) > 0)
+                {
+                    foundButtons.AddRange(FindButtons(child, searchText));
+                }
+            }
+
+            return foundButtons;
+        }
 
 
 
-        
+
 
 
         // a method for the search button that will search for the customer

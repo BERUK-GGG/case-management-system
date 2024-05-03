@@ -62,7 +62,9 @@
                             </Border>
                         </ControlTemplate>
                     </TextBox.Template>
+
                 </TextBox>
+
 
             </StackPanel>
 
@@ -178,6 +180,16 @@
             </ContentControl>
 
             <Button x:Name="BackButton" Content="Back" Width="100" Height="30" Click="BackButton_Click" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="26,432,0,0" />
+            <ListBox  x:Name="lstResults" Margin="10,68,657,17" RenderTransformOrigin="0.5,0.5" Visibility="Collapsed" SelectionChanged="lstResults_SelectionChanged">
+                <!--<ListBox.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleY="-1"/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </ListBox.RenderTransform>-->
+            </ListBox>
 
         </Grid>
     </Border>

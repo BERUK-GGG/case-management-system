@@ -62,7 +62,7 @@
             <TextBox x:Name="BesökID" HorizontalAlignment="Left" Margin="777,46,0,0" Grid.Row="1" TextWrapping="Wrap" Text="BesökID" VerticalAlignment="Top" Width="120"  />
 
 
-            <TextBox x:Name="åtgärder" HorizontalAlignment="Left" Margin="777,10,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Åtgärder" VerticalAlignment="Top" Width="120" RenderTransformOrigin="-0.059,1.638" />
+            <TextBox x:Name="åtgärder" HorizontalAlignment="Left" Margin="777,10,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Åtgärder" VerticalAlignment="Top" Width="120" RenderTransformOrigin="-0.059,1.638" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus" />
             <ListBox x:Name="Reservdel" HorizontalAlignment="Left" Margin="777,115,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120" SelectionMode="Multiple"/>
 
             <Label Content="Registrera Journal" HorizontalAlignment="Left" Margin="374,29,0,0" Grid.Row="1" VerticalAlignment="Top"/>

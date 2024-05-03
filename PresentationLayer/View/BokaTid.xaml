@@ -78,7 +78,7 @@
             </ComboBox>
 
 
-            <TextBox x:Name="Syfte" HorizontalAlignment="Left" Margin="777,146,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Syfte" VerticalAlignment="Top" Width="120" RenderTransformOrigin="-0.059,1.638"/>
+            <TextBox x:Name="Syfte" HorizontalAlignment="Left" Margin="777,146,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Syfte" VerticalAlignment="Top" Width="120" RenderTransformOrigin="-0.059,1.638" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus"/>
             <ComboBox x:Name="Mekaniker" HorizontalAlignment="Left" Margin="777,107,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120"/>
             <Label Content="Mekaniker:" HorizontalAlignment="Left" Margin="772,81,0,0" Grid.Row="1" VerticalAlignment="Top"/>
             <Label Content="Kund Namn:" HorizontalAlignment="Left" Margin="777,15,0,0" Grid.Row="1" VerticalAlignment="Top"/>
