@@ -196,7 +196,7 @@ namespace PresentationLayer
                 // Display found buttons in the ListBox
                 foreach (Button button in foundButtons)
                 {
-                    lstResults.Items.Add(button.Name);
+                    lstResults.Items.Add(button.Content);
                 }
             }
 
@@ -222,7 +222,7 @@ namespace PresentationLayer
         {
             foreach (Button button in FindButtons(this, ""))
             {
-                if (button.Name == buttonName)
+                if (button.Content == buttonName)
                 {
                     return button;
                 }
