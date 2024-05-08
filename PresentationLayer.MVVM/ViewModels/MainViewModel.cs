@@ -26,14 +26,17 @@ namespace PresentationLayer.MVVM.ViewModels
 
         private void Logout()
         {
+            Login login = new Login();
+            login.Show();
             // Get the reference to the StartSida window
+            
+            
             StartSida startSida = Application.Current.Windows.OfType<StartSida>().FirstOrDefault();
 
             // Close the StartSida window if it exists
             startSida?.Close();
 
-            Login login = new Login();
-            login.Show();
+            
             
         }
 
