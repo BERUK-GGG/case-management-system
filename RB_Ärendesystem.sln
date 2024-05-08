@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PresentationLayer", "Presen
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Affärslager", "Affärslager\Affärslager.csproj", "{BF6F91FD-367B-40C1-85AA-8F05D270A24A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PresentationLayer.MVVM", "PresentationLayer.MVVM\PresentationLayer.MVVM.csproj", "{C3CCB163-0644-4AAB-BBC2-973E0C7F2EED}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{BF6F91FD-367B-40C1-85AA-8F05D270A24A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BF6F91FD-367B-40C1-85AA-8F05D270A24A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BF6F91FD-367B-40C1-85AA-8F05D270A24A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3CCB163-0644-4AAB-BBC2-973E0C7F2EED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3CCB163-0644-4AAB-BBC2-973E0C7F2EED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3CCB163-0644-4AAB-BBC2-973E0C7F2EED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3CCB163-0644-4AAB-BBC2-973E0C7F2EED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
