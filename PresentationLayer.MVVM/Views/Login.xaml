@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:PresentationLayer.MVVM.Views"
         xmlns:vm="clr-namespace:PresentationLayer.MVVM.ViewModels"
         mc:Ignorable="d"
-        Title="RB_Verkstad" Height="500" Width="800"
-        MinHeight="600" MinWidth="920" WindowStartupLocation="CenterScreen">
+        Title="RB_Verkstad" Height="500" Width="400"
+        MinHeight="500" MinWidth="400" WindowStartupLocation="CenterScreen">
     <Window.DataContext>
         <vm:LoginModel />
     </Window.DataContext>
@@ -22,10 +22,10 @@
 
         <TextBlock Grid.Row="0" Text="Login" FontSize="20" HorizontalAlignment="Center" Margin="0,20,0,0"/>
 
-        <Label Grid.Row="1" Content="Username:" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="234,16,0,0" Grid.RowSpan="2"/>
+        <Label Grid.Row="1" Content="Username:" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="29,16,0,0" Grid.RowSpan="2"/>
         <TextBox Grid.Row="1" Name="UsernameTextBox" Width="200" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,20,0,0" Text="{Binding Username, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
 
-        <Label Grid.Row="2" Content="Password:" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="238,16,0,0"/>
+        <Label Grid.Row="2" Content="Password:" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="33,16,0,0" Grid.RowSpan="2"/>
         <TextBox Grid.Row="2" Name="PasswordBox" Width="200" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,20,0,0" Text="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
         <Button Grid.Row="3" Content="Login" Width="100" HorizontalAlignment="Center" Margin="0,20,0,0" Command="{Binding LoginCommand}"/>

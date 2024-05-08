@@ -9,6 +9,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using Affärslager;
 using PresentationLayer.MVVM.Models;
 using PresentationLayer.MVVM.Views;
+using System.Windows;
 
 namespace PresentationLayer.MVVM.ViewModels
 {
@@ -48,11 +49,16 @@ namespace PresentationLayer.MVVM.ViewModels
             {
                 // Login successful
                 // You can perform any action here, such as navigating to another page
-                 
                 StartSida startSida = new StartSida();
                 startSida.Show();
 
+                Login login = Application.Current.Windows.OfType<Login>().FirstOrDefault();
+                login?.Close();
+
                 
+                Username = string.Empty;
+                Password = string.Empty;
+
 
             }
             else
