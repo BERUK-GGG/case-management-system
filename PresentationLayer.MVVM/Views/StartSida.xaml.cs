@@ -53,78 +53,78 @@ namespace PresentationLayer
 
         }
 
-        private void CustomerButton_Click(object sender, RoutedEventArgs e)
-        {
+        //private void CustomerButton_Click(object sender, RoutedEventArgs e)
+        //{
 
-            ReservContentControl.Visibility = Visibility.Collapsed;
-            KundContentControl.Visibility = Visibility.Visible;
-            BokingContentControl.Visibility = Visibility.Collapsed;
-            JournalContentControl.Visibility = Visibility.Collapsed;
-            // Handle the click event for the "Kund" button
-            // Add logic to navigate to the customer page or perform other actions
-            navigationStack.Push(KundContentControl);
-            BackButton.Visibility = Visibility.Visible;
+        //    ReservContentControl.Visibility = Visibility.Collapsed;
+        //    KundContentControl.Visibility = Visibility.Visible;
+        //    BokingContentControl.Visibility = Visibility.Collapsed;
+        //    JournalContentControl.Visibility = Visibility.Collapsed;
+        //    // Handle the click event for the "Kund" button
+        //    // Add logic to navigate to the customer page or perform other actions
+        //    navigationStack.Push(KundContentControl);
+        //    BackButton.Visibility = Visibility.Visible;
 
             
 
 
 
-        }
-        private void BackButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (navigationStack.Count > 0)
-            {
-                UIElement previousContent = navigationStack.Pop();
-                previousContent.Visibility = Visibility.Collapsed;
-                if (navigationStack.Count == 0)
-                {
-                    BackButton.Visibility = Visibility.Collapsed;
-                }
-            }
-        }
+        //}
+        //private void BackButton_Click(object sender, RoutedEventArgs e)
+        //{
+        //    if (navigationStack.Count > 0)
+        //    {
+        //        UIElement previousContent = navigationStack.Pop();
+        //        previousContent.Visibility = Visibility.Collapsed;
+        //        if (navigationStack.Count == 0)
+        //        {
+        //            BackButton.Visibility = Visibility.Collapsed;
+        //        }
+        //    }
+        //}
 
-        private void BookingButton_Click(object sender, RoutedEventArgs e)
-        {
-            ReservContentControl.Visibility = Visibility.Collapsed;
-            BokingContentControl.Visibility = Visibility.Visible;
-            KundContentControl.Visibility = Visibility.Collapsed;
-            JournalContentControl.Visibility = Visibility.Collapsed;
-            // Handle the click event for the "Bokning" button
-            // Add logic to navigate to the booking page or perform other actions
-            navigationStack.Push(BokingContentControl);
-            BackButton.Visibility = Visibility.Visible;
-        }
+        //private void BookingButton_Click(object sender, RoutedEventArgs e)
+        //{
+        //    ReservContentControl.Visibility = Visibility.Collapsed;
+        //    BokingContentControl.Visibility = Visibility.Visible;
+        //    KundContentControl.Visibility = Visibility.Collapsed;
+        //    JournalContentControl.Visibility = Visibility.Collapsed;
+        //    // Handle the click event for the "Bokning" button
+        //    // Add logic to navigate to the booking page or perform other actions
+        //    navigationStack.Push(BokingContentControl);
+        //    BackButton.Visibility = Visibility.Visible;
+        //}
 
-        private void PartsButton_Click(object sender, RoutedEventArgs e)
+        //private void PartsButton_Click(object sender, RoutedEventArgs e)
 
 
-        {
-            ReservContentControl.Visibility = Visibility.Visible;
-            BokingContentControl.Visibility = Visibility.Collapsed;
-            KundContentControl.Visibility = Visibility.Collapsed;
-            JournalContentControl.Visibility = Visibility.Collapsed;
-            // Handle the click event for the "Resevdelar" button
-            // Add logic to navigate to the parts page or perform other actions
-            navigationStack.Push(ReservContentControl);
-            BackButton.Visibility = Visibility.Visible;
-        }
+        //{
+        //    ReservContentControl.Visibility = Visibility.Visible;
+        //    BokingContentControl.Visibility = Visibility.Collapsed;
+        //    KundContentControl.Visibility = Visibility.Collapsed;
+        //    JournalContentControl.Visibility = Visibility.Collapsed;
+        //    // Handle the click event for the "Resevdelar" button
+        //    // Add logic to navigate to the parts page or perform other actions
+        //    navigationStack.Push(ReservContentControl);
+        //    BackButton.Visibility = Visibility.Visible;
+        //}
 
-        private void Journal_Click(object sender, RoutedEventArgs e)
-        {
-            ReservContentControl.Visibility = Visibility.Collapsed;
-            BokingContentControl.Visibility = Visibility.Collapsed;
-            KundContentControl.Visibility = Visibility.Collapsed;
-            JournalContentControl.Visibility = Visibility.Visible;
-            // Handle the click event for the "Journal" button
-            // Add logic to navigate to the booking page or perform other actions
-            navigationStack.Push(JournalContentControl);
-            BackButton.Visibility = Visibility.Visible;
-        }
+        //private void Journal_Click(object sender, RoutedEventArgs e)
+        //{
+        //    ReservContentControl.Visibility = Visibility.Collapsed;
+        //    BokingContentControl.Visibility = Visibility.Collapsed;
+        //    KundContentControl.Visibility = Visibility.Collapsed;
+        //    JournalContentControl.Visibility = Visibility.Visible;
+        //    // Handle the click event for the "Journal" button
+        //    // Add logic to navigate to the booking page or perform other actions
+        //    navigationStack.Push(JournalContentControl);
+        //    BackButton.Visibility = Visibility.Visible;
+        //}
 
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
         {
             
-            this.Close();
+            //this.Close();
             // Handle the click event for the "Log out" button
             // Add logic to log out the user and navigate back to the login page
         }

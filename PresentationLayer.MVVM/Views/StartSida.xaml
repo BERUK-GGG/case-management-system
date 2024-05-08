@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PresentationLayer"
+        xmlns:vm="clr-namespace:PresentationLayer.MVVM.ViewModels"
         mc:Ignorable="d"
         Title="Startsida" Height="500" Width="800"
         MinHeight="600" MinWidth="920" WindowStartupLocation="CenterScreen"
@@ -11,6 +12,10 @@
         ResizeMode="NoResize"
         Background="Transparent"
         AllowsTransparency="True">
+
+    <Window.DataContext>
+        <vm:MainViewModel />
+    </Window.DataContext>
 
     <Border Background="Beige" CornerRadius="40">
         <Grid>
@@ -44,7 +49,8 @@
             <Frame x:Name="MainFrame" Grid.Row="1" Grid.Column="1"/>
 
             <!-- Logout Button -->
-            <Button x:Name="Btn_logout" Content="Log out" Width="100" Height="30" Click="LogoutButton_Click" HorizontalAlignment="Right" Margin="0,10,10,32"/>
+            <Button x:Name="Btn_logout" Content="Log out" Width="100" Height="30"  HorizontalAlignment="Right" Margin="0,10,10,32" Command="{Binding ExitCommand}" />
+
 
             <StackPanel Margin="0,0,667,0" Grid.RowSpan="2" >
                 <StackPanel.Background>
@@ -75,21 +81,21 @@
 
             <StackPanel Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" Height="283">
                 <Border Background="Beige" CornerRadius="15" Margin="0,0,0,20">
-                    <Button Content="Kund" Width="200" Height="50" Click="CustomerButton_Click" Background="Transparent" BorderThickness="0"/>
+                    <Button Content="Kund" Width="200" Height="50" Command="{Binding CustomerCommand}" Background="Transparent" BorderThickness="0"/>
                 </Border>
                 <Border Background="#F5F5DC" CornerRadius="15" Margin="0,0,0,20">
-                    <Button Content="Bokning" Width="200" Height="50" Click="BookingButton_Click" Background="Transparent" BorderThickness="0"/>
+                    <Button Content="Bokning" Width="200" Height="50" Command="{Binding BokningCommand}" Background="Transparent" BorderThickness="0"/>
                 </Border>
                 <Border Background="Beige" CornerRadius="15">
-                    <Button Content="Resevdelar" Width="200" Height="50" Click="PartsButton_Click" Background="Transparent" BorderThickness="0"/>
+                    <Button Content="Resevdelar" Width="200" Height="50" Command="{Binding ReservdelarCommand}" Background="Transparent" BorderThickness="0"/>
                 </Border>
                 <Border Background="#F5F5DC" CornerRadius="15" Margin="0,20,0,20">
-                    <Button Content="Journal" Width="200" Height="50" Click="Journal_Click"  Background="Transparent" BorderThickness="0"/>
+                    <Button Content="Journal" Width="200" Height="50" Command="{Binding JournalCommand}" Background="Transparent" BorderThickness="0"/>
                 </Border>
             </StackPanel>
 
             <!-- Content Area for Kund Section -->
-            <ContentControl Grid.Row="1" Grid.Column="1" x:Name="KundContentControl" Visibility="Hidden">
+            <ContentControl Grid.Row="1" Grid.Column="1" x:Name="KundContentControl" Visibility="{Binding KundContentVisibility}">
                 <!-- Content for Kund Section Goes Here -->
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -112,7 +118,7 @@
             </ContentControl>
 
             <!-- Content Area for bokning Section -->
-            <ContentControl Grid.Row="1" x:Name="BokingContentControl" Visibility="Hidden">
+            <ContentControl Grid.Row="1" Grid.Column="1" x:Name="BokningContentControl" Visibility="{Binding BokningContentVisibility}">
                 <!-- Content for bokning Section Goes Here -->
                 <Grid>
                     <Button Content="Boka tid" Width="100" Height="30" Margin="299,72,521,410" Click="BokaTidButton_Click"/>
@@ -129,7 +135,7 @@
 
 
             <!-- Content Area for journal Section -->
-            <ContentControl Grid.Row="1" x:Name="JournalContentControl" Visibility="Hidden">
+            <ContentControl Grid.Row="1" Grid.Column="1" x:Name="JournalContentControl" Visibility="{Binding JournalContentVisibility}">
                 <!-- Content for bokning Section Goes Here -->
                 <StackPanel>
                     <Button Content="Registrera journal" Width="100" Height="30" Margin="10" Click="RegistreraJournal_Click" />
@@ -163,7 +169,7 @@
                 </StackPanel>
             </ContentControl>
 
-            <ContentControl Grid.Row="1" Grid.Column="1" x:Name="ReservContentControl" Visibility="Hidden">
+            <ContentControl Grid.Row="1" Grid.Column="1" x:Name="ReservdelarContentControl" Visibility="{Binding ReservdelarContentVisibility}">
                 <!-- Content for reserv Section Goes Here -->
                 <Grid>
                     <Button Content="Registrera reservdel" Click="BeställReservdel_Click" Margin="460,367,353,100" RenderTransformOrigin="0.516,0.386"/>
@@ -179,7 +185,7 @@
                 </Grid>
             </ContentControl>
 
-            <Button x:Name="BackButton" Content="Back" Width="100" Height="30" Click="BackButton_Click" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="26,432,0,0" />
+            <Button x:Name="BackButton" Content="Back" Width="100" Height="30" Command="{Binding BackCommand}" Visibility="{Binding BackButtonVisibility}" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="26,432,0,0" />
             <ListBox  x:Name="lstResults" Margin="10,68,657,17" RenderTransformOrigin="0.5,0.5" Visibility="Collapsed" SelectionChanged="lstResults_SelectionChanged">
                 <!--<ListBox.RenderTransform>
                     <TransformGroup>
