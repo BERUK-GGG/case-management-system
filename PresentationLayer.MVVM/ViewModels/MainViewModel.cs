@@ -447,7 +447,22 @@ namespace PresentationLayer.MVVM.ViewModels
             startSida?.Close();
         }
 
+        private ICommand _uppdateraKundCommand;
+        public ICommand UppdateraKundCommand =>
+            _uppdateraKundCommand ??= new RelayCommand(UppdateraKundButton);
 
+        private void UppdateraKundButton()
+        {
+            UppdateraKund uppdateraKund = new UppdateraKund();
+            uppdateraKund.Show();
+            // Get the reference to the StartSida window
+
+
+            StartSida startSida = Application.Current.Windows.OfType<StartSida>().FirstOrDefault();
+
+            // Close the StartSida window if it exists
+            startSida?.Close();
+        }
 
 
     }

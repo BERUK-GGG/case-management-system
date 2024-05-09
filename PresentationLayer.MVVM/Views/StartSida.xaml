@@ -103,7 +103,7 @@
                         <ColumnDefinition Width="231*"/>
                     </Grid.ColumnDefinitions>
                     <Button Content="Ny kund" Width="100" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top"  Margin="0,63,20,0" RenderTransformOrigin="0.46,-0.779" Command="{Binding NyKundCommand}" Grid.Column="1" />
-                    <Button Content="Uppdatera kund" Width="100" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,118,20,0"  Grid.Column="1" />
+                    <Button Content="Uppdatera kund" Width="100" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,118,20,0"  Grid.Column="1" Command="{Binding UppdateraKundCommand}" />
                     
 
                     <!-- TextBox for storing customer information -->
