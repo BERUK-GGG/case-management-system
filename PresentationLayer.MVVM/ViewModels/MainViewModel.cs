@@ -27,6 +27,7 @@ namespace PresentationLayer.MVVM.ViewModels
     public class MainViewModel : ObservableObject
     {
 
+        StartSida startSidaWindow = Application.Current.Windows.OfType<StartSida>().FirstOrDefault();
 
         TabellController tabeller = new TabellController();
         public MainViewModel() 
@@ -37,70 +38,134 @@ namespace PresentationLayer.MVVM.ViewModels
             ReservdelItems = tabeller.ReservdellTabell();
         }
 
-
-        private Dictionary<string, Action> buttonActions;
-
-        public Dictionary<string, Action> ButtonActions
+        private Visibility _isResultsVisible = Visibility.Collapsed;
+        public Visibility IsResultsVisible
         {
-            get { return buttonActions; }
-            set { buttonActions = value; OnPropertyChanged(); }
+            get { return _isResultsVisible; }
+            set { _isResultsVisible = value; OnPropertyChanged(nameof(IsResultsVisible)); }
         }
-
-        private ICommand searchCommand = null!;
-        public ICommand SearchCommand =>
-            searchCommand ??= searchCommand = new RelayCommand<string>(SearchAndUpdateGrid);
-
-        private void SearchAndUpdateGrid(string searchText)
+        private string _searchText;
+        public string SearchText
         {
-            searchText = searchText.ToLower(); // Convert search text to lowercase for case-insensitive search
-            List<string> foundButtonNames = FindButtonNames(searchText);
-
-            // Update UI to display search results
-            // For example, you can update a property bound to a ListBox in your View
-        }
-
-        private List<string> FindButtonNames(string searchText)
-        {
-            List<string> buttonNames = new List<string>();
-
-            foreach (var kvp in ButtonActions)
+            get { return _searchText; }
+            set
             {
-                if (kvp.Key.ToLower().Contains(searchText))
+                _searchText = value;
+                OnPropertyChanged(nameof(SearchText));
+                // Call the search command whenever the search text changes
+                SearchCommandA.Execute(null);
+            }
+        }
+
+
+        private ObservableCollection<string> _foundButtons;
+        public ObservableCollection<string> FoundButtons
+        {
+            get { return _foundButtons; }
+            set { _foundButtons = value; OnPropertyChanged(nameof(FoundButtons)); }
+        }
+
+        public ICommand SearchCommandA => new RelayCommand(Search);
+
+        private void Search()
+        {
+            string searchText = SearchText.ToLower(); // Convert search text to lowercase for case-insensitive search
+            if (startSidaWindow != null)
+            {
+                // Call a method in the view model to perform the search and update the UI
+                List<Button> foundItems = FindButtons( startSidaWindow, searchText);
+
+                // Update the collection bound to the ListBox
+                FoundButtons = new ObservableCollection<string>();
+                foreach (Button button in foundItems)
                 {
-                    buttonNames.Add(kvp.Key);
+                    FoundButtons.Add((string)button.Content);
+                }
+
+                // Update visibility based on search results
+                if (string.IsNullOrEmpty(searchText) || FoundButtons.Count == 0)
+                {
+                    IsResultsVisible = Visibility.Collapsed;
+                }
+                else
+                {
+                    IsResultsVisible = Visibility.Visible;
+                }
+            }
+        }
+
+        public List<Button> FindButtons(DependencyObject container, string searchText)
+        {
+            List<Button> foundButtons = new List<Button>();
+
+            // Iterate through all children of the container
+            foreach (var child in LogicalTreeHelper.GetChildren(container).OfType<UIElement>())
+            {
+                // Check if the child is a Button
+                if (child is Button button)
+                {
+                    // Check if the button's content (text) contains the search text
+                    if (button.Content != null && button.Content.ToString().ToLower().Contains(searchText))
+                    {
+                        foundButtons.Add(button);
+                    }
+                }
+
+                // If the child has children, recursively search its children
+                if (child != null)
+                {
+                    foundButtons.AddRange(FindButtons(child, searchText));
                 }
             }
 
-            return buttonNames;
+            return foundButtons;
         }
 
-        private ICommand buttonSelectionCommand = null!;
-        public ICommand ButtonSelectionCommand =>
-            buttonSelectionCommand ??= buttonSelectionCommand = new RelayCommand<string>(ExecuteButtonAction);
-
-        private bool _searchResultsAvailable;
-        public bool SearchResultsAvailable
+        private string _selectedListBoxItem;
+        public string SelectedListBoxItem
         {
-            get { return _searchResultsAvailable; }
-            set
-            {
-                _searchResultsAvailable = value;
-                OnPropertyChanged(nameof(SearchResultsAvailable));
+            get { return _selectedListBoxItem; }
+            set { _selectedListBoxItem = value; OnPropertyChanged(nameof(SelectedListBoxItem));
+                ListBoxSelectionChangedCommand.Execute(null);
             }
         }
 
+        public ICommand ListBoxSelectionChangedCommand => new RelayCommand(ExecuteListBoxSelectionChanged);
 
-        private void ExecuteButtonAction(string buttonName)
+        private void ExecuteListBoxSelectionChanged()
         {
-            if (ButtonActions.ContainsKey(buttonName))
+            if (SelectedListBoxItem != null)
             {
-                ButtonActions[buttonName].Invoke();
+                string buttonName = SelectedListBoxItem;
+                Button selectedButton = FindButtonByName(buttonName);
 
-                // Check if search results are available based on your business logic
+                //// Perform the same function as the selected button
+                if (selectedButton != null)
+                {
+                    
 
+
+                    selectedButton.Command.Execute(null);
+                }
+                else
+                {
+                    // Handle the case where no button is found with the given name
+                }
             }
         }
+        private Button FindButtonByName(string buttonName)
+        {
+            foreach (Button button in FindButtons(startSidaWindow, ""))
+            {
+                if (button.Content.ToString() == buttonName)
+                {
+                    return button;
+                }
+            }
+            return null;
+        }
 
+        
 
 
         private ICommand exitCommand = null!;

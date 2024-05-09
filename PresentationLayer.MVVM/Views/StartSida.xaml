@@ -60,7 +60,7 @@
                     </LinearGradientBrush>
 
                 </StackPanel.Background>
-                <TextBox x:Name="SearchTextBox" Grid.Row="0" Grid.Column="1" Width="250" Height="30" Margin="40" HorizontalAlignment="Left" VerticalAlignment="Bottom">
+                <TextBox x:Name="SearchTextBox" Grid.Row="0" Grid.Column="1" Width="250" Height="30" Margin="40" HorizontalAlignment="Left" VerticalAlignment="Bottom" Text="{Binding SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                     <TextBox.Template>
                         <ControlTemplate TargetType="TextBox">
                             <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="5">
@@ -187,7 +187,7 @@
             </ContentControl>
 
             <Button x:Name="BackButton" Content="Back" Width="100" Height="30" Command="{Binding BackCommand}" Visibility="{Binding BackButtonVisibility}" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="26,432,0,0" />
-            <ListBox  x:Name="lstResults" Margin="10,68,657,17" RenderTransformOrigin="0.5,0.5"  >
+            <ListBox  x:Name="lstResults" Margin="10,68,657,17" RenderTransformOrigin="0.5,0.5"  Visibility="{Binding IsResultsVisible}" ItemsSource="{Binding FoundButtons}" SelectedItem="{Binding SelectedListBoxItem}">
                 <!--<ListBox.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform ScaleY="-1"/>

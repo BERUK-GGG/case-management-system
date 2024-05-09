@@ -27,8 +27,7 @@ namespace PresentationLayer
 
     public partial class StartSida : Window
     {
-        TabellController tabell = new TabellController();
-        private Stack<UIElement> navigationStack = new Stack<UIElement>();
+        
         public StartSida()
         {
             InitializeComponent();
