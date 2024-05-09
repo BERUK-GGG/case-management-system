@@ -60,7 +60,7 @@
                     </LinearGradientBrush>
 
                 </StackPanel.Background>
-                <TextBox x:Name="SearchTextBox" Grid.Row="0" Grid.Column="1" Width="250" Height="30" Margin="40" HorizontalAlignment="Left" VerticalAlignment="Bottom" TextChanged="SearchTextBoxStartSida_TextChanged">
+                <TextBox x:Name="SearchTextBox" Grid.Row="0" Grid.Column="1" Width="250" Height="30" Margin="40" HorizontalAlignment="Left" VerticalAlignment="Bottom">
                     <TextBox.Template>
                         <ControlTemplate TargetType="TextBox">
                             <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="5">
@@ -102,8 +102,9 @@
                         <ColumnDefinition Width="229*"/>
                         <ColumnDefinition Width="231*"/>
                     </Grid.ColumnDefinitions>
-                    <Button Content="Ny kund" Width="100" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top"  Margin="0,63,20,0" RenderTransformOrigin="0.46,-0.779" Click="NyKundButton_Click" Grid.Column="1" />
-                    <Button Content="Uppdatera kund" Width="100" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,118,20,0" Click="UppdateraKundButton_Click" Grid.Column="1" />
+                    <Button Content="Ny kund" Width="100" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top"  Margin="0,63,20,0" RenderTransformOrigin="0.46,-0.779" Command="{Binding NyKundCommand}" Grid.Column="1" />
+                    <Button Content="Uppdatera kund" Width="100" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,118,20,0"  Grid.Column="1" />
+                    
 
                     <!-- TextBox for storing customer information -->
 
@@ -121,11 +122,11 @@
             <ContentControl Grid.Row="1" Grid.Column="1" x:Name="BokningContentControl" Visibility="{Binding BokningContentVisibility}">
                 <!-- Content for bokning Section Goes Here -->
                 <Grid>
-                    <Button Content="Boka tid" Width="100" Height="30" Margin="299,72,521,410" Click="BokaTidButton_Click"/>
-                    <Button Content="Uppdatera Bokning" Height="30" Click="UppdateraBokningButton_Click" Visibility="Visible" Margin="523,72,281,410" RenderTransformOrigin="-0.194,0.41" />
+                    <Button Content="Boka tid" Width="100" Height="30" Margin="299,72,521,410" />
+                    <Button Content="Uppdatera Bokning" Height="30"  Visibility="Visible" Margin="523,72,281,410" RenderTransformOrigin="-0.194,0.41" />
 
                     <Label Content="Sök bokning:" VerticalAlignment="Top" HorizontalAlignment="Left"  Margin="299,10,0,0" RenderTransformOrigin="0.659,1.526"  />
-                    <TextBox x:Name="SökTidBox" Width="200" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="383,18,0,0" TextChanged="SearchTextBoxBokaTid_TextChanged"/>
+                    <TextBox x:Name="SökTidBox" Width="200" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="383,18,0,0" />
                     <DataGrid x:Name="bookingDataGrid" Margin="260,149,134,179" IsReadOnly="True" ItemsSource="{Binding BookingItems}" />
 
 
@@ -138,7 +139,7 @@
             <ContentControl Grid.Row="1" Grid.Column="1" x:Name="JournalContentControl" Visibility="{Binding JournalContentVisibility}">
                 <!-- Content for bokning Section Goes Here -->
                 <StackPanel>
-                    <Button Content="Registrera journal" Width="100" Height="30" Margin="10" Click="RegistreraJournal_Click" />
+                    <Button Content="Registrera journal" Width="100" Height="30" Margin="10"  />
                     <Label Content="Sök journal:" VerticalAlignment="Top" HorizontalAlignment="Left"  Margin="260,10,0,0" RenderTransformOrigin="0.659,1.526"  />
                     <TextBox x:Name="SökJournal" Width="200" />
                     <DataGrid x:Name="JournalDataGrid" Grid.ColumnSpan="2" Margin="250,63,144,101" IsReadOnly="True" AutoGenerateColumns="False" ItemsSource="{Binding JournalItems}"  >
@@ -172,10 +173,10 @@
             <ContentControl Grid.Row="1" Grid.Column="1" x:Name="ReservdelarContentControl" Visibility="{Binding ReservdelarContentVisibility}">
                 <!-- Content for reserv Section Goes Here -->
                 <Grid>
-                    <Button Content="Registrera reservdel" Click="BeställReservdel_Click" Margin="460,367,353,100" RenderTransformOrigin="0.516,0.386"/>
+                    <Button Content="Registrera reservdel" Command="{Binding BeställReservdelCommand}" Margin="460,367,353,100" RenderTransformOrigin="0.516,0.386"/>
 
                     <DataGrid x:Name="ReservDataGrid" Margin="260,149,134,179" IsReadOnly="True" ItemsSource="{Binding ReservdelItems}" />
-                    <TextBox x:Name="SökReservBox" HorizontalAlignment="Left" Margin="447,77,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" TextChanged="SearchTextBoxReserv_TextChanged"/>
+                    <TextBox x:Name="SökReservBox" HorizontalAlignment="Left" Margin="447,77,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" />
                     <Label Content="Sök reservdel:" HorizontalAlignment="Left" Margin="361,73,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.582,0.003"/>
 
 
@@ -186,7 +187,7 @@
             </ContentControl>
 
             <Button x:Name="BackButton" Content="Back" Width="100" Height="30" Command="{Binding BackCommand}" Visibility="{Binding BackButtonVisibility}" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="26,432,0,0" />
-            <ListBox  x:Name="lstResults" Margin="10,68,657,17" RenderTransformOrigin="0.5,0.5" Visibility="Collapsed" SelectionChanged="lstResults_SelectionChanged">
+            <ListBox  x:Name="lstResults" Margin="10,68,657,17" RenderTransformOrigin="0.5,0.5"  >
                 <!--<ListBox.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform ScaleY="-1"/>
@@ -196,6 +197,7 @@
                     </TransformGroup>
                 </ListBox.RenderTransform>-->
             </ListBox>
+        
 
         </Grid>
     </Border>

@@ -19,12 +19,90 @@ using Castle.Core.Resource;
 using System.Collections.ObjectModel;
 using RB_Ärendesystem.Entities;
 using Entities;
+using PresentationLayer.MVVM.View;
 
 
 namespace PresentationLayer.MVVM.ViewModels
 {
     public class MainViewModel : ObservableObject
     {
+
+
+        TabellController tabeller = new TabellController();
+        public MainViewModel() 
+        {
+            CustomerItems = tabeller.KundTabell();
+            BookingItems = tabeller.BesökTabell();
+            JournalItems = tabeller.JournalTabell();
+            ReservdelItems = tabeller.ReservdellTabell();
+        }
+
+
+        private Dictionary<string, Action> buttonActions;
+
+        public Dictionary<string, Action> ButtonActions
+        {
+            get { return buttonActions; }
+            set { buttonActions = value; OnPropertyChanged(); }
+        }
+
+        private ICommand searchCommand = null!;
+        public ICommand SearchCommand =>
+            searchCommand ??= searchCommand = new RelayCommand<string>(SearchAndUpdateGrid);
+
+        private void SearchAndUpdateGrid(string searchText)
+        {
+            searchText = searchText.ToLower(); // Convert search text to lowercase for case-insensitive search
+            List<string> foundButtonNames = FindButtonNames(searchText);
+
+            // Update UI to display search results
+            // For example, you can update a property bound to a ListBox in your View
+        }
+
+        private List<string> FindButtonNames(string searchText)
+        {
+            List<string> buttonNames = new List<string>();
+
+            foreach (var kvp in ButtonActions)
+            {
+                if (kvp.Key.ToLower().Contains(searchText))
+                {
+                    buttonNames.Add(kvp.Key);
+                }
+            }
+
+            return buttonNames;
+        }
+
+        private ICommand buttonSelectionCommand = null!;
+        public ICommand ButtonSelectionCommand =>
+            buttonSelectionCommand ??= buttonSelectionCommand = new RelayCommand<string>(ExecuteButtonAction);
+
+        private bool _searchResultsAvailable;
+        public bool SearchResultsAvailable
+        {
+            get { return _searchResultsAvailable; }
+            set
+            {
+                _searchResultsAvailable = value;
+                OnPropertyChanged(nameof(SearchResultsAvailable));
+            }
+        }
+
+
+        private void ExecuteButtonAction(string buttonName)
+        {
+            if (ButtonActions.ContainsKey(buttonName))
+            {
+                ButtonActions[buttonName].Invoke();
+
+                // Check if search results are available based on your business logic
+
+            }
+        }
+
+
+
         private ICommand exitCommand = null!;
         public ICommand ExitCommand =>
             exitCommand ??= exitCommand = new RelayCommand(Logout);
@@ -115,7 +193,7 @@ namespace PresentationLayer.MVVM.ViewModels
         private void RefreshDataGrid()
         {
             // Re-bind the DataGrid to update its content
-            TabellController tabeller = new TabellController();
+            
             CustomerItems = new ObservableCollection<Kund>(tabeller.KundTabell());
             JournalItems = new ObservableCollection<Journal>(tabeller.JournalTabell());
             BookingItems = new ObservableCollection<Besök>(tabeller.BesökTabell());
@@ -334,6 +412,40 @@ namespace PresentationLayer.MVVM.ViewModels
         }
 
 
+        private ICommand _nyKundCommand;
+        public ICommand NyKundCommand =>
+            _nyKundCommand ??= new RelayCommand(NyKundButton);
+
+        private void NyKundButton()
+        {
+            NyKund nyKund = new NyKund();
+            nyKund.Show();
+            // Get the reference to the StartSida window
+
+
+            StartSida startSida = Application.Current.Windows.OfType<StartSida>().FirstOrDefault();
+
+            // Close the StartSida window if it exists
+            startSida?.Close();
+        }
+
+
+        private ICommand _beställReservdelCommand;
+        public ICommand BeställReservdelCommand =>
+            _beställReservdelCommand ??= new RelayCommand(BeställReservdelButton);
+
+        private void BeställReservdelButton()
+        {
+            BeställReservdel beställReservdel = new BeställReservdel();
+            beställReservdel.Show();
+            // Get the reference to the StartSida window
+
+
+            StartSida startSida = Application.Current.Windows.OfType<StartSida>().FirstOrDefault();
+
+            // Close the StartSida window if it exists
+            startSida?.Close();
+        }
 
 
 
