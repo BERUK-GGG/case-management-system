@@ -48,7 +48,7 @@ namespace PresentationLayer
             bookingDataGrid.ItemsSource = tabeller.BesökTabell();
             ReservDataGrid.ItemsSource = tabeller.ReservdellTabell();
 
-            
+
 
 
         }
@@ -65,7 +65,7 @@ namespace PresentationLayer
         //    navigationStack.Push(KundContentControl);
         //    BackButton.Visibility = Visibility.Visible;
 
-            
+
 
 
 

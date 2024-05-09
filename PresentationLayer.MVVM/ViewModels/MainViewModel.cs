@@ -14,6 +14,11 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using Affärslager;
 using PresentationLayer.MVVM.Models;
 using System.Windows;
+using System.Windows.Controls;
+using Castle.Core.Resource;
+using System.Collections.ObjectModel;
+using RB_Ärendesystem.Entities;
+using Entities;
 
 
 namespace PresentationLayer.MVVM.ViewModels
@@ -23,6 +28,8 @@ namespace PresentationLayer.MVVM.ViewModels
         private ICommand exitCommand = null!;
         public ICommand ExitCommand =>
             exitCommand ??= exitCommand = new RelayCommand(Logout);
+
+
 
         private void Logout()
         {
@@ -39,6 +46,91 @@ namespace PresentationLayer.MVVM.ViewModels
             
             
         }
+
+        // Define properties for DataGrids
+        private DataGrid _journalDataGrid;
+        private DataGrid _customerDataGrid;
+        private DataGrid _bookingDataGrid;
+        private DataGrid _reservDataGrid;
+
+        // Define properties to bind to the DataGrids in your XAML
+        public DataGrid JournalDataGrid
+        {
+            get { return _journalDataGrid; }
+            set { _journalDataGrid = value; OnPropertyChanged(); }
+        }
+
+        public DataGrid customerDataGrid
+        {
+            get { return _customerDataGrid; }
+            set { _customerDataGrid = value; OnPropertyChanged(); }
+        }
+
+        public DataGrid bookingDataGrid
+        {
+            get { return _bookingDataGrid; }
+            set { _bookingDataGrid = value; OnPropertyChanged(); }
+        }
+
+        public DataGrid ReservDataGrid
+        {
+            get { return _reservDataGrid; }
+            set { _reservDataGrid = value; OnPropertyChanged(); }
+        }
+
+
+        private ObservableCollection<Kund> _customerItems;
+        public ObservableCollection<Kund> CustomerItems
+        {
+            get { return _customerItems; }
+            set { _customerItems = value; OnPropertyChanged(); }
+        }
+
+        private ObservableCollection<Besök> _bookingItems;
+        public ObservableCollection<Besök> BookingItems
+        {
+            get { return _bookingItems; }
+            set { _bookingItems = value; OnPropertyChanged(); }
+        }
+
+        private ObservableCollection<Journal> _journalItems;
+        public ObservableCollection<Journal> JournalItems
+        {
+            get { return _journalItems; }
+            set { _journalItems = value; OnPropertyChanged(); }
+        }
+
+        private ObservableCollection<Reservdel> _reservdelItems;
+        public ObservableCollection<Reservdel> ReservdelItems
+        {
+            get { return _reservdelItems; }
+            set { _reservdelItems = value; OnPropertyChanged(); }
+        }
+
+
+        private ICommand refreshCommand = null!;
+        public ICommand RefreshCommand =>
+            refreshCommand ??= refreshCommand = new RelayCommand(RefreshDataGrid);
+
+        private void RefreshDataGrid()
+        {
+            // Re-bind the DataGrid to update its content
+            TabellController tabeller = new TabellController();
+            CustomerItems = new ObservableCollection<Kund>(tabeller.KundTabell());
+            JournalItems = new ObservableCollection<Journal>(tabeller.JournalTabell());
+            BookingItems = new ObservableCollection<Besök>(tabeller.BesökTabell());
+            ReservdelItems = new ObservableCollection<Reservdel>(tabeller.ReservdellTabell());
+
+            JournalDataGrid.ItemsSource = tabeller.JournalTabell();
+            customerDataGrid.ItemsSource = tabeller.KundTabell();
+            bookingDataGrid.ItemsSource = tabeller.BesökTabell();
+            ReservDataGrid.ItemsSource = tabeller.ReservdellTabell();
+
+
+
+
+        }
+
 
         private Visibility _kundContentVisibility = Visibility.Collapsed;
         public Visibility KundContentVisibility
@@ -60,7 +152,14 @@ namespace PresentationLayer.MVVM.ViewModels
             }
         }
 
-        
+        private Visibility _mainFrameVisibility = Visibility.Collapsed;
+        public Visibility MainFrameVisibility
+        {
+            get { return _mainFrameVisibility; }
+            set { _mainFrameVisibility = value; OnPropertyChanged(); }
+        }
+
+
 
         private Visibility _bokningContentVisibility = Visibility.Collapsed;
         public Visibility BokningContentVisibility
@@ -122,43 +221,71 @@ namespace PresentationLayer.MVVM.ViewModels
             }
         }
 
+        private ContentControl _kundContentControl;
+        public ContentControl KundContentControl
+        {
+            get { return _kundContentControl; }
+            set { _kundContentControl = value; OnPropertyChanged(); }
+        }
+
+        private ContentControl _bokningContentControl;
+        public ContentControl BokningContentControl
+        {
+            get { return _bokningContentControl; }
+            set { _bokningContentControl = value; OnPropertyChanged(); }
+        }
+
+        private ContentControl _reservdelarContentControl;
+        public ContentControl ReservdelarContentControl
+        {
+            get { return _reservdelarContentControl; }
+            set { _reservdelarContentControl = value; OnPropertyChanged(); }
+        }
+
+        private ContentControl _journalContentControl;
+        public ContentControl JournalContentControl
+        {
+            get { return _journalContentControl; }
+            set { _journalContentControl = value; OnPropertyChanged(); }
+        }
+
+
         private void CustomerButton()
         {
+            navigationStack.Push(KundContentControl); // Push current content onto the stack
             KundContentVisibility = Visibility.Visible;
             JournalContentVisibility = Visibility.Collapsed;
             BokningContentVisibility = Visibility.Collapsed;
             ReservdelarContentVisibility = Visibility.Collapsed;
-
-
-            // Hide other content controls if needed
         }
 
         private void BokningButton()
         {
+            navigationStack.Push(BokningContentControl); // Push current content onto the stack
             KundContentVisibility = Visibility.Collapsed;
             JournalContentVisibility = Visibility.Collapsed;
             BokningContentVisibility = Visibility.Visible;
             ReservdelarContentVisibility = Visibility.Collapsed;
-            // Hide other content controls if needed
         }
 
         private void ReservdelarButton()
         {
+            navigationStack.Push(ReservdelarContentControl); // Push current content onto the stack
             KundContentVisibility = Visibility.Collapsed;
             JournalContentVisibility = Visibility.Collapsed;
             BokningContentVisibility = Visibility.Collapsed;
             ReservdelarContentVisibility = Visibility.Visible;
-            // Hide other content controls if needed
         }
 
         private void JournalButton()
         {
+            navigationStack.Push(JournalContentControl); // Push current content onto the stack
             KundContentVisibility = Visibility.Collapsed;
             JournalContentVisibility = Visibility.Visible;
             BokningContentVisibility = Visibility.Collapsed;
             ReservdelarContentVisibility = Visibility.Collapsed;
-            // Hide other content controls if needed
         }
+
 
         private Stack<UIElement> navigationStack = new Stack<UIElement>();
 
@@ -196,16 +323,21 @@ namespace PresentationLayer.MVVM.ViewModels
 
         private void BackButton()
         {
-            if (navigationStack.Count > 0)
-            {
-                UIElement previousContent = navigationStack.Pop();
-                previousContent.Visibility = Visibility.Collapsed;
-                if (navigationStack.Count == 0)
-                {
-                    BackButtonVisibility = Visibility.Collapsed;
-                }
-            }
+            // Hide all content controls
+            KundContentVisibility = Visibility.Collapsed;
+            BokningContentVisibility = Visibility.Collapsed;
+            ReservdelarContentVisibility = Visibility.Collapsed;
+            JournalContentVisibility = Visibility.Collapsed;
+
+            // Show the main frame
+            MainFrameVisibility = Visibility.Visible;
         }
+
+
+
+
+
+
     }
 
 
