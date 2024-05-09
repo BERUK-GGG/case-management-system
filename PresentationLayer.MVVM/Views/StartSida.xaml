@@ -108,7 +108,7 @@
                     <!-- TextBox for storing customer information -->
 
 
-                    <DataGrid x:Name="customerDataGrid" Grid.ColumnSpan="2" Margin="250,63,144,101" IsReadOnly="True" />
+                    <DataGrid x:Name="customerDataGrid" Margin="250,63,231,101" IsReadOnly="True" ItemsSource="{Binding CustomerItems}" Grid.ColumnSpan="2" />
 
                 </Grid>
 
@@ -126,7 +126,7 @@
 
                     <Label Content="Sök bokning:" VerticalAlignment="Top" HorizontalAlignment="Left"  Margin="299,10,0,0" RenderTransformOrigin="0.659,1.526"  />
                     <TextBox x:Name="SökTidBox" Width="200" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="383,18,0,0" TextChanged="SearchTextBoxBokaTid_TextChanged"/>
-                    <DataGrid x:Name="bookingDataGrid" Margin="260,149,134,179" IsReadOnly="True" />
+                    <DataGrid x:Name="bookingDataGrid" Margin="260,149,134,179" IsReadOnly="True" ItemsSource="{Binding BookingItems}" />
 
 
 
@@ -141,7 +141,7 @@
                     <Button Content="Registrera journal" Width="100" Height="30" Margin="10" Click="RegistreraJournal_Click" />
                     <Label Content="Sök journal:" VerticalAlignment="Top" HorizontalAlignment="Left"  Margin="260,10,0,0" RenderTransformOrigin="0.659,1.526"  />
                     <TextBox x:Name="SökJournal" Width="200" />
-                    <DataGrid x:Name="JournalDataGrid" Grid.ColumnSpan="2" Margin="250,63,144,101" IsReadOnly="True" AutoGenerateColumns="False">
+                    <DataGrid x:Name="JournalDataGrid" Grid.ColumnSpan="2" Margin="250,63,144,101" IsReadOnly="True" AutoGenerateColumns="False" ItemsSource="{Binding JournalItems}"  >
                         <DataGrid.Columns>
                             <!-- Other columns of Journal entity -->
                             <DataGridTextColumn Header="ID" Binding="{Binding ID}" />
@@ -174,7 +174,7 @@
                 <Grid>
                     <Button Content="Registrera reservdel" Click="BeställReservdel_Click" Margin="460,367,353,100" RenderTransformOrigin="0.516,0.386"/>
 
-                    <DataGrid x:Name="ReservDataGrid" Margin="260,149,134,179" IsReadOnly="True" />
+                    <DataGrid x:Name="ReservDataGrid" Margin="260,149,134,179" IsReadOnly="True" ItemsSource="{Binding ReservdelItems}" />
                     <TextBox x:Name="SökReservBox" HorizontalAlignment="Left" Margin="447,77,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" TextChanged="SearchTextBoxReserv_TextChanged"/>
                     <Label Content="Sök reservdel:" HorizontalAlignment="Left" Margin="361,73,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.582,0.003"/>
 
