@@ -40,7 +40,18 @@ namespace PresentationLayer.MVVM.ViewModels
         public string SelectedTime
         {
             get { return _selectedTime; }
-            set { _selectedTime = value; OnPropertyChanged(); }
+            set {
+                string itemString = value?.ToString();
+                if (itemString != null)
+                {
+                    // Find the position of the colon before the last one
+                    int secondLastColonIndex = itemString.LastIndexOf(':', itemString.LastIndexOf(':') - 1);
+
+                    // Extract the substring starting from two positions after the second last colon
+                    _selectedTime = itemString.Substring(secondLastColonIndex + 1).Trim();
+                };
+                OnPropertyChanged(); 
+            }
         }
 
         private string _kundNamn;
@@ -124,7 +135,7 @@ namespace PresentationLayer.MVVM.ViewModels
         private void Spara()
         {
             // Implement save logic here
-            if (SelectedBesök != null)
+            if (SelectedBesök != null && SelectedTime != null)
             {
                 DateTime Date = SelectedDate;
                 
@@ -156,41 +167,27 @@ namespace PresentationLayer.MVVM.ViewModels
             bool success = false;
             if (SelectedBesök != null)
             {
-                //if (!success)
-                //{
+                System.Windows.MessageBoxResult result = System.Windows.MessageBox.Show("Do you want to continue?", "Confirmation", System.Windows.MessageBoxButton.YesNo);
+
+                if (result == System.Windows.MessageBoxResult.Yes)
+                {
 
 
-                //    // Find all Besök entries with the same KundID as the one we tried to delete
-                //    var relatedBesök = _tabellController.BesökTabell().Where(b => b.Kund.ID == SelectedKund.ID).ToList();
-
-                //    foreach (var besök in relatedBesök)
-                //    {
-                //        var relatedJournal = _tabellController.JournalTabell().Where(j => j.Besök.ID == besök.ID).ToList();
-                //        if (!relatedJournal.Any())
-                //        {
-                //            uppdateraBokningController.TaBortBokning(besök);
-                //            RefreshDataGrid();
-                //        }
-                //        else
-                //        {
-                //            System.Windows.MessageBox.Show("This customer cannot be deleted due to associated with a booking that is already completed.", "Error");
-                //            return; // Exit the method since deletion is not possible
-                //        }
-                //    }
+                    // Find all Besök entries with the same KundID as the one we tried to delete
+                    var relatedJournal = _tabellController.JournalTabell().Where(b => b.Besök.ID == SelectedBesök.ID).ToList();
+                    if (!relatedJournal.Any())
+                    {
+                        _uppdateraBokningController.TaBortBokning(SelectedBesök);
+                        RefreshDataGrid();
+                    }
+                    else
+                    {
+                        System.Windows.MessageBox.Show("This booking cannot be deleted due to associated records in other tables.", "Error");
+                    }
 
 
 
-
-                //    System.Windows.MessageBoxResult result = System.Windows.MessageBox.Show("Do you want to continue?", "Confirmation", System.Windows.MessageBoxButton.YesNo);
-
-                //    if (result == System.Windows.MessageBoxResult.Yes)
-                //    {
-                //        // If user clicked Yes, delete the selected Kund
-                //        UpdateraKundController.TaBortKund(SelectedKund);
-                //        RefreshDataGrid();
-                //        clear();
-                //    }
-                //}
+                }
             }
         }
 
@@ -207,6 +204,11 @@ namespace PresentationLayer.MVVM.ViewModels
             UpdateraPage?.Close();
 
 
+
+        }
+
+        private void clear()
+        {
 
         }
     }

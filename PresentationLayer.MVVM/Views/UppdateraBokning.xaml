@@ -62,10 +62,10 @@
             </StackPanel>
             <Button Content="Spara ändringar" HorizontalAlignment="Left" Margin="366,280,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120"  Height="27" Command="{Binding SparaCommand}"/>
             <Button Content="Back" HorizontalAlignment="Left" Margin="27,336,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Height="27" Command="{Binding BackCommand}"/>
-            <DataGrid x:Name="BesökDataGrid" Grid.Row="1" Margin="253,83,306,266" IsReadOnly="True" SelectedItem="{Binding SelectedBesök, Mode=TwoWay}" ItemsSource="{Binding Bokningar}"/>
+            <DataGrid x:Name="BesökDataGrid" Grid.Row="1" Margin="253,83,306,266" IsReadOnly="True" SelectedItem="{Binding SelectedBesök, Mode=TwoWay}" ItemsSource="{Binding Bokningar}" />
             <TextBox x:Name="Namn" HorizontalAlignment="Left" Margin="777,46,0,0" Grid.Row="1" TextWrapping="Wrap" Text="{Binding KundNamn}" VerticalAlignment="Top" Width="120" />
             <DatePicker x:Name="Datum" HorizontalAlignment="Left" Margin="777,188,0,0" Grid.Row="1" VerticalAlignment="Top" SelectedDate="{Binding SelectedDate}"/>
-            <ComboBox x:Name="Time" SelectedItem="{Binding SelectedTime}" Margin="777,240,23,248" Grid.Row="1">
+            <ComboBox x:Name="Time" SelectedItem="{Binding SelectedTime, Mode=TwoWay}" Margin="777,240,23,248" Grid.Row="1">
                 <ComboBoxItem>07:00</ComboBoxItem>
                 <ComboBoxItem>08:00</ComboBoxItem>
                 <ComboBoxItem>09:00</ComboBoxItem>

@@ -30,7 +30,7 @@ namespace PresentationLayer.MVVM.Views
     public partial class UppdateraBokning : Window
     {
         
-        TabellController tabeller = new TabellController();
+        //TabellController tabeller = new TabellController();
         
         public UppdateraBokning()
         {
@@ -39,6 +39,8 @@ namespace PresentationLayer.MVVM.Views
             
 
         }
+
+       
 
         //private void LogoutButton_Click(object sender, RoutedEventArgs e)
         //{
@@ -49,7 +51,7 @@ namespace PresentationLayer.MVVM.Views
         //    // Add logic to log out the user and navigate back to the login page
         //}
 
-        
+
 
         //private void BesökDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         //{
@@ -146,8 +148,8 @@ namespace PresentationLayer.MVVM.Views
 
         //    if (result == System.Windows.MessageBoxResult.Yes)
         //    {
-                
-                
+
+
         //            // Find all Besök entries with the same KundID as the one we tried to delete
         //            var relatedJournal = tabeller.JournalTabell().Where(b => b.Besök.ID == selectedBesök.ID).ToList();
         //            if (!relatedJournal.Any())
@@ -159,7 +161,7 @@ namespace PresentationLayer.MVVM.Views
         //            {
         //                System.Windows.MessageBox.Show("This booking cannot be deleted due to associated records in other tables.", "Error");
         //            }
-                
+
 
 
         //    }
@@ -177,7 +179,7 @@ namespace PresentationLayer.MVVM.Views
 
         //    }
 
-        }
+    }
 
 
     }
