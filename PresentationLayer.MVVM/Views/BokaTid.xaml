@@ -61,11 +61,11 @@
 
 
             </StackPanel>
-            <Button Content="Spara" HorizontalAlignment="Left" Margin="366,280,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120" Click="SaveButton_Click"/>
+            <Button Content="Spara" HorizontalAlignment="Left" Margin="366,280,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120" Command="{Binding SparaCommand}"/>
             <Button Content="Back" HorizontalAlignment="Left" Margin="27,336,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Height="27" Command="{Binding BackCommand}"/>
-            <DataGrid x:Name="CustomerDataGrid" Grid.Row="1" Margin="253,83,306,266" IsReadOnly="True" SelectionChanged="customerDataGrid_SelectionChanged" ItemsSource="{Binding CustomerItems}"/>
-            <TextBox x:Name="Namn" HorizontalAlignment="Left" Margin="777,46,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Klicka på Kund rad" VerticalAlignment="Top" Width="120" />
-            <DatePicker x:Name="Date" HorizontalAlignment="Left" Margin="777,188,0,0" Grid.Row="1" VerticalAlignment="Top" SelectedDate="{Binding SelectedDate}"/>
+            <DataGrid x:Name="CustomerDataGrid" Grid.Row="1" Margin="253,83,306,266" IsReadOnly="True" SelectedItem="{Binding SelectedKund, Mode=TwoWay}" ItemsSource="{Binding CustomerItems}"/>
+            <TextBox x:Name="Namn" HorizontalAlignment="Left" Margin="777,46,0,0" Grid.Row="1" TextWrapping="Wrap" Text="{Binding Namn, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120" />
+            <DatePicker x:Name="Datum" HorizontalAlignment="Left" Margin="777,188,0,0" Grid.Row="1" VerticalAlignment="Top" SelectedDate="{Binding SelectedDate}"/>
             <ComboBox x:Name="Time" SelectedItem="{Binding SelectedTime}" Margin="777,240,23,248" Grid.Row="1">
                 <ComboBoxItem>07:00</ComboBoxItem>
                 <ComboBoxItem>08:00</ComboBoxItem>
@@ -83,8 +83,8 @@
             </ComboBox>
 
 
-            <TextBox x:Name="Syfte" HorizontalAlignment="Left" Margin="777,146,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Syfte" VerticalAlignment="Top" Width="120" RenderTransformOrigin="-0.059,1.638" />
-            <ComboBox x:Name="Mekaniker" HorizontalAlignment="Left" Margin="777,107,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="Syfte" HorizontalAlignment="Left" Margin="777,146,0,0" Grid.Row="1" TextWrapping="Wrap" Text="{Binding Syfte}" VerticalAlignment="Top" Width="120" RenderTransformOrigin="-0.059,1.638" />
+            <ComboBox x:Name="Mekaniker" HorizontalAlignment="Left" Margin="777,107,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120" ItemsSource="{Binding Mekaniker}" SelectedItem="{Binding SelectedMekaniker, Mode=TwoWay}"/>
             <Label Content="Mekaniker:" HorizontalAlignment="Left" Margin="772,81,0,0" Grid.Row="1" VerticalAlignment="Top"/>
             <Label Content="Kund Namn:" HorizontalAlignment="Left" Margin="777,15,0,0" Grid.Row="1" VerticalAlignment="Top"/>
             <Label Content="Kunder" HorizontalAlignment="Left" Margin="422,46,0,0" Grid.Row="1" VerticalAlignment="Top"/>
