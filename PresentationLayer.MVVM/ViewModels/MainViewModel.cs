@@ -529,6 +529,23 @@ namespace PresentationLayer.MVVM.ViewModels
             startSida?.Close();
         }
 
+        private ICommand _uppdateraBokningCommand;
+        public ICommand UppdateraBokningCommand =>
+            _uppdateraBokningCommand ??= new RelayCommand(UppdateraBokningButton);
+
+        private void UppdateraBokningButton()
+        {
+            UppdateraBokning uppdateraBokning = new UppdateraBokning();
+            uppdateraBokning.Show();
+            // Get the reference to the StartSida window
+
+
+            StartSida startSida = Application.Current.Windows.OfType<StartSida>().FirstOrDefault();
+
+            // Close the StartSida window if it exists
+            startSida?.Close();
+        }
+
 
     }
 

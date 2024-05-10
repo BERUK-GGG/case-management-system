@@ -123,7 +123,7 @@
                 <!-- Content for bokning Section Goes Here -->
                 <Grid>
                     <Button Content="Boka tid" Width="100" Height="30" Margin="299,72,521,410" />
-                    <Button Content="Uppdatera Bokning" Height="30"  Visibility="Visible" Margin="523,72,281,410" RenderTransformOrigin="-0.194,0.41" />
+                    <Button Content="Uppdatera Bokning" Height="30"  Visibility="Visible" Margin="523,72,281,410" RenderTransformOrigin="-0.194,0.41" Command="{Binding UppdateraBokningCommand}" />
 
                     <Label Content="Sök bokning:" VerticalAlignment="Top" HorizontalAlignment="Left"  Margin="299,10,0,0" RenderTransformOrigin="0.659,1.526"  />
                     <TextBox x:Name="SökTidBox" Width="200" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="383,18,0,0" />
