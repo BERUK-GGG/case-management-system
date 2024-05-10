@@ -122,7 +122,7 @@
             <ContentControl Grid.Row="1" Grid.Column="1" x:Name="BokningContentControl" Visibility="{Binding BokningContentVisibility}">
                 <!-- Content for bokning Section Goes Here -->
                 <Grid>
-                    <Button Content="Boka tid" Width="100" Height="30" Margin="299,72,521,410" />
+                    <Button Content="Boka tid" Width="100" Height="30" Margin="299,72,521,410" Command="{Binding BokaTidCommand}" />
                     <Button Content="Uppdatera Bokning" Height="30"  Visibility="Visible" Margin="523,72,281,410" RenderTransformOrigin="-0.194,0.41" Command="{Binding UppdateraBokningCommand}" />
 
                     <Label Content="Sök bokning:" VerticalAlignment="Top" HorizontalAlignment="Left"  Margin="299,10,0,0" RenderTransformOrigin="0.659,1.526"  />

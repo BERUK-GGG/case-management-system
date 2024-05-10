@@ -20,6 +20,7 @@ using System.Collections.ObjectModel;
 using RB_Ärendesystem.Entities;
 using Entities;
 using PresentationLayer.MVVM.View;
+using PresentationLayer.View;
 
 
 namespace PresentationLayer.MVVM.ViewModels
@@ -537,6 +538,23 @@ namespace PresentationLayer.MVVM.ViewModels
         {
             UppdateraBokning uppdateraBokning = new UppdateraBokning();
             uppdateraBokning.Show();
+            // Get the reference to the StartSida window
+
+
+            StartSida startSida = Application.Current.Windows.OfType<StartSida>().FirstOrDefault();
+
+            // Close the StartSida window if it exists
+            startSida?.Close();
+        }
+
+        private ICommand _bokaTidCommand;
+        public ICommand BokaTidCommand =>
+            _bokaTidCommand ??= new RelayCommand(BokaTidButton);
+
+        private void BokaTidButton()
+        {
+            BokaTid bokaTid = new BokaTid();
+            bokaTid.Show();
             // Get the reference to the StartSida window
 
 
