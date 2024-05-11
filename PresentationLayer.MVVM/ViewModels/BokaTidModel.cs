@@ -53,7 +53,19 @@ namespace PresentationLayer.MVVM.ViewModels
         public string SelectedTime
         {
             get { return _selectedTime; }
-            set { _selectedTime = value; OnPropertyChanged(); }
+            set
+            {
+                string itemString = value?.ToString();
+                if (itemString != null)
+                {
+                    // Find the position of the colon before the last one
+                    int secondLastColonIndex = itemString.LastIndexOf(':', itemString.LastIndexOf(':') - 1);
+
+                    // Extract the substring starting from two positions after the second last colon
+                    _selectedTime = itemString.Substring(secondLastColonIndex + 1).Trim();
+                };
+                OnPropertyChanged();
+            }
         }
 
         private string _syfte;
@@ -127,10 +139,10 @@ namespace PresentationLayer.MVVM.ViewModels
             // Check if a customer is selected
             if (SelectedKund != null)
             {
-                // Check if a mechanic is selected
-                if (SelectedMekaniker != null)
+                // Check if the time is selected
+                if (!string.IsNullOrEmpty(SelectedTime))
                 {
-                    // Convert SelectedTime to TimeSpan
+                    // Try parsing SelectedTime
                     if (TimeOnly.TryParse(SelectedTime, out TimeOnly tid))
                     {
                         try
@@ -138,41 +150,45 @@ namespace PresentationLayer.MVVM.ViewModels
                             // Combine selected date and time
                             DateTime selectedDateTime = SelectedDate.Date + tid.ToTimeSpan();
 
-                            // Save the booking
+                            // Add a new entry to the bookning table
                             _nyBokningController.AddBooking(SelectedKund, SelectedMekaniker, Syfte, selectedDateTime);
 
                             // Refresh the data grid
                             RefreshDataGrid();
 
                             // Provide feedback to the user
-                            MessageBox.Show("New booking saved successfully.");
+                            MessageBox.Show("New booking added successfully.");
 
-                           
+                            // Clear the fields if needed
+                            // clear();
                         }
                         catch (Exception ex)
                         {
-                            // Provide feedback if there's an exception during date-time creation
-                            MessageBox.Show($"Error creating date-time: {ex.Message}");
+                            // Provide feedback if there's an exception during the addition process
+                            MessageBox.Show($"Error adding new booking: {ex.Message}");
                         }
                     }
                     else
                     {
+
                         // Provide feedback if the time format is incorrect
                         MessageBox.Show("Invalid time format.");
                     }
                 }
                 else
                 {
-                    // Provide feedback if mechanic is not selected
-                    MessageBox.Show("Please select a mechanic.");
+                    // Provide feedback if the time is not selected
+                    MessageBox.Show("Please select a time.");
                 }
             }
             else
             {
-                // Provide feedback if customer is not selected
+                // Provide feedback if a customer is not selected
                 MessageBox.Show("Please select a customer.");
             }
         }
+
+
 
 
 

@@ -66,7 +66,7 @@
             <DataGrid x:Name="CustomerDataGrid" Grid.Row="1" Margin="253,83,306,266" IsReadOnly="True" SelectedItem="{Binding SelectedKund, Mode=TwoWay}" ItemsSource="{Binding CustomerItems}"/>
             <TextBox x:Name="Namn" HorizontalAlignment="Left" Margin="777,46,0,0" Grid.Row="1" TextWrapping="Wrap" Text="{Binding Namn, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120" />
             <DatePicker x:Name="Datum" HorizontalAlignment="Left" Margin="777,188,0,0" Grid.Row="1" VerticalAlignment="Top" SelectedDate="{Binding SelectedDate}"/>
-            <ComboBox x:Name="Time" SelectedItem="{Binding SelectedTime}" Margin="777,240,23,248" Grid.Row="1">
+            <ComboBox x:Name="Time" SelectedItem="{Binding SelectedTime, Mode=TwoWay}" Margin="777,240,23,248" Grid.Row="1">
                 <ComboBoxItem>07:00</ComboBoxItem>
                 <ComboBoxItem>08:00</ComboBoxItem>
                 <ComboBoxItem>09:00</ComboBoxItem>
