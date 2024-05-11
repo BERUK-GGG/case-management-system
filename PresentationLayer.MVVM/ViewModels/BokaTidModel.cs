@@ -124,44 +124,63 @@ namespace PresentationLayer.MVVM.ViewModels
 
         private void Spara()
         {
-
-
             // Check if a customer is selected
-            //if (SelectedKund != null)
-            //{
-            //    // Check if a mechanic is selected
-            //    if (SelectedMekaniker != null)
-            //    {
-            //        DateTime Date = SelectedDate;
-            //        TimeOnly tid = TimeOnly.Parse(SelectedTime.ToString());
-            //        DateTime selectedDateTime = Date.Date + tid.ToTimeSpan();
+            if (SelectedKund != null)
+            {
+                // Check if a mechanic is selected
+                if (SelectedMekaniker != null)
+                {
+                    // Convert SelectedTime to TimeSpan
+                    if (TimeOnly.TryParse(SelectedTime, out TimeOnly tid))
+                    {
+                        try
+                        {
+                            // Combine selected date and time
+                            DateTime selectedDateTime = SelectedDate.Date + tid.ToTimeSpan();
 
-            //        Namn = SelectedKund;
-            //        Mekaniker = SelectedMekaniker;
-            //        Syfte = Syfte;
-            //        Datum = selectedDateTime;
+                            // Save the booking
+                            _nyBokningController.AddBooking(SelectedKund, SelectedMekaniker, Syfte, selectedDateTime);
 
+                            // Refresh the data grid
+                            RefreshDataGrid();
+
+                            // Provide feedback to the user
+                            MessageBox.Show("New booking saved successfully.");
 
                            
-                            
-
-            //            // Save the booking
-            //            _nyBokningController.AddBooking(SelectedKund, SelectedMekaniker, Syfte, selectedDateTime);
-
-            //            RefreshDataGrid();
-
-            //            // Provide feedback to the user
-            //            MessageBox.Show("New booking saved successfully.");
-
-            //            // Close the window
-            //            Application.Current.MainWindow.Close();
-                    
-            //    }
-            //}
+                        }
+                        catch (Exception ex)
+                        {
+                            // Provide feedback if there's an exception during date-time creation
+                            MessageBox.Show($"Error creating date-time: {ex.Message}");
+                        }
+                    }
+                    else
+                    {
+                        // Provide feedback if the time format is incorrect
+                        MessageBox.Show("Invalid time format.");
+                    }
+                }
+                else
+                {
+                    // Provide feedback if mechanic is not selected
+                    MessageBox.Show("Please select a mechanic.");
+                }
+            }
+            else
+            {
+                // Provide feedback if customer is not selected
+                MessageBox.Show("Please select a customer.");
+            }
         }
-                    
-                
-        
+
+
+
+
+
+
+
+
 
 
 

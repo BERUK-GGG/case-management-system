@@ -564,6 +564,23 @@ namespace PresentationLayer.MVVM.ViewModels
             startSida?.Close();
         }
 
+        private ICommand _registreraJournalCommand;
+        public ICommand RegistreraJournalCommand =>
+            _registreraJournalCommand ??= new RelayCommand(RegistreraJournalButton);
+
+        private void RegistreraJournalButton()
+        {
+            RegistreraJournal registreraJournal = new RegistreraJournal();
+            registreraJournal.Show();
+            // Get the reference to the StartSida window
+
+
+            StartSida startSida = Application.Current.Windows.OfType<StartSida>().FirstOrDefault();
+
+            // Close the StartSida window if it exists
+            startSida?.Close();
+        }
+
 
     }
 
