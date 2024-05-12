@@ -104,7 +104,7 @@
                     </Grid.ColumnDefinitions>
                     <Button Content="Ny kund" Width="100" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top"  Margin="0,63,20,0" RenderTransformOrigin="0.46,-0.779" Command="{Binding NyKundCommand}" Grid.Column="1" />
                     <Button Content="Uppdatera kund" Width="100" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,118,20,0"  Grid.Column="1" Command="{Binding UppdateraKundCommand}" />
-                    
+
 
                     <!-- TextBox for storing customer information -->
 
@@ -126,7 +126,7 @@
                     <Button Content="Uppdatera Bokning" Height="30"  Visibility="Visible" Margin="523,72,281,410" RenderTransformOrigin="-0.194,0.41" Command="{Binding UppdateraBokningCommand}" />
 
                     <Label Content="Sök bokning:" VerticalAlignment="Top" HorizontalAlignment="Left"  Margin="299,10,0,0" RenderTransformOrigin="0.659,1.526"  />
-                    <TextBox x:Name="SökTidBox" Width="200" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="383,18,0,0" />
+                    <TextBox x:Name="SökTidBox" Width="200" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="383,18,0,0" Text="{Binding SearchTextBesök, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                     <DataGrid x:Name="bookingDataGrid" Margin="260,149,134,179" IsReadOnly="True" ItemsSource="{Binding BookingItems}" />
 
 
@@ -176,7 +176,7 @@
                     <Button Content="Registrera reservdel" Command="{Binding BeställReservdelCommand}" Margin="460,367,353,100" RenderTransformOrigin="0.516,0.386"/>
 
                     <DataGrid x:Name="ReservDataGrid" Margin="260,149,134,179" IsReadOnly="True" ItemsSource="{Binding ReservdelItems}" />
-                    <TextBox x:Name="SökReservBox" HorizontalAlignment="Left" Margin="447,77,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" />
+                    <TextBox x:Name="SökReservBox" HorizontalAlignment="Left" Margin="447,77,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" Text="{Binding SearchTextReservdel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                     <Label Content="Sök reservdel:" HorizontalAlignment="Left" Margin="361,73,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.582,0.003"/>
 
 
@@ -187,7 +187,7 @@
             </ContentControl>
 
             <Button x:Name="BackButton" Content="Back" Width="100" Height="30" Command="{Binding BackCommand}" Visibility="{Binding BackButtonVisibility}" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="26,432,0,0" />
-            <ListBox  x:Name="lstResults" Margin="10,68,657,17" RenderTransformOrigin="0.5,0.5"  Visibility="{Binding IsResultsVisible}" ItemsSource="{Binding FoundButtons}" SelectedItem="{Binding SelectedListBoxItem}">
+            <ListBox  x:Name="lstResults" Margin="26,75,694,426" RenderTransformOrigin="0.5,0.5"  Visibility="{Binding IsResultsVisible}" ItemsSource="{Binding FoundButtons}" SelectedItem="{Binding SelectedListBoxItem}" Grid.RowSpan="2">
                 <!--<ListBox.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform ScaleY="-1"/>
@@ -197,7 +197,7 @@
                     </TransformGroup>
                 </ListBox.RenderTransform>-->
             </ListBox>
-        
+
 
         </Grid>
     </Border>

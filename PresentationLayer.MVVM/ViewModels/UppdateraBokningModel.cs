@@ -29,7 +29,7 @@ namespace PresentationLayer.MVVM.ViewModels
             Mekaniker = _tabellController.MekanikerTabell();
         }
 
-        private DateTime _selectedDate;
+        private DateTime _selectedDate = DateTime.Today;
         public DateTime SelectedDate
         {
             get { return _selectedDate; }

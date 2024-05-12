@@ -580,10 +580,81 @@ namespace PresentationLayer.MVVM.ViewModels
             // Close the StartSida window if it exists
             startSida?.Close();
         }
+        private string _searchTextReservdel;
+        public string SearchTextReservdel
+        {
+            get { return _searchTextReservdel; }
+            set
+            {
+                _searchTextReservdel = value;
+                OnPropertyChanged(nameof(SearchTextReservdel));
+                SearchReserv(_searchTextReservdel);
+            }
+        }
+        private void SearchReserv(string searchText)
+        {
+            // Convert the search text to lowercase
+            searchText = searchText.ToLower();
 
+            // Perform the search based on the search text
+            var searchResult = tabeller.ReservdellTabell().Where(k =>
+                k.Namn.ToLower().Contains(searchText)
+            ).ToList();
 
+            // Update the Kunder collection with the search result
+            ReservdelItems = new ObservableCollection<Reservdel>(searchResult);
+        }
+
+        private string _searchTextKunder;
+        public string SearchTextKunder
+        {
+            get { return _searchTextKunder; }
+            set
+            {
+                _searchTextKunder = value;
+                OnPropertyChanged(nameof(SearchTextKunder));
+                SearchKunder(_searchTextKunder);
+            }
+        }
+        private void SearchKunder(string searchText)
+        {
+            // Convert the search text to lowercase
+            searchText = searchText.ToLower();
+
+            // Perform the search based on the search text
+            var searchResult = tabeller.KundTabell().Where(k =>
+                k.Namn.ToLower().Contains(searchText)
+            ).ToList();
+
+            // Update the Kunder collection with the search result
+            CustomerItems = new ObservableCollection<Kund>(searchResult);
+        }
+        private string _searchTextBesök;
+        public string SearchTextBesök
+        {
+            get { return _searchTextBesök; }
+            set
+            {
+                _searchTextBesök = value;
+                OnPropertyChanged(nameof(SearchTextBesök));
+                SearchBesök(_searchTextBesök);
+            }
+        }
+        private void SearchBesök(string searchText)
+        {
+            // Convert the search text to lowercase
+            searchText = searchText.ToLower();
+
+            // Perform the search based on the search text
+            var searchResult = tabeller.BesökTabell().Where(k =>
+                k.Kund.Namn.ToLower().Contains(searchText)
+            ).ToList();
+
+            // Update the Kunder collection with the search result
+            BookingItems = new ObservableCollection<Besök>(searchResult);
+        }
     }
-
-
-
 }
+
+
+

@@ -110,17 +110,17 @@ namespace PresentationLayer.MVVM.ViewModels
                     _nyJournalController.AddJournal(åtgärder: Åtgärder, besök: SelectedBesök, Reservdelar: selectedReserv);
                     MessageBox.Show("Data saved successfully.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
-            else
-            {
+                else
+                {
                 MessageBox.Show("Please select at least one Reservdel.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
-        }
             else
             {
                 MessageBox.Show("Please select a Besök.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
-}
+        }
         private ICommand _backCommand;
         public ICommand BackCommand =>
             _backCommand ??= new RelayCommand(Back);

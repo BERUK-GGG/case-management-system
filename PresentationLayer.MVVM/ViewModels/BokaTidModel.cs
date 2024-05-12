@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows;
+using System.Reflection;
 
 namespace PresentationLayer.MVVM.ViewModels
 {
@@ -42,7 +43,7 @@ namespace PresentationLayer.MVVM.ViewModels
             set { _namn = value; OnPropertyChanged(); }
         }
 
-        private DateTime _selectedDate;
+        private DateTime _selectedDate = DateTime.Today;
         public DateTime SelectedDate
         {
             get { return _selectedDate; }
@@ -229,8 +230,12 @@ namespace PresentationLayer.MVVM.ViewModels
 
 
         }
+        
 
     }
+
+
+
     
     }
 

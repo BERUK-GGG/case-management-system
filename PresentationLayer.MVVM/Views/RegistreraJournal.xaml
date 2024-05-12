@@ -66,7 +66,7 @@
             </StackPanel>
             <Button Content="Spara" HorizontalAlignment="Left" Margin="366,296,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120" Command="{Binding SparaCommand}" Height="26"/>
             <Button Content="Back" HorizontalAlignment="Left" Margin="89,442,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Height="27" Command="{Binding BackCommand}"/>
-            <DataGrid x:Name="BesökDataGrid" Grid.Row="1" Margin="212,89,280,260" IsReadOnly="True"  ItemsSource="{Binding Bokningar}" SelectedItem="{Binding SelectedBesök}"/>
+            <DataGrid x:Name="BesökDataGrid" Grid.Row="1" Margin="212,89,280,260" IsReadOnly="True"  ItemsSource="{Binding Bokningar}" SelectedItem="{Binding SelectedBesök}" />
             <TextBox x:Name="BesökID" HorizontalAlignment="Left" Margin="774,64,0,0" Grid.Row="1" TextWrapping="Wrap" Text="{Binding BesökID, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"  />
 
 
