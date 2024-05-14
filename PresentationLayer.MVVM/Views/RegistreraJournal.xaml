@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PresentationLayer.MVVM.Views"
         xmlns:vm="clr-namespace:PresentationLayer.MVVM.ViewModels"
+
         mc:Ignorable="d"
         Title="Startsida" Height="500" Width="800"
         MinHeight="600" MinWidth="920" WindowStartupLocation="CenterScreen"
@@ -72,7 +73,9 @@
 
             <TextBox x:Name="åtgärder" HorizontalAlignment="Left" Margin="774,98,0,0" Grid.Row="1" TextWrapping="Wrap" Text="{Binding Åtgärder, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120" RenderTransformOrigin="-0.059,1.638"  />
 
-            <ListBox x:Name="Reservdel" HorizontalAlignment="Left" Margin="778,153,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120" SelectionMode="Multiple" ItemsSource="{Binding Reservdelar}" Height="254" SelectedItem="{Binding SelectedReservdelar, Mode=TwoWay }" SelectionChanged="UpdateSelectedItem" />
+            <ListBox x:Name="Reservdel" HorizontalAlignment="Left" Margin="778,153,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120" SelectionMode="Multiple" ItemsSource="{Binding Reservdelar}" Height="254"  SelectionChanged="UpdateSelectedItem" >
+                
+            </ListBox>
 
             <Label Content="Registrera Journal" HorizontalAlignment="Left" Margin="409,10,0,0" Grid.Row="1" VerticalAlignment="Top" FontWeight="Bold" FontSize="14"/>
             <Label Content="Använda &#xD;&#xA;Reservdel:" HorizontalAlignment="Left" Margin="710,149,0,0" Grid.Row="1" VerticalAlignment="Top"/>

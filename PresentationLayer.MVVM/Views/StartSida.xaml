@@ -136,19 +136,23 @@
 
 
             <!-- Content Area for journal Section -->
-            <ContentControl Grid.Row="1" Grid.Column="1" x:Name="JournalContentControl" Visibility="{Binding JournalContentVisibility}">
+            <ContentControl Grid.Row="1" Grid.Column="1" x:Name="JournalContentControl" Visibility= "{Binding JournalContentVisibility}">
                 <!-- Content for bokning Section Goes Here -->
-                <StackPanel>
-                    <Button Content="Registrera journal" Width="100" Height="30" Margin="10" Command="{Binding RegistreraJournalCommand}"  />
-                    <Label Content="Sök journal:" VerticalAlignment="Top" HorizontalAlignment="Left"  Margin="260,10,0,0" RenderTransformOrigin="0.659,1.526"  />
-                    <TextBox x:Name="SökJournal" Width="200" />
-                    <DataGrid x:Name="JournalDataGrid" Grid.ColumnSpan="2" Margin="250,63,144,101" IsReadOnly="True" AutoGenerateColumns="False" ItemsSource="{Binding JournalItems}"  >
+                <Grid>
+                    <Button Content="Registrera journal" Width="100" Height="30" Margin="450,41,370,441" Command="{Binding RegistreraJournalCommand}"  />
+                    <Label Content="Sök journal:" VerticalAlignment="Top" HorizontalAlignment="Left"  Margin="326,93,0,0" RenderTransformOrigin="0.659,1.526"  />
+                    <TextBox x:Name="SökJournal1" Width="200" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="403,101,0,0" Text="{Binding SearchTextJournal, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    <DataGrid x:Name="JournalDataGrid" IsReadOnly="True" AutoGenerateColumns="False" ItemsSource="{Binding JournalItems}" Width="348" Margin="326,144,246,101" ColumnWidth="SizeToHeader" MinColumnWidth="30"  >
+                        <DataGrid.CellStyle>
+                            <Style/>
+                        </DataGrid.CellStyle>
                         <DataGrid.Columns>
                             <!-- Other columns of Journal entity -->
-                            <DataGridTextColumn Header="ID" Binding="{Binding ID}" />
-                            <DataGridTextColumn Header="Åtgärder" Binding="{Binding Åtgärder}" />
-                            <DataGridTextColumn Header="Besök" Binding="{Binding Besök}" />
-                            <DataGridTemplateColumn Header="Reservdelar">
+                            <DataGridTextColumn Header="ID" Binding="{Binding ID}" Width="50"/>
+                            <DataGridTextColumn Header="Besök" Binding="{Binding Besök}" Width="50" />
+                            <DataGridTextColumn Header="Åtgärder" Binding="{Binding Åtgärder}" Width="110"/>
+                            
+                            <DataGridTemplateColumn Header="Reservdelar" Width="110">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <ItemsControl ItemsSource="{Binding reservdelar}">
@@ -167,7 +171,7 @@
 
 
 
-                </StackPanel>
+                </Grid>
             </ContentControl>
 
             <ContentControl Grid.Row="1" Grid.Column="1" x:Name="ReservdelarContentControl" Visibility="{Binding ReservdelarContentVisibility}">

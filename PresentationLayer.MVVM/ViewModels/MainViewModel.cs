@@ -653,6 +653,30 @@ namespace PresentationLayer.MVVM.ViewModels
             // Update the Kunder collection with the search result
             BookingItems = new ObservableCollection<Besök>(searchResult);
         }
+        private string _searchTextJournal;
+        public string SearchTextJournal
+        {
+            get { return _searchTextBesök; }
+            set
+            {
+                _searchTextJournal = value;
+                OnPropertyChanged(nameof(SearchTextJournal));
+                SearchJornal(_searchTextJournal);
+            }
+        }
+        private void SearchJornal(string searchText)
+        {
+            // Convert the search text to lowercase
+            searchText = searchText.ToLower();
+
+            // Perform the search based on the search text
+            var searchResult = tabeller.JournalTabell().Where(k =>
+                k.Besök.ID.ToString().ToLower().Contains(searchText)
+            ).ToList();
+
+            // Update the Kunder collection with the search result
+            JournalItems = new ObservableCollection<Journal>(searchResult);
+        }
     }
 }
 

@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows;
 using System.Windows.Controls;
+using System.Reflection;
 
 namespace PresentationLayer.MVVM.ViewModels
 {
@@ -25,16 +26,7 @@ namespace PresentationLayer.MVVM.ViewModels
             // Initialize properties or fetch data here if needed
 
             Bokningar = _tabellController.BesökTabell();
-            var journalItems = _tabellController.JournalTabell();
-
-            // Fetch the list of mechanics from the database
-            var reservdel = _tabellController.ReservdellTabell();
-
-            var reservdelIdsInJournal = journalItems.Select(j => j.ID);
-
-            // Filter reservdel based on ReservdelIds not present in the journalItems
-            var reservdelFiltered = reservdel.Where(r => !reservdelIdsInJournal.Contains(r.ID)).ToList();
-            Reservdelar = new List<Reservdel>(reservdelFiltered);
+            RefreshListBox();
         }
 
 
@@ -47,8 +39,8 @@ namespace PresentationLayer.MVVM.ViewModels
             set { _bokningar = value; OnPropertyChanged(); }
         }
 
-        private List<Reservdel> _reservdelar;
-        public List<Reservdel> Reservdelar
+        private ObservableCollection<Reservdel> _reservdelar;
+        public ObservableCollection<Reservdel> Reservdelar
         {
             get { return _reservdelar; }
             set { _reservdelar = value; OnPropertyChanged(); }
@@ -84,7 +76,7 @@ namespace PresentationLayer.MVVM.ViewModels
             }
         }
 
-        private List<Reservdel> _selectedReservdelar;
+        private List<Reservdel> _selectedReservdelar = new List<Reservdel>();
         public List<Reservdel>  SelectedReservdelar
         {
             get { return _selectedReservdelar; }
@@ -109,6 +101,7 @@ namespace PresentationLayer.MVVM.ViewModels
                     }
                     _nyJournalController.AddJournal(åtgärder: Åtgärder, besök: SelectedBesök, Reservdelar: selectedReserv);
                     MessageBox.Show("Data saved successfully.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                    RefreshListBox();
                 }
                 else
                 {
@@ -149,6 +142,20 @@ namespace PresentationLayer.MVVM.ViewModels
 
 
 
+        }
+
+        private void RefreshListBox()
+        {
+            var journalItems = _tabellController.JournalTabell();
+
+            // Fetch the list of mechanics from the database
+            var reservdel = _tabellController.ReservdellTabell();
+
+            var reservdelIdsInJournal = journalItems.Select(j => j.ID);
+
+            // Filter reservdel based on ReservdelIds not present in the journalItems
+            var reservdelFiltered = reservdel.Where(r => !reservdelIdsInJournal.Contains(r.ID)).ToList();
+            Reservdelar = new ObservableCollection<Reservdel>(reservdelFiltered);
         }
     }
    

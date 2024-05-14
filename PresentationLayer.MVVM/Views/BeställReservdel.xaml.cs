@@ -21,18 +21,16 @@ namespace PresentationLayer.MVVM.Views
     /// <summary>
     /// Interaction logic for BeställReservdel.xaml
     /// </summary>
-    public partial class BeställReservdel : Window, INotifyPropertyChanged
+    public partial class BeställReservdel : Window
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-        TabellController tabeller = new TabellController();
-
+       
 
 
         public BeställReservdel()
         {
             InitializeComponent();
 
-            //PopulateReservComboBox();
+           
         }
 
     }

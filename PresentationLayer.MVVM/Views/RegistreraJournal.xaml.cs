@@ -28,20 +28,32 @@ namespace PresentationLayer.MVVM.Views
     /// </summary>
     public partial class RegistreraJournal : Window
     {
-        
 
+        RegistreraJournalModel DC;
         public RegistreraJournal()
         {
             InitializeComponent();
 
-
+            DC = new RegistreraJournalModel();
 
             
-
+            base.DataContext = DC;
 
         }
 
-        
+
+        private void UpdateSelectedItem(object sender, SelectionChangedEventArgs e)
+        {
+            var items = (ListBox)sender;
+
+            foreach( Reservdel item in Reservdel.SelectedItems)
+            {
+                if (!DC.SelectedReservdelar.Contains(item))
+                {
+                    DC.SelectedReservdelar.Add(item);
+                }
+            }
+        }
     }
 
 
