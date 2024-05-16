@@ -5,7 +5,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PresentationLayer.MVVM.Views"
         xmlns:vm="clr-namespace:PresentationLayer.MVVM.ViewModels"
-
         mc:Ignorable="d"
         Title="Startsida" Height="500" Width="800"
         MinHeight="600" MinWidth="920" WindowStartupLocation="CenterScreen"
@@ -16,8 +15,6 @@
 
     <Window.DataContext>
         <vm:RegistreraJournalModel />
-        
-
     </Window.DataContext>
     
 
@@ -65,7 +62,7 @@
 
 
             </StackPanel>
-            <Button Content="Spara" HorizontalAlignment="Left" Margin="366,296,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120" Command="{Binding SparaCommand}" Height="26"/>
+            <Button Content="Spara" HorizontalAlignment="Left" Margin="366,296,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120" Command="{Binding SparaCommand}" CommandParameter="{Binding ElementName=Reservdel, Path=SelectedItems}" Height="26"/>
             <Button Content="Back" HorizontalAlignment="Left" Margin="89,442,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Height="27" Command="{Binding BackCommand}"/>
             <DataGrid x:Name="BesökDataGrid" Grid.Row="1" Margin="212,89,280,260" IsReadOnly="True"  ItemsSource="{Binding Bokningar}" SelectedItem="{Binding SelectedBesök}" />
             <TextBox x:Name="BesökID" HorizontalAlignment="Left" Margin="774,64,0,0" Grid.Row="1" TextWrapping="Wrap" Text="{Binding BesökID, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"  />
@@ -73,7 +70,7 @@
 
             <TextBox x:Name="åtgärder" HorizontalAlignment="Left" Margin="774,98,0,0" Grid.Row="1" TextWrapping="Wrap" Text="{Binding Åtgärder, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120" RenderTransformOrigin="-0.059,1.638"  />
 
-            <ListBox x:Name="Reservdel" HorizontalAlignment="Left" Margin="778,153,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120" SelectionMode="Multiple" ItemsSource="{Binding Reservdelar}" Height="254"  SelectionChanged="UpdateSelectedItem" >
+            <ListBox x:Name="Reservdel" HorizontalAlignment="Left" Margin="778,153,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120" SelectionMode="Multiple" ItemsSource="{Binding Reservdelar}" Height="254" >
                 
             </ListBox>
 

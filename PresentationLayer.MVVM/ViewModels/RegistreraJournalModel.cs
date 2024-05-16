@@ -14,6 +14,7 @@ using System.Windows.Input;
 using System.Windows;
 using System.Windows.Controls;
 using System.Reflection;
+using System.Collections;
 
 namespace PresentationLayer.MVVM.ViewModels
 {
@@ -28,9 +29,6 @@ namespace PresentationLayer.MVVM.ViewModels
             Bokningar = _tabellController.BesökTabell();
             RefreshListBox();
         }
-
-
-
 
         private ObservableCollection<Besök> _bokningar;
         public ObservableCollection<Besök> Bokningar
@@ -85,10 +83,11 @@ namespace PresentationLayer.MVVM.ViewModels
 
         private ICommand _sparaCommand;
         public ICommand SparaCommand =>
-            _sparaCommand ??= new RelayCommand(Spara);
+            _sparaCommand ??= new RelayCommandNewVersion(Spara);
 
-        private void Spara()
+        private void Spara(object selectedItems)
         {
+            UpdateSelectedItem(selectedItems);
 
             if (SelectedBesök != null)
             {
@@ -102,6 +101,8 @@ namespace PresentationLayer.MVVM.ViewModels
                     _nyJournalController.AddJournal(åtgärder: Åtgärder, besök: SelectedBesök, Reservdelar: selectedReserv);
                     MessageBox.Show("Data saved successfully.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
                     RefreshListBox();
+                    BesökID = string.Empty;
+                    Åtgärder = string.Empty;
                 }
                 else
                 {
@@ -148,14 +149,28 @@ namespace PresentationLayer.MVVM.ViewModels
         {
             var journalItems = _tabellController.JournalTabell();
 
-            // Fetch the list of mechanics from the database
+            
             var reservdel = _tabellController.ReservdellTabell();
 
             var reservdelIdsInJournal = journalItems.Select(j => j.ID);
 
             // Filter reservdel based on ReservdelIds not present in the journalItems
             var reservdelFiltered = reservdel.Where(r => !reservdelIdsInJournal.Contains(r.ID)).ToList();
+
             Reservdelar = new ObservableCollection<Reservdel>(reservdelFiltered);
+        }
+
+        private void UpdateSelectedItem(object selectedItems)
+        {
+            IList _selectedItems = (System.Collections.IList)selectedItems;
+
+            foreach (Reservdel item in _selectedItems)
+            {
+                if (!SelectedReservdelar.Contains(item))
+                {
+                    SelectedReservdelar.Add(item);
+                }
+            }
         }
     }
    
