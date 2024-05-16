@@ -319,7 +319,7 @@ namespace PresentationLayer.MVVM.ViewModels
             set { _reservdelarContentVisibility = value; OnPropertyChanged(); }
         }
 
-        private Visibility _journalContentVisibility = Visibility.Visible;
+        private Visibility _journalContentVisibility = Visibility.Collapsed;
         public Visibility JournalContentVisibility
         {
             get { return _journalContentVisibility; }
