@@ -8,15 +8,12 @@ import {
   Typography,
   Box,
   Alert,
-  AppBar,
-  Toolbar,
-  IconButton,
   FormControl,
   InputLabel,
   Select,
   MenuItem,
 } from '@mui/material';
-import { ArrowBack } from '@mui/icons-material';
+import Header from './Header';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -24,6 +21,7 @@ import { useForm, Controller } from 'react-hook-form';
 import dayjs from 'dayjs';
 import 'dayjs/locale/sv';
 import { customerService, visitService, mechanicService } from '../services/api';
+import { validationRules, sanitizeInput } from '../utils/validation';
 
 // Set Swedish locale for dayjs
 dayjs.locale('sv');
@@ -65,10 +63,11 @@ const BokaTid = () => {
     setError('');
     
     try {
+      // Sanitize input data
       const visitData = {
         kundId: parseInt(data.kundId),
         dateAndTime: data.dateAndTime.toISOString(),
-        syfte: data.syfte,
+        syfte: sanitizeInput.text(data.syfte),
         mekanikerId: parseInt(data.mekanikerId),
       };
       
@@ -93,21 +92,7 @@ const BokaTid = () => {
 
   return (
     <div className="app-container">
-      <AppBar position="static">
-        <Toolbar>
-          <IconButton
-            edge="start"
-            color="inherit"
-            onClick={() => navigate('/start')}
-            sx={{ mr: 2 }}
-          >
-            <ArrowBack />
-          </IconButton>
-          <Typography variant="h6" component="div">
-            Boka Tid
-          </Typography>
-        </Toolbar>
-      </AppBar>
+      <Header />
 
       <Container maxWidth="md" sx={{ mt: 4, mb: 4 }}>
         <Paper elevation={3} sx={{ p: 4 }}>
@@ -189,7 +174,8 @@ const BokaTid = () => {
                 name="syfte"
                 multiline
                 rows={3}
-                {...register('syfte', { 
+                {...register('syfte', {
+                  ...validationRules.description,
                   required: 'Syfte krävs',
                   minLength: { value: 3, message: 'Syfte måste vara minst 3 tecken' }
                 })}

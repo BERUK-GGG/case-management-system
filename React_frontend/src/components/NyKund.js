@@ -8,13 +8,13 @@ import {
   Typography,
   Box,
   Alert,
-  AppBar,
-  Toolbar,
   IconButton,
 } from '@mui/material';
 import { ArrowBack } from '@mui/icons-material';
 import { useForm } from 'react-hook-form';
 import { customerService } from '../services/api';
+import { validationRules, sanitizeInput } from '../utils/validation';
+import Header from './Header';
 
 const NyKund = () => {
   const navigate = useNavigate();
@@ -29,13 +29,16 @@ const NyKund = () => {
     setError('');
     
     try {
-      const response = await customerService.create({
-        namn: data.namn,
+      // Sanitize input data
+      const sanitizedData = {
+        namn: sanitizeInput.text(data.namn),
         personNr: parseInt(data.personNr),
-        address: data.address,
-        teleNr: parseInt(data.teleNr),
-        epost: data.epost,
-      });
+        address: sanitizeInput.text(data.address),
+        teleNr: parseInt(sanitizeInput.phone(data.teleNr)),
+        epost: sanitizeInput.email(data.epost),
+      };
+      
+      const response = await customerService.create(sanitizedData);
       
       console.log('Kund skapad:', response.data);
       setSuccess(true);
@@ -53,21 +56,7 @@ const NyKund = () => {
 
   return (
     <div className="app-container">
-      <AppBar position="static">
-        <Toolbar>
-          <IconButton
-            edge="start"
-            color="inherit"
-            onClick={() => navigate('/start')}
-            sx={{ mr: 2 }}
-          >
-            <ArrowBack />
-          </IconButton>
-          <Typography variant="h6" component="div">
-            Ny Kund
-          </Typography>
-        </Toolbar>
-      </AppBar>
+      <Header />
 
       <Container maxWidth="md" sx={{ mt: 4, mb: 4 }}>
         <Paper elevation={3} sx={{ p: 4 }}>
@@ -96,10 +85,7 @@ const NyKund = () => {
               label="Namn"
               name="namn"
               autoFocus
-              {...register('namn', { 
-                required: 'Namn krävs',
-                minLength: { value: 2, message: 'Namn måste vara minst 2 tecken' }
-              })}
+              {...register('namn', validationRules.name)}
               error={!!errors.namn}
               helperText={errors.namn?.message}
             />
@@ -165,13 +151,7 @@ const NyKund = () => {
               label="E-post"
               name="epost"
               type="email"
-              {...register('epost', { 
-                required: 'E-post krävs',
-                pattern: {
-                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                  message: 'Ogiltig e-postadress'
-                }
-              })}
+              {...register('epost', validationRules.email)}
               error={!!errors.epost}
               helperText={errors.epost?.message}
             />
@@ -196,6 +176,9 @@ const NyKund = () => {
             </Box>
           </Box>
         </Paper>
+       <Typography variant="h6" gutterBottom align="center">
+                 Skapat av Beruk & Raman
+        </Typography>
       </Container>
     </div>
   );

@@ -8,8 +8,6 @@ import {
   CardContent,
   CardActions,
   Button,
-  AppBar,
-  Toolbar,
   Box,
 } from '@mui/material';
 import {
@@ -19,8 +17,11 @@ import {
   Build,
   PersonOutline,
   EventAvailable,
-  ExitToApp,
 } from '@mui/icons-material';
+import Header from './Header';
+
+
+
 
 const StartSida = () => {
   const navigate = useNavigate();
@@ -32,12 +33,6 @@ const StartSida = () => {
       navigate('/login');
     }
   }, [navigate]);
-
-  const handleLogout = () => {
-    localStorage.removeItem('isLoggedIn');
-    localStorage.removeItem('currentUser');
-    navigate('/login');
-  };
 
   const menuItems = [
     {
@@ -86,19 +81,7 @@ const StartSida = () => {
 
   return (
     <div className="app-container">
-      <AppBar position="static">
-        <Toolbar>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            RB Ärendesystem - Startsida
-          </Typography>
-          <Typography variant="body2" sx={{ mr: 2 }}>
-            Inloggad som: {localStorage.getItem('currentUser')}
-          </Typography>
-          <Button color="inherit" onClick={handleLogout} startIcon={<ExitToApp />}>
-            Logga ut
-          </Button>
-        </Toolbar>
-      </AppBar>
+      <Header />
 
       <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
         <Typography variant="h4" gutterBottom align="center">
@@ -148,7 +131,10 @@ const StartSida = () => {
             </Grid>
           ))}
         </Grid>
+        
+        
       </Container>
+    
     </div>
   );
 };

@@ -13,9 +13,11 @@ import {
   MenuItem,
   CircularProgress
 } from '@mui/material';
+import Header from './Header';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { journalService, customerService, visitService } from '../services/api';
+import { validationRules, sanitizeInput } from '../utils/validation';
 
 const RegistreraJournal = () => {
   const [error, setError] = useState('');
@@ -64,11 +66,12 @@ const RegistreraJournal = () => {
     setSuccess('');
 
     try {
+      // Sanitize input data
       const journalData = {
         customerId: parseInt(data.customerId),
         visitId: parseInt(data.visitId),
-        description: data.description,
-        notes: data.notes,
+        description: sanitizeInput.text(data.description),
+        notes: sanitizeInput.text(data.notes),
         createdDate: new Date().toISOString()
       };
 
@@ -86,7 +89,11 @@ const RegistreraJournal = () => {
   };
 
   return (
-    <Container maxWidth="md" sx={{ mt: 4 }}>
+    <div className="app-container">
+      <Header />
+      <Container maxWidth="md" sx={{ mt: 4 }}>
+        
+        
       <Paper elevation={3} sx={{ p: 4 }}>
         <Typography variant="h4" component="h1" gutterBottom align="center">
           Registrera Journal
@@ -149,6 +156,7 @@ const RegistreraJournal = () => {
             multiline
             rows={4}
             {...register('description', { 
+              ...validationRules.description,
               required: 'Beskrivning är obligatorisk',
               minLength: { value: 10, message: 'Beskrivning måste vara minst 10 tecken' }
             })}
@@ -162,8 +170,9 @@ const RegistreraJournal = () => {
             margin="normal"
             multiline
             rows={3}
-            {...register('notes')}
-            helperText="Frivilliga anteckningar"
+            {...register('notes', validationRules.description)}
+            error={!!errors.notes}
+            helperText={errors.notes?.message || "Frivilliga anteckningar"}
           />
 
           <Box sx={{ mt: 3, display: 'flex', gap: 2 }}>
@@ -187,6 +196,7 @@ const RegistreraJournal = () => {
         </Box>
       </Paper>
     </Container>
+    </div>
   );
 };
 

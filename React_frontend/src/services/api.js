@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { getCSRFToken, defaultRateLimiter } from '../utils/security';
 
 const API_BASE_URL = process.env.NODE_ENV === 'production' ? '/api' : 'http://localhost:5001/api';
 
@@ -13,11 +14,36 @@ const api = axios.create({
 // Request interceptor
 api.interceptors.request.use(
   (config) => {
-    // Add auth token if needed
-    // const token = localStorage.getItem('token');
-    // if (token) {
-    //   config.headers.Authorization = `Bearer ${token}`;
-    // }
+    // Rate limiting check
+    const userId = localStorage.getItem('currentUser') || 'anonymous';
+    if (!defaultRateLimiter.isAllowed(userId)) {
+      return Promise.reject(new Error('För många förfrågningar. Försök igen senare.'));
+    }
+
+    // Add auth token
+    const token = localStorage.getItem('authToken');
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+
+    // Add CSRF token for state-changing operations
+    if (['post', 'put', 'patch', 'delete'].includes(config.method.toLowerCase())) {
+      const csrfToken = getCSRFToken();
+      if (csrfToken) {
+        config.headers['X-CSRF-Token'] = csrfToken;
+      }
+    }
+
+    // Add timestamp to prevent caching of sensitive data
+    config.headers['X-Requested-At'] = new Date().getTime();
+    
+    // Add CSRF protection header
+    config.headers['X-Requested-With'] = 'XMLHttpRequest';
+    
+    // Add security headers
+    config.headers['Cache-Control'] = 'no-store';
+    config.headers['Pragma'] = 'no-cache';
+    
     return config;
   },
   (error) => {
@@ -29,7 +55,25 @@ api.interceptors.request.use(
 api.interceptors.response.use(
   (response) => response,
   (error) => {
-    console.error('API Error:', error);
+    // Handle authentication errors
+    if (error.response?.status === 401) {
+      // Clear authentication data
+      localStorage.removeItem('authToken');
+      localStorage.removeItem('currentUser');
+      localStorage.removeItem('loginTime');
+      localStorage.removeItem('isLoggedIn');
+      
+      // Redirect to login page
+      window.location.href = '/login';
+    }
+    
+    // Log errors securely (don't log sensitive data)
+    console.error('API Error:', {
+      status: error.response?.status,
+      message: error.message,
+      url: error.config?.url
+    });
+    
     return Promise.reject(error);
   }
 );

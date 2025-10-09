@@ -14,9 +14,11 @@ import {
   CircularProgress,
   Chip
 } from '@mui/material';
+import Header from './Header';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { partService } from '../services/api';
+import { validationRules, sanitizeInput } from '../utils/validation';
 
 const BeställReservdel = () => {
   const [error, setError] = useState('');
@@ -59,14 +61,14 @@ const BeställReservdel = () => {
         await partService.update(existingPart.id, partData);
         setSuccess(`Beställning av ${data.quantity} st ${existingPart.name} genomförd!`);
       } else {
-        // Create new part
+        // Create new part with sanitized input
         partData = {
-          name: data.name,
-          partNumber: data.partNumber,
+          name: sanitizeInput.text(data.name),
+          partNumber: sanitizeInput.text(data.partNumber),
           price: parseFloat(data.price),
           quantity: parseInt(data.quantity),
-          description: data.description,
-          supplier: data.supplier || 'Ej specificerad'
+          description: sanitizeInput.text(data.description),
+          supplier: sanitizeInput.text(data.supplier) || 'Ej specificerad'
         };
         await partService.create(partData);
         setSuccess(`Ny reservdel "${data.name}" beställd framgångsrikt!`);
@@ -89,7 +91,9 @@ const BeställReservdel = () => {
   };
 
   return (
-    <Container maxWidth="md" sx={{ mt: 4 }}>
+    <div className="app-container">
+      <Header />
+      <Container maxWidth="md" sx={{ mt: 4 }}>
       <Paper elevation={3} sx={{ p: 4 }}>
         <Typography variant="h4" component="h1" gutterBottom align="center">
           Beställ Reservdel
@@ -160,8 +164,8 @@ const BeställReservdel = () => {
                 label="Namn"
                 margin="normal"
                 {...register('name', { 
-                  required: partType === 'new' ? 'Namn är obligatoriskt' : false,
-                  minLength: { value: 2, message: 'Namn måste vara minst 2 tecken' }
+                  ...validationRules.name,
+                  required: partType === 'new' ? 'Namn är obligatoriskt' : false
                 })}
                 error={!!errors.name}
                 helperText={errors.name?.message}
@@ -172,7 +176,8 @@ const BeställReservdel = () => {
                 label="Artikelnummer"
                 margin="normal"
                 {...register('partNumber', { 
-                  required: partType === 'new' ? 'Artikelnummer är obligatoriskt' : false
+                  required: partType === 'new' ? 'Artikelnummer är obligatoriskt' : false,
+                  maxLength: { value: 50, message: 'Artikelnummer får inte vara längre än 50 tecken' }
                 })}
                 error={!!errors.partNumber}
                 helperText={errors.partNumber?.message}
@@ -196,8 +201,11 @@ const BeställReservdel = () => {
                 fullWidth
                 label="Leverantör"
                 margin="normal"
-                {...register('supplier')}
-                helperText="Frivilligt - leverantör av reservdelen"
+                {...register('supplier', { 
+                  maxLength: { value: 100, message: 'Leverantör får inte vara längre än 100 tecken' }
+                })}
+                error={!!errors.supplier}
+                helperText={errors.supplier?.message || "Frivilligt - leverantör av reservdelen"}
               />
 
               <TextField
@@ -206,8 +214,9 @@ const BeställReservdel = () => {
                 margin="normal"
                 multiline
                 rows={3}
-                {...register('description')}
-                helperText="Frivillig beskrivning av reservdelen"
+                {...register('description', validationRules.description)}
+                error={!!errors.description}
+                helperText={errors.description?.message || "Frivillig beskrivning av reservdelen"}
               />
             </>
           )}
@@ -247,6 +256,7 @@ const BeställReservdel = () => {
         </Box>
       </Paper>
     </Container>
+    </div>
   );
 };
 

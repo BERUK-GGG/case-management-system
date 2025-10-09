@@ -13,6 +13,7 @@ import {
   MenuItem,
   CircularProgress
 } from '@mui/material';
+import Header from './Header';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -112,7 +113,9 @@ const UppdateraBokning = () => {
   };
 
   return (
-    <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="sv">
+    <div className="app-container">
+      <Header />
+      <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="sv">
       <Container maxWidth="md" sx={{ mt: 4 }}>
         <Paper elevation={3} sx={{ p: 4 }}>
           <Typography variant="h4" component="h1" gutterBottom align="center">
@@ -249,6 +252,7 @@ const UppdateraBokning = () => {
         </Paper>
       </Container>
     </LocalizationProvider>
+    </div>
   );
 };
 

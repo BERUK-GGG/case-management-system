@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import {
   Container,
   Paper,
@@ -8,23 +8,39 @@ import {
   Typography,
   Box,
   Alert,
+  CircularProgress,
 } from '@mui/material';
 import { useForm } from 'react-hook-form';
+import { useAuth } from '../contexts/AuthContext';
+
 
 const Login = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const { login, isAuthenticated } = useAuth();
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
   const { register, handleSubmit, formState: { errors } } = useForm();
 
-  const onSubmit = (data) => {
-    // Simple authentication - in a real app, this would validate against a backend
-    if (data.användarNamn === 'you' && data.lösenord === 'password') {
-      // Store user session
-      localStorage.setItem('isLoggedIn', 'true');
-      localStorage.setItem('currentUser', data.användarNamn);
-      navigate('/start');
-    } else {
-      setError('Felaktigt användarnamn eller lösenord');
+  // Redirect if already authenticated
+  useEffect(() => {
+    if (isAuthenticated) {
+      const from = location.state?.from?.pathname || '/start';
+      navigate(from, { replace: true });
+    }
+  }, [isAuthenticated, navigate, location]);
+
+  const onSubmit = async (data) => {
+    setLoading(true);
+    setError('');
+    
+    try {
+      await login(data.användarNamn, data.lösenord);
+      // Navigation will be handled by useEffect above
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -84,8 +100,9 @@ const Login = () => {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              disabled={loading}
             >
-              Logga in
+              {loading ? <CircularProgress size={24} /> : 'Logga in'}
             </Button>
           </Box>
           
@@ -95,7 +112,9 @@ const Login = () => {
           </Typography>
         </Paper>
       </Box>
+      
     </Container>
+    
   );
 };
 

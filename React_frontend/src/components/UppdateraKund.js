@@ -13,6 +13,7 @@ import {
   MenuItem,
   CircularProgress
 } from '@mui/material';
+import Header from './Header';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { customerService } from '../services/api';
@@ -110,7 +111,9 @@ const UppdateraKund = () => {
   };
 
   return (
-    <Container maxWidth="md" sx={{ mt: 4 }}>
+    <div className="app-container">
+      <Header />
+      <Container maxWidth="md" sx={{ mt: 4 }}>
       <Paper elevation={3} sx={{ p: 4 }}>
         <Typography variant="h4" component="h1" gutterBottom align="center">
           Uppdatera Kund
@@ -234,6 +237,7 @@ const UppdateraKund = () => {
         </Box>
       </Paper>
     </Container>
+    </div>
   );
 };
 
