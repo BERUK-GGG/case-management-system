@@ -263,10 +263,4 @@ docker exec -it rb-frontend ls -la /usr/share/nginx/html
 4. Add tests if applicable
 5. Submit a pull request
 
-## License
 
-This project is licensed under the MIT License.
-
-## Support
-
-For support and questions, please create an issue in the repository or contact the development team.
