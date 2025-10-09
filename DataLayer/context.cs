@@ -12,10 +12,20 @@ namespace RB_Ärendesystem.Datalayer
 {
     public class RB_context : DbContext
     {
+        public RB_context() : base()
+        {
+        }
+
+        public RB_context(DbContextOptions<RB_context> options) : base(options)
+        {
+        }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"{'placeholder'}") ;
-
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseSqlServer(@"Server=rb-sqlserver,1433;Database=RBCaseManagement;User Id=sa;Password=YourStrong@Passw0rd;TrustServerCertificate=true;");
+            }
             base.OnConfiguring(optionsBuilder);
         }   
 

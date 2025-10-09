@@ -1,0 +1,56 @@
+services:
+  # Azure SQL Edge Database
+  database:
+    image: mcr.microsoft.com/azure-sql-edge:latest
+    container_name: rb-sqlserver
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=YourStrong@Passw0rd
+      - MSSQL_PID=Developer
+    ports:
+      - "1433:1433"
+    volumes:
+      - sqlserver_data:/var/opt/mssql
+    networks:
+      - rb-network
+    restart: unless-stopped
+
+  # ASP.NET Core Web API
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: rb-api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:5000
+      - ConnectionStrings__DefaultConnection=Server=database,1433;Database=RBCaseManagement;User Id=sa;Password=YourStrong@Passw0rd;TrustServerCertificate=true;
+      - DatabaseProvider=SqlServer
+    ports:
+      - "5001:5000"
+    depends_on:
+      - database
+    networks:
+      - rb-network
+    restart: unless-stopped
+
+  # React Frontend
+  frontend:
+    build:
+      context: ./React_frontend
+      dockerfile: Dockerfile
+    container_name: rb-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - api
+    networks:
+      - rb-network
+    restart: unless-stopped
+
+networks:
+  rb-network:
+    driver: bridge
+
+volumes:
+  sqlserver_data:
